@@ -1,7 +1,24 @@
 ## About SMS
 
-- php artisan 
+- composer 
+``` install
+    composer install
+    composer update
 
 ```
-php artisan migrate
+
+
+- php artisan 
+
+``` initail
+    php artisan migrate
+
+```
+
+- php seeders
+
+``` seeders
+    php artisan db:seed --class=RolesAndPermissionsSeeder
+
+
 ```

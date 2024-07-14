@@ -14,26 +14,89 @@ class RolesAndPermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // Create permissions
+        // Define permissions based on the menu items provided
         $permissions = [
-            'manage users',
-            'view grades',
-            'manage grades',
-            'view attendance',
-            'manage attendance',
+            'view-dashboard',
+            'manage-school',
+            'view-grades',
+            'view-grade-list',
+            'view-classes',
+            'view-class-list',
+            'view-sections',
+            'view-section-list',
+            'view-parents',
+            'view-parent-list',
+            'view-students',
+            'view-student-info',
+            'add-student',
+            'view-student-list',
+            'manage-student-promotions',
+            'add-promotion',
+            'view-promotion-list',
+            'view-teachers',
+            'view-teacher-list',
+            'view-subjects',
+            'view-subject-list',
+            'manage-accounts',
+            'view-invoices',
+            'view-receipts',
+            'manage-processing-fee',
+            'manage-payments',
+            'manage-attendance',
+            'view-attendance',
+            'view-attendance-ratios',
+            'manage-exams',
+            'view-exams',
+            'manage-settings',
+            'view-users',
+            'manage-previous-years',
+            'update-settings',
         ];
 
+        // Create permissions
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
 
-        // Create roles and assign existing permissions
+        // Define roles and their specific permissions
         $roles = [
-            'admin' => ['manage users', 'view grades', 'manage grades', 'view attendance', 'manage attendance'],
-            'teacher' => ['view grades', 'manage grades', 'view attendance', 'manage attendance'],
-            'student' => ['view grades', 'view attendance'],
+            'admin' => $permissions,
+            'teacher' => [
+                'view-dashboard',
+                'view-grades',
+                'view-grade-list',
+                'view-classes',
+                'view-class-list',
+                'view-sections',
+                'view-section-list',
+                'view-students',
+                'view-student-info',
+                'view-student-list',
+                'view-teachers',
+                'view-teacher-list',
+                'view-subjects',
+                'view-subject-list',
+                'manage-attendance',
+                'view-attendance',
+                'view-attendance-ratios',
+                'manage-exams',
+                'view-exams',
+            ],
+            'student' => [
+                'view-dashboard',
+                'view-grades',
+                'view-classes',
+                'view-sections',
+                'view-students',
+            ],
+            'student parent' => [
+                'view-grades',
+                'view-attendance',
+                'view-student-info',
+            ],
         ];
 
+        // Create roles and assign permissions
         foreach ($roles as $roleName => $rolePermissions) {
             $role = Role::create(['name' => $roleName]);
             $role->givePermissionTo($rolePermissions);
@@ -58,6 +121,12 @@ class RolesAndPermissionsSeeder extends Seeder
                 'email' => 'student@example.com',
                 'password' => bcrypt('password'),
                 'role' => 'student'
+            ],
+            [
+                'name' => 'Parent User',
+                'email' => 'parent@example.com',
+                'password' => bcrypt('password'),
+                'role' => 'student parent'
             ],
         ];
 
