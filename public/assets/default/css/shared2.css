@@ -1,0 +1,343 @@
+:root {
+    --hero-image-height: 545px;
+    --h1-font-size: 28px;
+    --h1-line-height: 50px;
+    --h1-font-weight: 700;
+    --h2-font-size: 24px;
+    --h2-line-height: 32px;
+    --h2-font-weight: 700;
+    --h3-font-size: 20px;
+    --h3-line-height: 30px;
+    --h3-font-weight: 600;
+    --h4-font-size: 18px;
+    --h4-line-height: 24px;
+    --h4-font-weight: 600;
+    --h5-font-size: 16px;
+    --h5-line-height: 48px;
+    --h5-font-weight: 700;
+    --h6-font-size: 15px;
+    --h6-line-height: 24px;
+    --h6-font-weight: 700;
+    --h6-color: #9589ea;
+    --disc-font-size: 16px;
+    --disc-line-height: 30px;
+    --disc-font-weight: 400;
+    --info-font-size: 16px;
+    --info-line-height: 34px;
+    --info-font-weight: 600;
+    --info-color: #807D88;
+    --subtitle-color: #9c9ba2;
+    --subtitle-font-size: 16px;
+    --subtitle-line-height: 30px;
+    --subtitle-font-weight: 600;
+    --span-color: #75737a;
+    --span-font-size: 15px;
+    --span-line-height: 28px;
+    --span-font-weight: 400;
+    --info-text-2-color: #5f5d64;
+    --info-text-2-font-size: 17px;
+    --info-text-2-line-height: 30px;
+    --info-text-2-font-weight: 600;
+    --info-btn-color: #595760;
+    --info-btn-font-size: 13px;
+    --info-btn-line-height: 24px;
+    --info-btn-font-weight: 600;
+    --btn-height: 64px !important;
+    --btn-md-height: 40px;
+    --btn-height-narrow: 50px;
+    --main-btn-color: #fff;
+    --main-btn-font-size: 18px;
+    --main-btn-line-height: 34px;
+    --main-btn-font-weight: 700;
+    --main-btn-min-width: 230px;
+    --btn-2-height: 56px !important;
+    --btn-2-md-height: 40px;
+    --btn-2-height-narrow: 50px;
+    --main-btn-2-color: #fff;
+    --main-btn-2-font-size: 18px;
+    --main-btn-2-line-height: 35px;
+    --main-btn-2-font-weight: 700;
+    --main-btn-2-min-width: 230px;
+    --btn-3-height: 52px !important;
+    --btn-3-md-height: 40px;
+    --btn-3-height-narrow: 50px;
+    --main-btn-3-color: #fff;
+    --main-btn-3-font-size: 18px;
+    --main-btn-3-line-height: 34px;
+    --main-btn-3-font-weight: 600;
+    --main-btn-3-min-width: 120px;
+}
+
+.hht1,
+h1 {
+    font-size: var(--h1-font-size) !important;
+    line-height: var(--h1-line-height) !important;
+    color: var(--text-dark-color) !important;
+    font-weight: var(--h1-font-weight) !important;
+}
+
+.hht2,
+h2,
+.hht2 h6 {
+    font-size: var(--h2-font-size) !important;
+    line-height: var(--h2-line-height) !important;
+    color: var(--text-dark-color) !important;
+    font-weight: var(--h2-font-weight) !important;
+}
+
+.hht3,
+h3 {
+    font-size: var(--h3-font-size) !important;
+    line-height: var(--h3-line-height) !important;
+    color: var(--text-dark-color) !important;
+    font-weight: var(--h3-font-weight) !important;
+}
+
+.hht4,
+h4 {
+    font-size: var(--h4-font-size) !important;
+    line-height: var(--h4-line-height) !important;
+    color: var(--text-dark-color) !important;
+    font-weight: var(--h4-font-weight) !important;
+}
+
+.hht5,
+h5 {
+    font-size: var(--h5-font-size) !important;
+    line-height: var(--h5-line-height) !important;
+    color: var(--secondary) !important;
+    font-weight: var(--h5-font-weight) !important;
+}
+
+.hht6,
+h6 {
+    font-size: var(--h6-font-size) !important;
+    line-height: var(--h6-line-height) !important;
+    color: var(--h6-color) !important;
+    font-weight: var(--h6-font-weight) !important;
+}
+
+.sst,
+.carousel-caption span,
+.subtitle-text ,.subtitle-text p{
+    font-size: var(--subtitle-font-size) !important;
+    font-weight: var(--subtitle-font-weight) !important;
+    line-height: var(--subtitle-line-height) !important;
+    /*color: var(--subtitle-color) !important;*/
+    max-width: 842px !important;
+}
+
+.ssp,
+.span-text {
+    /* padding-right: 1rem; */
+    /* padding-left: 1rem; */
+    font-size: var(--span-font-size) !important;
+    font-weight: var(--span-font-weight) !important;
+    line-height: var(--span-line-height) !important;
+    color: var(--span-color) !important;
+}
+
+.disc-text,
+.disc-text p {
+    font-size: var(--disc-font-size) !important;
+    font-weight: var(--disc-font-weight) !important;
+    line-height: var(--disc-line-height) !important;
+    color: var(--text-dark-color) !important;
+}
+
+.info-text {
+    font-size: var(--info-btn-font-size) !important;
+    font-weight: var(--info-btn-font-weight) !important;
+    line-height: var(--info-btn-line-height) !important;
+    color: var(--info-btn-color) !important;
+}
+
+.info-text:hover {
+    color: var(--secondary) !important;
+}
+
+.info-2-text {
+    font-size: var(--info-text-2-font-size) !important;
+    font-weight: var(--info-text-2-font-weight) !important;
+    line-height: var(--info-text-2-line-height) !important;
+    color: var(--info-text-2-color) !important;
+}
+
+
+.inf-btn {
+    font-size: var(--inf-btn-font-size) !important;
+    font-weight: var(--inf-btn-font-weight) !important;
+    line-height: var(--inf-btn-line-height) !important;
+    color: var(--inf-btn-color) !important;
+}
+
+.btn-primary.main-btn {
+    font-size: var(--main-btn-font-size) !important;
+    font-weight: var(--main-btn-font-weight) !important;
+    line-height: var(--main-btn-line-height) !important;
+    color: var(--main-btn-color) !important;
+    min-width: var(--main-btn-min-width) !important;
+    min-height: var(--btn-height) !important;
+}
+
+.btn-outline-primary.main-btn {
+    font-size: var(--main-btn-font-size) !important;
+    font-weight: var(--main-btn-font-weight) !important;
+    line-height: var(--main-btn-line-height) !important;
+    min-width: var(--main-btn-min-width) !important;
+    min-height: var(--btn-height) !important;
+}
+
+
+.btn-primary.main-btn2 {
+    height: 44px;
+    font-size: var(--main-btn-2-font-size) !important;
+    font-weight: var(--main-btn-2-font-weight) !important;
+    line-height: var(--main-btn-2-line-height) !important;
+    color: var(--main-btn-2-color) !important;
+    min-width: var(--main-btn-2-min-width) !important;
+    min-height: var(--btn-2-height) !important;
+   
+}
+
+.main-btn2.gift-btn-disable{
+    background-color: #E7E7E8 !important;
+    pointer-events: none !important;
+    color: #848387 !important;
+    background-image: none !important;
+}
+.btn-outline-primary.main-btn2 {
+    font-size: var(--main-btn-2-font-size) !important;
+    font-weight: var(--main-btn-2-font-weight) !important;
+    line-height: var(--main-btn-2-line-height) !important;
+    min-width: var(--main-btn-2-min-width) !important;
+    min-height: var(--btn-2-height) !important;
+    /* border: 3px solid; */
+    /* border-image-source: linear-gradient(265.03deg, #7061A1 -8.47%, #FFC675 125.6%); */
+}
+
+.btn-primary.main-btn2:hover{
+    /* box-shadow:none !important; */
+   
+}
+.btn-primary.main-btn3 {
+    font-size: var(--main-btn-3-font-size) !important;
+    font-weight: var(--main-btn-3-font-weight) !important;
+    line-height: var(--main-btn-3-line-height) !important;
+    color: var(--main-btn-3-color) !important;
+    min-width: var(--main-btn-3-min-width) !important;
+    min-height: var(--btn-3-height) !important;
+}
+
+.btn-outline-primary.main-btn3 {
+    font-size: var(--main-btn-3-font-size) !important;
+    font-weight: var(--main-btn-3-font-weight) !important;
+    line-height: var(--main-btn-3-line-height) !important;
+    min-width: var(--main-btn-3-min-width) !important;
+    min-height: var(--btn-3-height) !important;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+    .btn-word {
+        font-size: 12px !important;
+    }
+
+    :root {
+        --mss: 50px;
+        --msadd: 30px;
+        --btn-height: 46px !important;
+        --main-btn-font-size: 14px;
+        --main-btn-line-height: 26px;
+        --main-btn-font-weight: 700;
+        --main-btn-min-width: 120px;
+        --btn-2-height: 34px !important;
+        --main-btn-2-line-height: 26px;
+        --btn-3-height: 51px !important;
+        --main-btn-3-font-size: 14px;
+        --main-btn-3-min-width: 94px;
+        --main-btn-2-font-size: 12px;
+        --main-btn-2-min-width: 120px;
+        --h1-font-size: 28px;
+        --h1-line-height: 46px;
+        --h2-font-size: 19px;
+        --h2-line-height: 30px;
+        --h3-font-size: 16px;
+        --h3-line-height: 22px;
+        --disc-font-size: 13px;
+        --disc-line-height: 23px;
+        --disc-font-weight: 400;
+        --info-font-size: 14px;
+        --info-btn-font-size: 12px;
+        --info-btn-line-height: 20px;
+        --subtitle-font-size: 14px;
+        --subtitle-line-height: 32px;
+        --h5-font-size: 13px;
+        --h5-line-height: 37px;
+        --span-font-size: 13px;
+        --span-line-height: 22px;
+        --h4-font-size: 14px;
+        --h4-line-height: 25px;
+        --info-text-2-font-size: 14px;
+        --info-text-2-line-height: 25px;
+    }
+}
+
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    :root {
+        --btn-height: 46px;
+        --hero-image-height: 470px;
+        --main-btn-3-font-size: 15px;
+        --main-btn-3-line-height: 34px;
+        --main-btn-3-font-weight: 600;
+        --main-btn-3-min-width: 102px;
+        --main-btn-2-font-size: 18px;
+        --main-btn-2-line-height: 35px;
+        --main-btn-2-font-weight: 700;
+        --main-btn-2-min-width: 190px;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    :root {
+        --hero-image-height: 475px;
+        --btn-height: 50px !important;
+        --btn-height-narrow: 50px;
+        --main-btn-min-width: 200px;
+        --hero-image-height: 500px;
+        --main-btn-2-font-size: 16px;
+        --main-btn-2-min-width: 190px;
+        --h2-font-size: 18px;
+        --h2-line-height: 32px;
+        --h4-font-size: 15px;
+        --h4-line-height: 32px;
+        --info-text-2-font-size: 12px;
+        --info-text-2-line-height: 24px;
+        --h3-font-size: 18px;
+        --h3-line-height: 26px;
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+    :root {
+        --btn-height: 56px;
+        --hero-image-height: 460px;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+    :root {
+        --btn-height: 54px;
+        --hero-image-height: 460px;
+        --btn-height: 54px !important;
+    }
+}
+@media only screen and (max-width: 350px) {
+    :root {
+        --btn-height: 64px;
+        --h1-font-size: 20px;
+        --h1-line-height: 32px;
+    }
+}

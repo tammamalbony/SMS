@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'GESSTextBold';
+    src: url('../fonts/GESS/GESSTextBold-Bold.otf') format('opentype'),
+         url('../fonts/GESS/GESSTextBold-Bold.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GESSTextBold-Bold.ttf') format('truetype'),
+         url('../fonts/GESS/GESSTextBold-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GESSTextLight';
+    src: url('../fonts/GESS/GESSTextLight-Light.otf') format('opentype'),
+         url('../fonts/GESS/GESSTextLight-Light.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GESSTextLight-Light.ttf') format('truetype'),
+         url('../fonts/GESS/GESSTextLight-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GESSTextMedium';
+    src: url('../fonts/GESS/GESSTextMedium-Medium.otf') format('opentype'),
+         url('../fonts/GESS/GESSTextMedium-Medium.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GESSTextMedium-Medium.ttf') format('truetype'),
+         url('../fonts/GESS/GESSTextMedium-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GESSTextUltraLight';
+    src: url('../fonts/GESS/GESSTextUltraLight-UltraLight.otf') format('opentype'),
+         url('../fonts/GESS/GESSTextUltraLight-UltraLight.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GESSTextUltraLight-UltraLight.ttf') format('truetype'),
+         url('../fonts/GESS/GESSTextUltraLight-UltraLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GESSTwoLight';
+    src: url('../fonts/GESS/GESSTwoLight-Light.otf') format('opentype'),
+         url('../fonts/GESS/GESSTwoLight-Light.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GESSTwoLight-Light.ttf') format('truetype'),
+         url('../fonts/GESS/GESSTwoLight-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GE_SS_Two_Bold';
+    src: 
+         url('../fonts/GESS/GE_SS_Two_Bold.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GE_SS_Two_Bold.ttf') format('truetype'),
+         /* url('../fonts/GESS/GE_SS_Two_Bold.otf') format('opentype'), */
+         url('../fonts/GESS/GE_SS_Two_Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GE_SS_Two_Light';
+    src: url('../fonts/GESS/GE_SS_Two_Light.otf') format('opentype'),
+         url('../fonts/GESS/GE_SS_Two_Light.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GE_SS_Two_Light.ttf') format('truetype'),
+         url('../fonts/GESS/GE_SS_Two_Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'GE_SS_Two_Medium';
+    src: url('../fonts/GESS/GE_SS_Two_Medium.otf') format('opentype'),
+         url('../fonts/GESS/GE_SS_Two_Medium.eot') format('embedded-opentype'),
+         url('../fonts/GESS/GE_SS_Two_Medium.ttf') format('truetype'),
+         url('../fonts/GESS/GE_SS_Two_Medium.woff') format('woff');
+}
+footer {
+    /* font-family: 'GE_SS_Two_Light', sans-serif !important; */
+    /* font-family: 'GE_SS_Two_Bold', sans-serif !important; */
+}
+
+body {
+    /* font-family: 'GE_SS_Two_Light', sans-serif !important; */
+    /* font-family: 'GE_SS_Two_Bold', sans-serif !important; */
+    font-family: "Cairo", sans-serif  !important;;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+}
+
+footer, body {
+    
+    font-feature-settings: 'lnum';
+}
+
+/* Specify a default font for numbers */
+footer, body {
+    font-variant-numeric: lining-nums;
+}
+
+.bi::before, [class*=" bi-"]::before, [class^=bi-]::before
+{
+    font-family: 'bootstrap-icons' !important; 
+}
