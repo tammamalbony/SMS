@@ -1,0 +1,115 @@
+
+
+
+
+{
+    "name": "Cham International Virtual School",
+    "short_name": "ChamIVS",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0A446B",
+    "theme_color": "#F0c419",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "./content/PWA/16.png",
+            "type": "image/png",
+            "sizes": "16x16"
+        },
+        {
+            "src": "./content/PWA/20.png",
+            "type": "image/png",
+            "sizes": "20x20"
+        },
+        {
+            "src": "./content/PWA/24.png",
+            "type": "image/png",
+            "sizes": "24x24"
+        },
+        {
+            "src": "./content/PWA/30.png",
+            "type": "image/png",
+            "sizes": "30x30"
+        },
+        {
+            "src": "./content/PWA/32.png",
+            "type": "image/png",
+            "sizes": "32x32"
+        },
+        {
+            "src": "./content/PWA/36.png",
+            "type": "image/png",
+            "sizes": "36x36"
+        },
+        {
+            "src": "./content/PWA/40.png",
+            "type": "image/png",
+            "sizes": "40x40"
+        },
+        {
+            "src": "./content/PWA/48.png",
+            "type": "image/png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "./content/PWA/64.png",
+            "type": "image/png",
+            "sizes": "64x64"
+        },
+        {
+            "src": "./content/PWA/72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "./content/PWA/96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "./content/PWA/128.png",
+            "type": "image/png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "./content/PWA/144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "./content/PWA/152.png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+        {
+            "src": "./content/PWA/168.png",
+            "type": "image/png",
+            "sizes": "168x168"
+        },
+        {
+            "src": "./content/PWA/192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "./content/PWA/256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "./content/PWA/384.png",
+            "type": "image/png",
+            "sizes": "384x384"
+        },
+        {
+            "src": "./content/PWA/512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "./content/PWA/1024.png",
+            "type": "image/png",
+            "sizes": "1024x1024"
+        }
+    ]
+}
