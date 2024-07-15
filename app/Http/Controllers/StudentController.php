@@ -8,7 +8,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return view('student.dashboard');
+        return view('admin.dashboard');
     }
 
     /**
