@@ -2771,7 +2771,9 @@ a.bb {
 .sort-handler {
     cursor: move;
 }
-
+.float-left{
+    float:left !important;
+}
 .text-job {
     font-size: 10px;
     text-transform: uppercase;
@@ -3977,7 +3979,7 @@ body.layout-3 .main-footer {
 .main-content {
     padding-left: 280px;
     padding-right: 30px;
-    padding-top: 80px;
+    padding-top: 89px;
     width: 100%;
     position: relative;
 }

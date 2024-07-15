@@ -509,6 +509,7 @@ span.input-label{
 .form-group label {
     width: 100%;
     text-align: right;
+    margin-right: .85rem;
 }
 
 .quiz-question-card {

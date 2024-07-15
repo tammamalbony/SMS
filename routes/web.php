@@ -67,14 +67,14 @@ Route::middleware(['auth', 'role:student'])->group(function () {
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-// Settings
-Route::get('/settings/{id}', [SettingsController::class, 'show'])->name('settings.show');
-Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
-Route::get('/settings/create', [SettingsController::class, 'create'])->name('settings.create');
-Route::post('/settings', [SettingsController::class, 'store'])->name('settings.store');
-Route::get('/settings/{id}/edit', [SettingsController::class, 'edit'])->name('settings.edit');
-Route::put('/settings/{id}', [SettingsController::class, 'update'])->name('settings.update');
-Route::delete('/settings/{id}', [SettingsController::class, 'destroy'])->name('settings.destroy');
+// Settings School
+Route::prefix('settings')->group(function () {
+    Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
+    Route::get('/{id}/edit', [SettingsController::class, 'update'])->name('settings.update');
+    Route::post('/create', [SettingsController::class, 'create'])->name('settings.create');
+    Route::post('/store', [SettingsController::class, 'store'])->name('settings.create');
+    Route::post('/{id}/update', [SettingsController::class, 'update'])->name('settings.update');
+});
 
 // Grades
 Route::resource('grades', GradeController::class)->except(['create', 'edit']);

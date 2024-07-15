@@ -174,5 +174,26 @@
 <script>
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
 </script>
+<script>
+    @if ($errors->any())
+        $(document).ready(function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>'
+            });
+        });
+    @endif
+
+    @if (session('success'))
+        $(document).ready(function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}'
+            });
+        });
+    @endif
+</script>
 </body>
 </html>
