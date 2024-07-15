@@ -9,6 +9,10 @@ body.rtl {
   text-align: right;
 }
 
+.bi::before, [class*=" bi-"]::before, [class^=bi-]::before
+{
+    font-family: 'bootstrap-icons' !important; 
+}
 body.rtl .text-left {
   text-align: right !important;
 }

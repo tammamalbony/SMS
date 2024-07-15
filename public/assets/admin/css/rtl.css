@@ -56,7 +56,7 @@
 body, html {
   direction: rtl;
   font-family: Vazir, Tahoma, Arial;
-    text-align: right;
+  text-align: right;
 }
 
 .ltr {
@@ -66,7 +66,8 @@ body, html {
   direction: rtl; }
 
 h1, h2, h3, h4, h5, h6, p, a, span, input, textarea, select, option, label {
-  font-family: Vazir, Tahoma, Arial; }
+  /* font-family: Vazir, Tahoma, Arial; */
+  }
 
 .main-sidebar {
   right: 0;
@@ -188,7 +189,21 @@ body.layout-2 .navbar {
 .main-sidebar .sidebar-menu li a i {
   float: right;
   margin-left: 15px !important;
-  text-align: center; }
+  text-align: center;
+  /* font-family:"bootstrap-icons" !important; */
+  }
+.bi::before, [class*=" bi-"]::before, [class^=bi-]::before {
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: -.125em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 a:not(.btn-social-icon):not(.btn-social):not(.page-link) .ion, a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fas, a:not(.btn-social-icon):not(.btn-social):not(.page-link) .far, a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fal, a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {
   margin: 4px; }
