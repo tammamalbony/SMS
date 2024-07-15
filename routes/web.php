@@ -76,17 +76,27 @@ Route::prefix('settings')->group(function () {
     Route::post('/{id}/update', [SettingsController::class, 'update'])->name('settings.update');
 });
 
+
 // Grades
-Route::resource('grades', GradeController::class)->except(['create', 'edit']);
+Route::prefix('grades')->group(function () {
+    Route::get('/', [GradeController::class, 'index'])->name('grades.index');
+    Route::get('/{id}/edit', [GradeController::class, 'update'])->name('grades.update');
+    Route::post('/create', [GradeController::class, 'create'])->name('grades.create');
+    Route::post('/store', [GradeController::class, 'store'])->name('grades.create');
+    Route::post('/{id}/update', [GradeController::class, 'update'])->name('grades.update');
+    Route::post('/{id}/delete', [GradeController::class, 'destroy'])->name('grades.destroy');
+});
+
+
 
 // Classrooms
-Route::resource('classrooms', ClassroomController::class)->except(['create', 'edit']);
+Route::resource('classrooms', ClassroomController::class);
 
 // Sections
-Route::resource('sections', SectionController::class)->except(['create', 'edit']);
+Route::resource('sections', SectionController::class);
 
 // Parents
-Route::resource('parents', ParentController::class)->except(['create', 'edit']);
+Route::resource('parents', ParentController::class);
 
 // Students
 Route::resource('students', StudentController::class)->except(['edit']); // create provided in original list
@@ -95,24 +105,24 @@ Route::resource('students', StudentController::class)->except(['edit']); // crea
 Route::resource('promotions', PromotionController::class)->except(['edit']); // create provided in original list
 
 // Teachers
-Route::resource('teachers', TeacherController::class)->except(['create', 'edit']);
+Route::resource('teachers', TeacherController::class);
 
 // Subjects
-Route::resource('subjects', SubjectController::class)->except(['create', 'edit']);
+Route::resource('subjects', SubjectController::class);
 
 // Accounting - Invoices, Receipts, Processing Fees, and Payments
-Route::resource('invoices', InvoiceController::class)->except(['create', 'edit']);
-Route::resource('receipts', ReceiptController::class)->except(['create', 'edit']);
-Route::resource('processingfees', ProcessingFeeController::class)->except(['create', 'edit']);
-Route::resource('payments', PaymentController::class)->except(['create', 'edit']);
+Route::resource('invoices', InvoiceController::class);
+Route::resource('receipts', ReceiptController::class);
+Route::resource('processingfees', ProcessingFeeController::class);
+Route::resource('payments', PaymentController::class);
 
 // Attendance and Attendance Ratios
-Route::resource('attendance', AttendanceController::class)->except(['create', 'edit']);
-Route::resource('attendanceratios', AttendanceRatioController::class)->except(['create', 'edit']);
+Route::resource('attendance', AttendanceController::class);
+Route::resource('attendanceratios', AttendanceRatioController::class);
 
 // Exams and Grades
-Route::resource('exams', ExamController::class)->except(['create', 'edit']);
-Route::resource('mgrades', MGradeController::class)->except(['create', 'edit']);
+Route::resource('exams', ExamController::class);
+Route::resource('mgrades', MGradeController::class);
 
 // Users
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -124,7 +134,7 @@ Route::put('/users/{user}', [UserController::class, 'update'])->name('users.upda
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 // Previous Years Management
-Route::resource('previous-years', PreviousYearController::class)->except(['create', 'edit']);
+Route::resource('previous-years', PreviousYearController::class);
 
 // General Settings
-Route::resource('general-settings', GeneralSettingsController::class)->except(['create', 'edit']);
+Route::resource('general-settings', GeneralSettingsController::class);

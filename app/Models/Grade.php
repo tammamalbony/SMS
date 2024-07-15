@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
-class Grade extends Model implements TranslatableContract
+class Grade extends Model 
 {
-    use Translatable;
     use HasFactory;
+
+    protected $fillable = [
+        'grade_name_ar',
+        'grade_name_en',
+        'grade_notes',
+    ];
 }

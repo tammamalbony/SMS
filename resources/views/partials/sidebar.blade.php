@@ -10,7 +10,7 @@ $menuItems = [
     [
         'name' => 'بيانات المدرسة',
         'icon' => 'fa fa-cogs',
-        'link' => '/settings/1',
+        'link' => '/settings/',
         'roles' => ['admin'],
         'permission' => 'manage-school',
     ],
@@ -23,7 +23,7 @@ $menuItems = [
         'subMenu' => [
             [
                 'name' => 'قائمة المراحل الدراسية',
-                'link' => '/Grades',
+                'link' => '/grades',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-grade-list',
             ],
