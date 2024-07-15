@@ -39,6 +39,14 @@ class GradesTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'id' => 4,
+                'grade_name_ar' => 'الفئة ب',
+                'grade_name_en' => 'B',
+                'grade_notes' => NULL,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ]);
     }
 }

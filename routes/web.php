@@ -49,7 +49,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             'destroy' => 'admin.users.destroy',
         ]
     ]);
-});
 
 // Teacher routes
 Route::middleware(['auth', 'role:teacher'])->group(function () {
@@ -90,7 +89,15 @@ Route::prefix('grades')->group(function () {
 
 
 // Classrooms
-Route::resource('classrooms', ClassroomController::class);
+Route::prefix('classes')->group(function () {
+    Route::get('/', [ClassroomController::class, 'index'])->name('classes.index');
+    Route::get('/{id}/edit', [ClassroomController::class, 'update'])->name('classes.update');
+    Route::post('/create', [ClassroomController::class, 'create'])->name('classes.create');
+    Route::post('/store', [ClassroomController::class, 'store'])->name('classes.create');
+    Route::post('/{id}/update', [ClassroomController::class, 'update'])->name('classes.update');
+    Route::post('/{id}/delete', [ClassroomController::class, 'destroy'])->name('classes.destroy');
+});
+
 
 // Sections
 Route::resource('sections', SectionController::class);
@@ -138,3 +145,4 @@ Route::resource('previous-years', PreviousYearController::class);
 
 // General Settings
 Route::resource('general-settings', GeneralSettingsController::class);
+});

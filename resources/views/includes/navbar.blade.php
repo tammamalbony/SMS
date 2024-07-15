@@ -84,8 +84,10 @@
         @endcan
 
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img src="{{ asset($authUser->getAvatar() ) }}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">{{ $authUser->full_name }}</div>
+                @if (isset($authUser) )
+                  <img src="{{ asset($authUser->getAvatar() ) }}" class="rounded-circle mr-1">
+                  <div class="d-sm-none d-lg-inline-block">{{ $authUser->full_name }}</div>
+                @endif    
             </a>
             <div class="dropdown-menu dropdown-menu-right">
 
@@ -93,10 +95,11 @@
                     <i class="fas fa-globe"></i> {{ trans('admin/main.show_website') }}
                 </a>
 
+                @if (isset($authUser) )
                 <a href="{{ getAdminPanelUrl() }}/users/{{ $authUser->id }}/edit" class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> {{ trans('admin/main.change_password') }}
                 </a>
-
+                @endif    
                 <div class="dropdown-divider"></div>
                 <a href="{{ getAdminPanelUrl() }}/logout" class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> {{ trans('admin/main.logout') }}

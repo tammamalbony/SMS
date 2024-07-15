@@ -38,7 +38,7 @@ $menuItems = [
         'subMenu' => [
             [
                 'name' => 'قائمة الصفوف الدراسية',
-                'link' => '/Classrooms',
+                'link' => '/classes',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],

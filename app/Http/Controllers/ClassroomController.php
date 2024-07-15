@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classs;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
@@ -11,7 +13,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        //
+        $classes = Classs::with('grade')->paginate(10);
+        $grades = Grade::all();
+        return view('classes.index', compact('classes', 'grades'));
     }
 
     /**
@@ -19,7 +23,7 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -27,7 +31,16 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $data = $request->validate([
+            'grade_id' => 'required|exists:grades,id',
+            'class_name_ar' => 'required|string|max:255',
+            'class_name_en' => 'required|string|max:255',
+        ]);
+
+        Classs::create($data);
+
+        return response()->json(['success' => true, 'message' => 'Class created successfully.']);
     }
 
     /**
@@ -51,7 +64,16 @@ class ClassroomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $class = Classs::findOrFail($id);
+        $data = $request->validate([
+            'grade_id' => 'required|exists:grades,id',
+            'class_name_ar' => 'required|string|max:255',
+            'class_name_en' => 'required|string|max:255',
+        ]);
+
+        $class->update($data);
+
+        return response()->json(['success' => true, 'message' => 'Class updated successfully.']);
     }
 
     /**
@@ -59,6 +81,8 @@ class ClassroomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $class = Classs::findOrFail($id);
+        $class->delete();
+        return response()->json(['success' => true, 'message' => 'Class deleted successfully.']);
     }
 }
