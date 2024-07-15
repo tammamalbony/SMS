@@ -8,13 +8,18 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    } else {
+        return redirect('/login');
+    }
 });
-Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+// Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 // Admin routes
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('admin/users', UserController::class, [
         'names' => [
             'index' => 'admin.users.index',
