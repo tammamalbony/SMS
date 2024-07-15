@@ -17,7 +17,7 @@ Route::get('/', function () {
 // Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
 // Admin routes
-Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('admin/users', UserController::class, [

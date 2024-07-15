@@ -9,6 +9,10 @@
     composer dump-autoload
 ```
 
+### config
+```
+php artisan vendor:publish --tag=translatable
+```
 
 - php artisan 
 
