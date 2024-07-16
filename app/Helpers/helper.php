@@ -1,8 +1,13 @@
 <?php
 
 use App\Mixins\Financial\MultiCurrency;
+use App\Models\Classs;
 use Illuminate\Support\Facades\Cookie;
 
+
+function gc($id) : Classs {
+    return Classs::findOrFail($id);
+}
 function getTemplate()
 {
     /*$template = cache()->remember('view.template', 7 * 24 * 60 * 60, function () {

@@ -35,6 +35,9 @@
                             <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $schoolYear->id }})">
                                 <i class="fa fa-trash"></i>
                             </button>
+                            <a href="{{ route('classs_school_year.index', $schoolYear->id) }}" class="btn btn-primary btn-sm">
+                                إدارة العلاقات
+                            </a>
                         </td>
                     </tr>
                 @endforeach

@@ -15,4 +15,10 @@ class SchoolYear extends Model
         'end_year',
         'is_active',
     ];
+
+    public function classes()
+    {
+        return $this->belongsToMany(Classs::class, 'classses_school_year');
+    }
+    
 }

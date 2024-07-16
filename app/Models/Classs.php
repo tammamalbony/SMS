@@ -20,4 +20,9 @@ class Classs extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+
+    public function schoolYears()
+    {
+        return $this->belongsToMany(SchoolYear::class, 'classses_school_year');
+    }
 }

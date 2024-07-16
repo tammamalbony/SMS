@@ -3,6 +3,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRatioController;
 use App\Http\Controllers\BloodTypeController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
@@ -222,11 +223,14 @@ Route::resource('fathers.wives', WifeController::class);
 Route::resource('students', StudentController::class);
 Route::post('/students/get-mothers', [StudentController::class, 'getMothers'])->name('students.getMothers');
 
+Route::prefix('school-years/{schoolYear}')->group(function () {
+    Route::get('classs-school-years', [ClasssSchoolYearController::class, 'index'])->name('classs_school_year.index');
+    Route::get('classs-school-years/create', [ClasssSchoolYearController::class, 'create'])->name('classs_school_year.create');
+    Route::post('classs-school-years', [ClasssSchoolYearController::class, 'store'])->name('classs_school_year.store');
+});
 
-
-
-
-
+Route::resource('classs-school-years', ClasssSchoolYearController::class)->except(['index', 'create', 'store']);
+Route::post('school-years/{schoolYear}/add-all-classes', [ClasssSchoolYearController::class, 'addAllClasses'])->name('classs_school_year.add_all_classes');
 // Sections
 Route::resource('sections', SectionController::class);
 

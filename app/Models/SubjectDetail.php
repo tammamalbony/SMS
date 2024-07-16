@@ -27,4 +27,6 @@ class SubjectDetail extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+
+    
 }
