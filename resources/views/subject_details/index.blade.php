@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Subject Details</h1>
+    <h1>تفاصيل المواد</h1>
     <button class="btn btn-primary add-detail-button" data-id="">إضافة تفاصيل مادة</button>
     <table class="table">
         <thead>

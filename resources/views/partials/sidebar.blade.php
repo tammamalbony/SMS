@@ -83,7 +83,25 @@ $menuItems = [
         'subMenu' => [
             [
                 'name' => 'قائمة اولياء الامور',
-                'link' => '/Parents',
+                'link' => '/fathers',
+                'roles' => ['admin'],
+                'permission' => 'view-parent-list',
+            ],
+            [
+                'name' => 'زمر الدم',
+                'link' => '/blood-types',
+                'roles' => ['admin'],
+                'permission' => 'view-parent-list',
+            ],
+            [
+                'name' => 'الأديان',
+                'link' => '/religions',
+                'roles' => ['admin'],
+                'permission' => 'view-parent-list',
+            ],
+            [
+                'name' => 'الجنسيات',
+                'link' => '/nationalities',
                 'roles' => ['admin'],
                 'permission' => 'view-parent-list',
             ],

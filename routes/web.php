@@ -1,22 +1,26 @@
 <?php
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRatioController;
+use App\Http\Controllers\BloodTypeController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\FatherController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobSequenceController;
 use App\Http\Controllers\MGradeController;
+use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PreviousYearController;
 use App\Http\Controllers\ProcessingFeeController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\RewardPunishmentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
@@ -27,6 +31,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\WifeController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -177,6 +182,49 @@ Route::prefix('subject_details')->group(function () {
         Route::post('/delete', [SubjectDetailController::class, 'destroy'])->name('subject_details.destroy');
     });
 });
+
+
+//Blood Types
+Route::prefix('blood-types')->group(function () {
+    Route::get('/', [BloodTypeController::class, 'index'])->name('blood_types.index');
+    Route::get('/create', [BloodTypeController::class, 'create'])->name('blood_types.create');
+    Route::post('/', [BloodTypeController::class, 'store'])->name('blood_types.store');
+    Route::get('/{bloodType}', [BloodTypeController::class, 'show'])->name('blood_types.show');
+    Route::post('/{bloodType}/edit', [BloodTypeController::class, 'edit'])->name('blood_types.edit');
+    Route::post('/{bloodType}', [BloodTypeController::class, 'update'])->name('blood_types.update');
+    Route::delete('/{bloodType}', [BloodTypeController::class, 'destroy'])->name('blood_types.destroy');
+});
+
+//Religions
+Route::prefix('religions')->group(function () {
+    Route::get('/', [ReligionController::class, 'index'])->name('religions.index');
+    Route::get('/create', [ReligionController::class, 'create'])->name('religions.create');
+    Route::post('/', [ReligionController::class, 'store'])->name('religions.store');
+    Route::get('/{religion}', [ReligionController::class, 'show'])->name('religions.show');
+    Route::post('/{religion}/edit', [ReligionController::class, 'edit'])->name('religions.edit');
+    Route::post('/{religion}', [ReligionController::class, 'update'])->name('religions.update');
+    Route::delete('/{religion}', [ReligionController::class, 'destroy'])->name('religions.destroy');
+});
+
+//Nationalities
+Route::prefix('nationalities')->group(function () {
+    Route::get('/', [NationalityController ::class, 'index'])->name('nationalities.index');
+    Route::get('/create', [NationalityController ::class, 'create'])->name('nationalities.create');
+    Route::post('/', [NationalityController ::class, 'store'])->name('nationalities.store');
+    Route::get('/{nationality}', [NationalityController ::class, 'show'])->name('nationalities.show');
+    Route::post('/{nationality}/edit', [NationalityController ::class, 'edit'])->name('nationalities.edit');
+    Route::post('/{nationality}', [NationalityController ::class, 'update'])->name('nationalities.update');
+    Route::delete('/{nationality}', [NationalityController ::class, 'destroy'])->name('nationalities.destroy');
+});
+
+Route::resource('fathers', FatherController::class);
+Route::resource('fathers.wives', WifeController::class);
+
+
+
+
+
+
 
 
 // Sections
