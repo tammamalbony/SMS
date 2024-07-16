@@ -228,6 +228,8 @@ Route::prefix('school-years/{schoolYear}')->group(function () {
     Route::get('classs-school-years/create', [ClasssSchoolYearController::class, 'create'])->name('classs_school_year.create');
     Route::post('classs-school-years', [ClasssSchoolYearController::class, 'store'])->name('classs_school_year.store');
 });
+Route::post('classs_school_year/{id}/delete', [ClasssSchoolYearController::class, 'destroy'])->name('classs_school_year.store');
+Route::get('classs_school_year/{id}/edit', [ClasssSchoolYearController::class, 'edit'])->name('classs_school_year.store');
 
 Route::resource('classs-school-years', ClasssSchoolYearController::class)->except(['index', 'create', 'store']);
 Route::post('school-years/{schoolYear}/add-all-classes', [ClasssSchoolYearController::class, 'addAllClasses'])->name('classs_school_year.add_all_classes');

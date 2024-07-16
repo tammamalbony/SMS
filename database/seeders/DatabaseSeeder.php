@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(SettingsTableSeeder::class);
         $this->call(GradesTableSeeder::class);
@@ -23,5 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(BloodTypeSeeder::class);
         $this->call(ReligionSeeder::class);
         $this->call(NationalitySeeder::class);
+        $this->call(SubjectSeeder::class);
+        $this->call(SubjectDetailSeeder::class);
+        $this->call(ClasssSchoolYearSeeder::class);
     }
 }

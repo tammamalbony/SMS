@@ -92,8 +92,8 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '/classs_school_year/' + id,
-                    type: 'DELETE',
+                    url: '/classs_school_year/' + id+"/delete",
+                    type: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}'
                     },

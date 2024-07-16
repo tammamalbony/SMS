@@ -88,6 +88,45 @@ table+nav a ,table+nav span{
    align-items: center;
    justify-content: space-between;
 }
+table+div>nav{
+    direction : ltr !important;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    max-height: 50px;
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+    flex-direction: row;
+}
+table+div>nav >div ,table+div>nav >div  p{
+    direction : ltr !important;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    max-height: 50px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-bottom: 0px;
+}
+table+div>nav>div:last-child >div{
+    display: flex;
+    max-height:50px;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+table+div>nav a ,table+div>nav span{
+   border-radius:12px !important;
+   padding: 5px 5px !important;
+   display: inline-flex;
+   flex-direction: row;
+   max-height: 30px;
+   align-items: center;
+   justify-content: space-between;
+}
 body {
     margin: 0;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
