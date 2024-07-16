@@ -6823,7 +6823,7 @@ label.font-12.cursor-pointer.px-15.py-10 {}
 }
 
 .main-navbar .nav-link.nav-link-user {
-    color: var(--text-dark-color) !important;
+    color: white;
 }
 
 .panel-content .panel-section-card .table-responsive th {

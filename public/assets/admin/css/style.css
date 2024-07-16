@@ -2300,6 +2300,7 @@ h6 .badge {
     overflow: hidden;
     -o-object-fit: cover;
     object-fit: cover;
+    filter: brightness(103.5);
     -o-object-position: 50% 50%;
     object-position: 50% 50%;
 }

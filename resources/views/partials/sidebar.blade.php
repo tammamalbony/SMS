@@ -93,48 +93,41 @@ $menuItems = [
         'name' => 'الطلاب',
         'icon' => 'fa fa-user-friends',
         'link' => '#',
-        'roles' => ['admin', 'teacher', 'student parent'],
+        'roles' => ['admin', 'teacher'],
         'permission' => 'view-students',
         'subMenu' => [
             [
-                'name' => 'معلومات الطالب',
-                'link' => '#',
-                'roles' => ['admin', 'teacher', 'student parent'],
-                'permission' => 'view-student-info',
-                'subMenu' => [
-                    [
-                        'name' => 'اضافة طالب جديد',
-                        'link' => '/Students/create',
-                        'roles' => ['admin'],
-                        'permission' => 'add-student',
-                    ],
-                    [
-                        'name' => 'قائمة الطلاب',
-                        'link' => '/Students',
-                        'roles' => ['admin', 'teacher'],
-                        'permission' => 'view-student-list',
-                    ],
-                ],
+                'name' => 'اضافة طالب جديد',
+                'link' => '/Students/create',
+                'roles' => ['admin'],
+                'permission' => 'add-student',
             ],
             [
-                'name' => 'ترقية الطلاب',
-                'link' => '#',
+                'name' => 'قائمة الطلاب',
+                'link' => '/Students',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+        ],
+    ],
+    [
+        'name' => 'ترقية الطلاب',
+        'link' => '#',
+        'icon' => 'fa fa-graduation-cap',
+        'roles' => ['admin'],
+        'permission' => 'manage-student-promotions',
+        'subMenu' => [
+            [
+                'name' => 'اضافة ترقية جديدة',
+                'link' => '/Promotion',
                 'roles' => ['admin'],
-                'permission' => 'manage-student-promotions',
-                'subMenu' => [
-                    [
-                        'name' => 'اضافة ترقية جديدة',
-                        'link' => '/Promotion',
-                        'roles' => ['admin'],
-                        'permission' => 'add-promotion',
-                    ],
-                    [
-                        'name' => 'قائمة الترقيات',
-                        'link' => '/Promotion/create',
-                        'roles' => ['admin'],
-                        'permission' => 'view-promotion-list',
-                    ],
-                ],
+                'permission' => 'add-promotion',
+            ],
+            [
+                'name' => 'قائمة الترقيات',
+                'link' => '/Promotion/create',
+                'roles' => ['admin'],
+                'permission' => 'view-promotion-list',
             ],
         ],
     ],
@@ -147,7 +140,7 @@ $menuItems = [
         'subMenu' => [
             [
                 'name' => 'قائمة المعلمين',
-                'link' => '/Teachers',
+                'link' => '/teachers',
                 'roles' => ['admin'],
                 'permission' => 'view-teacher-list',
             ],
@@ -168,39 +161,39 @@ $menuItems = [
             ],
         ],
     ],
-    [
-        'name' => 'المحاسبة',
-        'icon' => 'fa fa-dollar-sign',
-        'link' => '#',
-        'roles' => ['admin'],
-        'permission' => 'manage-accounts',
-        'subMenu' => [
-            [
-                'name' => 'الفواتير',
-                'link' => '/Fees_Invoices',
-                'roles' => ['admin'],
-                'permission' => 'view-invoices',
-            ],
-            [
-                'name' => 'سندات القبض',
-                'link' => '/receipt_students',
-                'roles' => ['admin'],
-                'permission' => 'view-receipts',
-            ],
-            [
-                'name' => 'استبعاد رسوم',
-                'link' => '/ProcessingFee',
-                'roles' => ['admin'],
-                'permission' => 'manage-processing-fee',
-            ],
-            [
-                'name' => 'سندت الصرف',
-                'link' => '/Payment_students',
-                'roles' => ['admin'],
-                'permission' => 'manage-payments',
-            ],
-        ],
-    ],
+    // [
+    //     'name' => 'المحاسبة',
+    //     'icon' => 'fa fa-dollar-sign',
+    //     'link' => '#',
+    //     'roles' => ['admin'],
+    //     'permission' => 'manage-accounts',
+    //     'subMenu' => [
+    //         [
+    //             'name' => 'الفواتير',
+    //             'link' => '/Fees_Invoices',
+    //             'roles' => ['admin'],
+    //             'permission' => 'view-invoices',
+    //         ],
+    //         [
+    //             'name' => 'سندات القبض',
+    //             'link' => '/receipt_students',
+    //             'roles' => ['admin'],
+    //             'permission' => 'view-receipts',
+    //         ],
+    //         [
+    //             'name' => 'استبعاد رسوم',
+    //             'link' => '/ProcessingFee',
+    //             'roles' => ['admin'],
+    //             'permission' => 'manage-processing-fee',
+    //         ],
+    //         [
+    //             'name' => 'سندت الصرف',
+    //             'link' => '/Payment_students',
+    //             'roles' => ['admin'],
+    //             'permission' => 'manage-payments',
+    //         ],
+    //     ],
+    // ],
     [
         'name' => 'الحضور والغياب',
         'icon' => 'fa fa-calendar-check',
@@ -272,7 +265,6 @@ $menuItems = [
     ],
 ];
 
-
 ?>
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
@@ -298,7 +290,8 @@ $menuItems = [
                 @role($item['roles'])
                     @can($item['permission'])
                         <li class="nav-item dropdown {{ request()->is(ltrim($item['link'], '/')) ? 'active' : '' }}">
-                            <a href="{{ $item['link'] }}" class="nav-link {{ !empty($item['subMenu']) ? 'has-dropdown' : '' }}" {{ !empty($item['subMenu']) ? 'data-toggle=dropdown' : '' }}>
+                            <a href="{{ $item['link'] }}" class="nav-link {{ !empty($item['subMenu']) ? 'has-dropdown' : '' }}"
+                                {{ !empty($item['subMenu']) ? 'data-toggle=dropdown' : '' }}>
                                 <i class="fa {{ $item['icon'] }}"></i>
                                 <span>{{ $item['name'] }}</span>
                             </a>
@@ -307,8 +300,11 @@ $menuItems = [
                                     @foreach ($item['subMenu'] as $sub)
                                         @role($sub['roles'])
                                             @can($sub['permission'])
-                                                <li class="nav-item dropdown {{ request()->is(ltrim($sub['link'], '/')) ? 'active' : '' }}">
-                                                    <a href="{{ $sub['link'] }}" class="nav-link {{ !empty($sub['subMenu']) ? 'has-dropdown' : '' }}" {{ !empty($sub['subMenu']) ? 'data-toggle=dropdown' : '' }}>
+                                                <li
+                                                    class="nav-item dropdown {{ request()->is(ltrim($sub['link'], '/')) ? 'active' : '' }}">
+                                                    <a href="{{ $sub['link'] }}"
+                                                        class="nav-link {{ !empty($sub['subMenu']) ? 'has-dropdown' : '' }}"
+                                                        {{ !empty($sub['subMenu']) ? 'data-toggle=dropdown' : '' }}>
                                                         {{ $sub['name'] }}
                                                     </a>
                                                     @if (!empty($sub['subMenu']))
@@ -316,7 +312,8 @@ $menuItems = [
                                                             @foreach ($sub['subMenu'] as $subSub)
                                                                 @role($subSub['roles'])
                                                                     @can($subSub['permission'])
-                                                                        <li class="nav-item {{ request()->is(ltrim($subSub['link'], '/')) ? 'active' : '' }}">
+                                                                        <li
+                                                                            class="nav-item {{ request()->is(ltrim($subSub['link'], '/')) ? 'active' : '' }}">
                                                                             <a href="{{ $subSub['link'] }}" class="nav-link">
                                                                                 {{ $subSub['name'] }}
                                                                             </a>

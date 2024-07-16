@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="{{   asset('/assets/vendors/summernote/summernote-bs4.min.css') }}">
 
     <link rel="stylesheet" href="{{   asset('/assets/vendors/datetimepicker/tempusdominus-bootstrap-4.css') }}">
+    <script src="{{ asset('/assets/admin/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
 
     @stack('styles_top')
     @stack('scripts_top')
@@ -93,7 +94,6 @@
 
 
 <!-- General JS Scripts -->
-<script src="{{ asset('/assets/admin/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/vendor/poper/popper.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/vendor/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/vendor/nicescroll/jquery.nicescroll.min.js') }}"></script>

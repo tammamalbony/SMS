@@ -13,6 +13,6 @@ class SchoolYearTableSeeder extends Seeder
      */
     public function run(): void
     {
-        SchoolYear::insert([  ['id' => 1, 'name' => 'العم الدراسي الأول', 'start_year' => '08/2022', 'end_year' => '07/2023','is_active'=> true]]);
+        SchoolYear::insert([  ['id' => 1, 'name' => 'العام الدراسي الأول', 'start_year' => '08/2022', 'end_year' => '07/2023','is_active'=> true]]);
     }
 }

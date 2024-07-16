@@ -2,12 +2,14 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRatioController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\JobSequenceController;
 use App\Http\Controllers\MGradeController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PaymentController;
@@ -15,6 +17,7 @@ use App\Http\Controllers\PreviousYearController;
 use App\Http\Controllers\ProcessingFeeController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\RewardPunishmentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SettingsController;
@@ -70,9 +73,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 // Settings School
 Route::prefix('settings')->group(function () {
     Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
-    Route::get('/{id}/edit', [SettingsController::class, 'update'])->name('settings.update');
+    Route::get('/{id}/edit', [SettingsController::class, 'update'])->name('settings.edit');
     Route::post('/create', [SettingsController::class, 'create'])->name('settings.create');
-    Route::post('/store', [SettingsController::class, 'store'])->name('settings.create');
+    Route::post('/store', [SettingsController::class, 'store'])->name('settings.store');
     Route::post('/{id}/update', [SettingsController::class, 'update'])->name('settings.update');
 });
 
@@ -80,9 +83,9 @@ Route::prefix('settings')->group(function () {
 // Grades
 Route::prefix('grades')->group(function () {
     Route::get('/', [GradeController::class, 'index'])->name('grades.index');
-    Route::get('/{id}/edit', [GradeController::class, 'update'])->name('grades.update');
+    Route::get('/{id}/edit', [GradeController::class, 'update'])->name('grades.edit');
     Route::post('/create', [GradeController::class, 'create'])->name('grades.create');
-    Route::post('/store', [GradeController::class, 'store'])->name('grades.create');
+    Route::post('/store', [GradeController::class, 'store'])->name('grades.store');
     Route::post('/{id}/update', [GradeController::class, 'update'])->name('grades.update');
     Route::post('/{id}/delete', [GradeController::class, 'destroy'])->name('grades.destroy');
 });
@@ -92,9 +95,9 @@ Route::prefix('grades')->group(function () {
 // Classrooms
 Route::prefix('classes')->group(function () {
     Route::get('/', [ClassroomController::class, 'index'])->name('classes.index');
-    Route::get('/{id}/edit', [ClassroomController::class, 'update'])->name('classes.update');
+    Route::get('/{id}/edit', [ClassroomController::class, 'update'])->name('classes.edit');
     Route::post('/create', [ClassroomController::class, 'create'])->name('classes.create');
-    Route::post('/store', [ClassroomController::class, 'store'])->name('classes.create');
+    Route::post('/store', [ClassroomController::class, 'store'])->name('classes.store');
     Route::post('/{id}/update', [ClassroomController::class, 'update'])->name('classes.update');
     Route::post('/{id}/delete', [ClassroomController::class, 'destroy'])->name('classes.destroy');
 });
@@ -102,11 +105,52 @@ Route::prefix('classes')->group(function () {
 // SchoolYear 
 Route::prefix('school_years')->group(function () {
     Route::get('/', [SchoolYearController::class, 'index'])->name('school_years.index');
-    Route::get('/{id}/edit', [SchoolYearController::class, 'update'])->name('school_years.update');
+    Route::get('/{id}/edit', [SchoolYearController::class, 'update'])->name('school_years.edit');
     Route::post('/create', [SchoolYearController::class, 'create'])->name('school_years.create');
-    Route::post('/store', [SchoolYearController::class, 'store'])->name('school_years.create');
+    Route::post('/store', [SchoolYearController::class, 'store'])->name('school_years.store');
     Route::post('/{id}/update', [SchoolYearController::class, 'update'])->name('school_years.update');
     Route::post('/{id}/delete', [SchoolYearController::class, 'destroy'])->name('school_years.destroy');
+});
+
+
+// Teachers
+Route::prefix('teachers')->group(function () {
+    Route::get('/', [TeacherController::class, 'index'])->name('teachers.index');
+    Route::get('/{id}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
+    Route::get('/create', [TeacherController::class, 'create'])->name('teachers.create');
+    Route::post('/store', [TeacherController::class, 'store'])->name('teachers.store');
+    Route::post('/{id}/update', [TeacherController::class, 'update'])->name('teachers.update');
+    Route::post('/{id}/delete', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+});
+
+// job_sequences
+Route::prefix('job_sequences')->group(function () {
+    Route::get('/{id}', [JobSequenceController::class, 'index'])->name('job_sequences.index');
+    Route::post('/{id}/edit', [JobSequenceController::class, 'edit'])->name('job_sequences.edit');
+    Route::get('/create', [JobSequenceController::class, 'create'])->name('job_sequences.create');
+    Route::post('/store', [JobSequenceController::class, 'store'])->name('job_sequences.store');
+    Route::post('/{id}/update', [JobSequenceController::class, 'update'])->name('job_sequences.update');
+    Route::post('/{id}/delete', [JobSequenceController::class, 'destroy'])->name('job_sequences.destroy');
+});
+
+// rewards_punishments
+Route::prefix('rewards_punishments')->group(function () {
+    Route::get('/{id}', [RewardPunishmentController::class, 'index'])->name('rewards_punishments.index');
+    Route::post('/{id}/edit', [RewardPunishmentController::class, 'edit'])->name('rewards_punishments.edit');
+    Route::get('/create', [RewardPunishmentController::class, 'create'])->name('rewards_punishments.create');
+    Route::post('/store', [RewardPunishmentController::class, 'store'])->name('rewards_punishments.store');
+    Route::post('/{id}/update', [RewardPunishmentController::class, 'update'])->name('rewards_punishments.update');
+    Route::post('/{id}/delete', [RewardPunishmentController::class, 'destroy'])->name('rewards_punishments.destroy');
+});
+
+// courses
+Route::prefix('courses')->group(function () {
+    Route::get('/{id}', [CourseController::class, 'index'])->name('courses.index');
+    Route::post('/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::get('/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('/store', [CourseController::class, 'store'])->name('courses.store');
+    Route::post('/{id}/update', [CourseController::class, 'update'])->name('courses.update');
+    Route::post('/{id}/delete', [CourseController::class, 'destroy'])->name('courses.destroy');
 });
 
 // Sections
@@ -121,8 +165,6 @@ Route::resource('students', StudentController::class)->except(['edit']); // crea
 // Promotions
 Route::resource('promotions', PromotionController::class)->except(['edit']); // create provided in original list
 
-// Teachers
-Route::resource('teachers', TeacherController::class);
 
 // Subjects
 Route::resource('subjects', SubjectController::class);
