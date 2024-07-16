@@ -36,7 +36,8 @@
     <link rel="stylesheet" href="{{   asset('/assets/default/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{   asset('/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css') }}">
     <link rel="stylesheet" href="{{   asset('/assets/vendors/summernote/summernote-bs4.min.css') }}">
-   
+
+    <link rel="stylesheet" href="{{   asset('/assets/vendors/datetimepicker/tempusdominus-bootstrap-4.css') }}">
 
     @stack('styles_top')
     @stack('scripts_top')
@@ -164,6 +165,9 @@
 <script src="{{ asset('/assets/default/vendors/select2/select2.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/moment.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/daterangepicker/daterangepicker.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/datetimepicker/tempusdominus-bootstrap-4.js') }}"></script>
+<script src="{{ asset('/assets/vendors/datetimepicker/moment-with-locales.min.js') }}"></script>
+
 <script src="{{ asset('/assets/default/vendors/bootstrap-timepicker/bootstrap-timepicker.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 <script src="{{ asset('/assets/vendors/summernote/summernote-bs4.min.js') }}"></script>

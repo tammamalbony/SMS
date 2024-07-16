@@ -15,6 +15,7 @@ use App\Http\Controllers\PreviousYearController;
 use App\Http\Controllers\ProcessingFeeController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubjectController;
@@ -98,6 +99,15 @@ Route::prefix('classes')->group(function () {
     Route::post('/{id}/delete', [ClassroomController::class, 'destroy'])->name('classes.destroy');
 });
 
+// SchoolYear 
+Route::prefix('school_years')->group(function () {
+    Route::get('/', [SchoolYearController::class, 'index'])->name('school_years.index');
+    Route::get('/{id}/edit', [SchoolYearController::class, 'update'])->name('school_years.update');
+    Route::post('/create', [SchoolYearController::class, 'create'])->name('school_years.create');
+    Route::post('/store', [SchoolYearController::class, 'store'])->name('school_years.create');
+    Route::post('/{id}/update', [SchoolYearController::class, 'update'])->name('school_years.update');
+    Route::post('/{id}/delete', [SchoolYearController::class, 'destroy'])->name('school_years.destroy');
+});
 
 // Sections
 Route::resource('sections', SectionController::class);

@@ -45,6 +45,21 @@ $menuItems = [
         ],
     ],
     [
+        'name' => 'السنوات الدراسية',
+        'icon' => 'fa fa-calendar',
+        'link' => '#',
+        'roles' => ['admin', 'teacher'],
+        'permission' => 'view-classes',
+        'subMenu' => [
+            [
+                'name' => 'قائمة السنوات الدراسية',
+                'link' => '/school_years',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+        ],
+    ],
+    [
         'name' => 'الشعب',
         'icon' => 'fa fa-object-group',
         'link' => '#',

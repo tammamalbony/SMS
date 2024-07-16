@@ -188,6 +188,14 @@
 .form-check-inline {
     margin-right:0px;
 }
+.bootstrap-datetimepicker-widget{
+    z-index:900 !important;
+    background-color:white !important;
+    min-height:200px;
+}
+.bootstrap-datetimepicker-widget button{
+    background:red;
+}
 .line-clamp13 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -1491,8 +1499,8 @@ a.btn-outline-primary:hover::before {
 
 .navbar {
     padding: 0px 0px;
-    background-color: var(--primary-btn-color) !important;
-    height: 83px !important;
+    background-color: #0a446b !important;
+    height: 56px !important;
 }
 
 .top-navbar .top-contact-box {
@@ -6811,7 +6819,7 @@ label.font-12.cursor-pointer.px-15.py-10 {}
 
 
 .main-navbar .nav-link {
-    color: var(--badge-primary) !important;
+    color: wheat !important;
 }
 
 .main-navbar .nav-link.nav-link-user {

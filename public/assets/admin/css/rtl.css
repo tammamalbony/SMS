@@ -148,11 +148,14 @@ body.layout-2 .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
 
 .main-sidebar .sidebar-menu li a.has-dropdown::after {
   left: 20px;
-  right: auto; }
+  right: auto;
+  color: wheat;
+  }
 
 body.sidebar-mini .navbar {
-  right: 65px;
-  left: 0px; }
+  right: 24px;
+  left: 0px;
+  }
 
 body.sidebar-mini .main-content, body.sidebar-mini .main-footer {
   padding-right: 90px;
@@ -164,11 +167,13 @@ body.layout-2 .main-footer {
   padding-right: 20px; }
 
 .main-sidebar .sidebar-menu li {
-  text-align: right; }
+  text-align: right;
+  }
 
 .navbar {
-  right: 250px;
-  left: 0px; }
+  right: 200px;
+  left: 0px;
+  }
 
 .progress {
   direction: ltr; }
@@ -434,7 +439,8 @@ label{
     margin-left: 1rem!important;}
 .list-unstyled {
     padding-right: 0 !important;
-    list-style: none;}
+    list-style: none;
+    }
 .media-body .float-right {
   float: left !important;}
 .media .media-title {
