@@ -219,8 +219,8 @@ Route::prefix('nationalities')->group(function () {
 
 Route::resource('fathers', FatherController::class);
 Route::resource('fathers.wives', WifeController::class);
-
-
+Route::resource('students', StudentController::class);
+Route::post('/students/get-mothers', [StudentController::class, 'getMothers'])->name('students.getMothers');
 
 
 
@@ -233,8 +233,6 @@ Route::resource('sections', SectionController::class);
 // Parents
 Route::resource('parents', ParentController::class);
 
-// Students
-Route::resource('students', StudentController::class)->except(['edit']); // create provided in original list
 
 // Promotions
 Route::resource('promotions', PromotionController::class)->except(['edit']); // create provided in original list

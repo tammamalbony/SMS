@@ -9,9 +9,10 @@
             <tr>
                 <th>مادة</th>
                 <th>المرحلة</th>
-                <th>العمليات</th>
+                <th>الدرجة العظمى</th>
                 <th>مرسبة</th>
                 <th>نشط</th>
+                <th>العمليات</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
             <tr>
                 <td>{{ $detail->subject->name_ar }}</td>
                 <td>{{ $detail->grade->grade_name_ar }}</td>
+                <td>{{ $detail->max_grade}}</td>
                 <td>{{ $detail->is_failing}}</td>
                 <td>{{ $detail->is_active}}</td>
                 <td>

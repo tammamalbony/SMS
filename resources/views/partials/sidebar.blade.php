@@ -116,13 +116,13 @@ $menuItems = [
         'subMenu' => [
             [
                 'name' => 'اضافة طالب جديد',
-                'link' => '/Students/create',
+                'link' => '/students/create',
                 'roles' => ['admin'],
                 'permission' => 'add-student',
             ],
             [
                 'name' => 'قائمة الطلاب',
-                'link' => '/Students',
+                'link' => '/students',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-student-list',
             ],
