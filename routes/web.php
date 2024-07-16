@@ -22,6 +22,7 @@ use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\SubjectDetailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
@@ -152,6 +153,31 @@ Route::prefix('courses')->group(function () {
     Route::post('/{id}/update', [CourseController::class, 'update'])->name('courses.update');
     Route::post('/{id}/delete', [CourseController::class, 'destroy'])->name('courses.destroy');
 });
+
+
+
+// subjects
+Route::prefix('subjects')->group(function () {
+    Route::get('/{id}', [SubjectController::class, 'index'])->name('subjects.index');
+    Route::post('/{id}/edit', [SubjectController::class, 'edit'])->name('subjects.edit');
+    Route::get('/create', [SubjectController::class, 'create'])->name('subjects.create');
+    Route::post('/store', [SubjectController::class, 'store'])->name('subjects.store');
+    Route::post('/{id}/update', [SubjectController::class, 'update'])->name('subjects.update');
+    Route::post('/{id}/delete', [SubjectController::class, 'destroy'])->name('subjects.destroy');
+});
+
+// subject_details
+Route::prefix('subject_details')->group(function () {
+    Route::get('/', [SubjectDetailController::class, 'index'])->name('subject_details.index');
+    Route::get('/create', [SubjectDetailController::class, 'create'])->name('subject_details.create');
+    Route::post('/store', [SubjectDetailController::class, 'store'])->name('subject_details.store');
+    Route::prefix('{id}')->group(function () {
+        Route::post('/edit', [SubjectDetailController::class, 'edit'])->name('subject_details.edit');
+        Route::post('/update', [SubjectDetailController::class, 'update'])->name('subject_details.update');
+        Route::post('/delete', [SubjectDetailController::class, 'destroy'])->name('subject_details.destroy');
+    });
+});
+
 
 // Sections
 Route::resource('sections', SectionController::class);

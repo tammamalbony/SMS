@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
+use App\Models\Subject;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -11,54 +14,60 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $grades = Grade::all();
+
+        $subjects = Subject::with('parent')->paginate(50);
+        $parentSubjects = Subject::whereNull('parent_id')->get();
+        return view('subjects.index', compact('subjects', 'parentSubjects','grades'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name_ar' => 'required|string|max:255',
+            'name_en' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:subjects,id',
+            'note' => 'nullable|string',
+        ]);
+
+        Subject::create($request->all());
+
+        return response()->json(['success' => true, 'message' => 'Subject created successfully.']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request,$id)
     {
-        //
-    }
+        $subject = Subject::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $request->validate([
+            'name_ar' => 'required|string|max:255',
+            'name_en' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:subjects,id',
+            'note' => 'nullable|string',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        $subject->update($request->all());
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+        return response()->json(['success' => true, 'message' => 'Subject updated successfully.']);
+    }
+    public function edit(Request $request, $id)
     {
-        //
+        try {
+            $data = Subject::findOrFail($id);
+        
+            return response()->json([
+              'success' => true,
+              'data' => $data
+            ]);
+          } catch (ModelNotFoundException $e) {
+            return response()->json(['success' => false, 'message' => 'Job Sequence not found'], 404);
+          }
+    }
+    public function destroy($id)
+    {
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+
+        return response()->json(['success' => true, 'message' => 'Subject deleted successfully.']);
     }
 }

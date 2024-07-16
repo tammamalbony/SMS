@@ -468,13 +468,14 @@ select.form-control:not([size]):not([multiple]) {
     width: calc(1.25rem - 4px);
     top: 1px;
     left: 1px;
-    background: #fff;
+    background: #519cae;
     border-radius: 50%;
     transition: .3s left;
 }
 
 .custom-switch-input:checked ~ .custom-switch-indicator {
     background: var(--primary);
+    min-width: 36px;
 }
 
 .custom-switch-input:checked ~ .custom-switch-indicator:before {

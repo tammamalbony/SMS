@@ -159,6 +159,12 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-subject-list',
             ],
+            [
+                'name' => 'تفاصيل المواد',
+                'link' => '/subject_details',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-subject-list',
+            ],
         ],
     ],
     // [
