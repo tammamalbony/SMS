@@ -15,6 +15,7 @@ class Classs extends Model
         'class_name_en',
     ];
 
+    
     public function grade()
     {
         return $this->belongsTo(Grade::class);
