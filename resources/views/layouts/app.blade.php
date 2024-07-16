@@ -36,7 +36,9 @@
     <link rel="stylesheet" href="{{   asset('/assets/default/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{   asset('/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css') }}">
     <link rel="stylesheet" href="{{   asset('/assets/vendors/summernote/summernote-bs4.min.css') }}">
-   
+
+    <link rel="stylesheet" href="{{   asset('/assets/vendors/datetimepicker/tempusdominus-bootstrap-4.css') }}">
+    <script src="{{ asset('/assets/admin/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
 
     @stack('styles_top')
     @stack('scripts_top')
@@ -92,7 +94,6 @@
 
 
 <!-- General JS Scripts -->
-<script src="{{ asset('/assets/admin/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/vendor/poper/popper.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/vendor/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/vendor/nicescroll/jquery.nicescroll.min.js') }}"></script>
@@ -164,6 +165,9 @@
 <script src="{{ asset('/assets/default/vendors/select2/select2.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/moment.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/daterangepicker/daterangepicker.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/datetimepicker/tempusdominus-bootstrap-4.js') }}"></script>
+<script src="{{ asset('/assets/vendors/datetimepicker/moment-with-locales.min.js') }}"></script>
+
 <script src="{{ asset('/assets/default/vendors/bootstrap-timepicker/bootstrap-timepicker.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 <script src="{{ asset('/assets/vendors/summernote/summernote-bs4.min.js') }}"></script>
@@ -173,6 +177,27 @@
 
 <script>
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
+</script>
+<script>
+    @if ($errors->any())
+        $(document).ready(function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>'
+            });
+        });
+    @endif
+
+    @if (session('success'))
+        $(document).ready(function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}'
+            });
+        });
+    @endif
 </script>
 </body>
 </html>

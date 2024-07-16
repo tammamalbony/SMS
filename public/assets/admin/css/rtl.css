@@ -118,8 +118,9 @@ body.sidebar-mini .main-sidebar:after {
   margin-right: 3px; }
 
 .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
-  padding-left: auto !important;
-  padding-right: 65px; }
+  padding-left: 5px !important;
+  padding-right: 65px;
+  }
 
 body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-menu li a {
   padding-left: 0; }
@@ -147,11 +148,14 @@ body.layout-2 .main-sidebar .sidebar-menu li ul.dropdown-menu li a {
 
 .main-sidebar .sidebar-menu li a.has-dropdown::after {
   left: 20px;
-  right: auto; }
+  right: auto;
+  color: wheat;
+  }
 
 body.sidebar-mini .navbar {
-  right: 65px;
-  left: 0px; }
+  right: 24px;
+  left: 0px;
+  }
 
 body.sidebar-mini .main-content, body.sidebar-mini .main-footer {
   padding-right: 90px;
@@ -163,11 +167,13 @@ body.layout-2 .main-footer {
   padding-right: 20px; }
 
 .main-sidebar .sidebar-menu li {
-  text-align: right; }
+  text-align: right;
+  }
 
 .navbar {
-  right: 250px;
-  left: 0px; }
+  right: 200px;
+  left: 0px;
+  }
 
 .progress {
   direction: ltr; }
@@ -433,7 +439,8 @@ label{
     margin-left: 1rem!important;}
 .list-unstyled {
     padding-right: 0 !important;
-    list-style: none;}
+    list-style: none;
+    }
 .media-body .float-right {
   float: left !important;}
 .media .media-title {
@@ -509,6 +516,7 @@ span.input-label{
 .form-group label {
     width: 100%;
     text-align: right;
+    margin-right: .85rem;
 }
 
 .quiz-question-card {

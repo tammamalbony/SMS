@@ -42,7 +42,7 @@
 
             </div>
 
-            <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="{{ $getPageBackgroundSettings['admin_login'] ?? '' }}">
+            <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="http://localhost/assets/default/img/default/avatar-1.png">
             <div class="absolute-bottom-left index-2">
           
           </div>

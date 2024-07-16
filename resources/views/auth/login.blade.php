@@ -6,7 +6,7 @@
     @endphp
 
     <div class="p-4 m-3">
-        <img src="{{ asset($siteGeneralSettings['logo'] ?? '' ) }}" alt="logo" width="40%" class="mb-5 mt-2">
+        <img src="http://localhost/assets/default/img/default/avatar-1.png" alt="logo" width="40%" class="mb-5 mt-2">
 
         <h4 class="text-dark font-weight-normal">{{ trans('admin/main.welcome') }} <span class="font-weight-bold">{{ $siteGeneralSettings['site_name'] ?? '' }}</span></h4>
 

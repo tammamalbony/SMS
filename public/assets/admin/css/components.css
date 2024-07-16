@@ -1851,7 +1851,7 @@ tbody {
     -webkit-overflow-scrolling: touch;
 }
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgb(182 0 255 / 3%);
+    background-color: rgb(0 158 255 / 3%);
 }
 .section .section-title:before {
     content: ' ';

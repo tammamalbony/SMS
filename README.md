@@ -24,6 +24,6 @@ php artisan vendor:publish --tag=translatable
 - php seeders
 
 ``` seeders
-    php artisan db:seed --class=RolesAndPermissionsSeeder
-    php artisan db:seed --class=SettingsTableSeeder
+    php artisan db:seed
+    
 ```
