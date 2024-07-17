@@ -11,6 +11,7 @@
                 <th>المعرف</th>
                 <th>اسم الصف</th>
                 <th>السنة الدراسية</th>
+                <th>عدد المواد المرسبة</th>
                 <th>الإجراءات</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ $relation->id }}</td>
                 <td>{{ $relation->classs->class_name_ar }}</td>
                 <td>{{ $relation->schoolYear->name }}</td>
+                <td>{{ $relation->fall_subject_count }}</td>
                 <td>
                     <button class="btn btn-warning editButton" data-id="{{ $relation->id }}">تعديل</button>
                     <button class="btn btn-danger deleteButton" data-id="{{ $relation->id }}">حذف</button>
@@ -43,6 +45,7 @@ $(document).ready(function() {
             showFormModal('تعديل العلاقة', data);
         });
     });
+
     $('#addAllClasses').click(function() {
         Swal.fire({
             title: 'هل أنت متأكد؟',
@@ -80,6 +83,7 @@ $(document).ready(function() {
             }
         });
     });
+
     $('.deleteButton').click(function() {
         var id = $(this).data('id');
         Swal.fire({
@@ -139,6 +143,10 @@ $(document).ready(function() {
                             <option value="{{ $schoolYear->id }}" selected>{{ $schoolYear->name }}</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="fall_subject_count">عدد المواد المرسبة</label>
+                        <input type="number" class="form-control" id="fall_subject_count" name="fall_subject_count" value="${data ? data.fall_subject_count : 0}">
+                    </div>
                 </form>
             `,
             showCancelButton: true,
@@ -146,8 +154,8 @@ $(document).ready(function() {
             cancelButtonText: 'إغلاق',
             preConfirm: () => {
                 var id = $('#relationshipId').val();
-                var method = id ? 'PUT' : 'POST';
-                var url = id ? '/classs_school_year/' + id : '/school-years/{{ $schoolYear->id }}/classs-school-years';
+                var method =  'POST';
+                var url = id ? '/classs_school_year/' + id +"/update" : '/school-years/{{ $schoolYear->id }}/classs-school-years';
                 return $.ajax({
                     url: url,
                     type: method,

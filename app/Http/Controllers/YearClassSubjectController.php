@@ -37,6 +37,8 @@ class YearClassSubjectController extends Controller
         $data = $request->all();
         $result['c_s_y_id'] = $data['classses_school_year_id'];
         $result['subject_detail_id'] = $data['subject_detail_id'];
+        $result['subject_detail_id'] = $data['subject_detail_id'];
+        $result['is_falling'] = $data['is_falling'];
         $yearClassSubject = YearClassSubject::create($result);
 
         return response()->json(['success' => 'تم إنشاء الربط بنجاح.']);
@@ -44,7 +46,6 @@ class YearClassSubjectController extends Controller
 
     public function edit(ClasssSchoolYear $classsSchoolYear, YearClassSubject $yearClassSubject)
     {
-        dd(request());
         $data = $yearClassSubject;
         return response()->json($data);
     }

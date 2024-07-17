@@ -254,7 +254,7 @@ $menuItems = [
             ],
             [
                 'name' => 'التقديرات',
-                'link' => '/Mgrades',
+                'link' => '/mark_reviews',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-grades',
             ],

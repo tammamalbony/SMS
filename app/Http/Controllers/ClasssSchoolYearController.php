@@ -61,12 +61,11 @@ class ClasssSchoolYearController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'class_id' => 'required|exists:classses,id',
-            'school_year_id' => 'required|exists:school_years,id',
+            'classs_id' => 'required|exists:classses,id',
         ]);
-
+        $data  = $request->all();
         $relation = ClasssSchoolYear::find($id);
-        $relation->update($validated);
+        $relation->update($data);
 
         return response()->json(['success' => 'تم تحديث العلاقة بنجاح.']);
     }

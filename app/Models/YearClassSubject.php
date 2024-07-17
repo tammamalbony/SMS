@@ -15,6 +15,7 @@ class YearClassSubject extends Model
         'c_s_y_id',
         'subject_detail_id',
         'order',
+        'is_falling',
     ];
     public function classsSchoolYear()
     {

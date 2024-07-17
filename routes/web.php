@@ -13,9 +13,11 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobSequenceController;
+use App\Http\Controllers\MarkReviewController;
 use App\Http\Controllers\MGradeController;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\PartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PreviousYearController;
 use App\Http\Controllers\ProcessingFeeController;
@@ -231,6 +233,7 @@ Route::prefix('school-years/{schoolYear}')->group(function () {
 });
 Route::post('classs_school_year/{id}/delete', [ClasssSchoolYearController::class, 'destroy'])->name('classs_school_year.store');
 Route::get('classs_school_year/{id}/edit', [ClasssSchoolYearController::class, 'edit'])->name('classs_school_year.store');
+Route::get('classs_school_year/{id}/update', [ClasssSchoolYearController::class, 'update'])->name('classs_school_year.store');
 
 Route::resource('classs-school-years', ClasssSchoolYearController::class)->except(['index', 'create', 'store']);
 Route::post('school-years/{schoolYear}/add-all-classes', [ClasssSchoolYearController::class, 'addAllClasses'])->name('classs_school_year.add_all_classes');
@@ -243,11 +246,15 @@ Route::prefix('school-years/{classsSchoolYear}/year_class_subjects')->group(func
     Route::get('/create', [YearClassSubjectController::class, 'create'])->name('year_class_subject.create');
     Route::post('/', [YearClassSubjectController::class, 'store'])->name('year_class_subject.store');
     Route::get('/{yearClassSubject}/edit', [YearClassSubjectController::class, 'edit'])->name('year_class_subject.edit');
-    Route::post('/{yearClassSubject}/update', [YearClassSubjectController::class, 'update'])->name('year_class_subject.update');
+    Route::put('/{yearClassSubject}/update', [YearClassSubjectController::class, 'update'])->name('year_class_subject.update');
     Route::post('/{yearClassSubject}/delete', [YearClassSubjectController::class, 'destroy'])->name('year_class_subject.destroy');
     
 });
 Route::post('/year_class_subjects/{classsSchoolYear}/update_order', [YearClassSubjectController::class, 'updateOrder'])->name('year_class_subject.update_order');
+
+Route::resource('mark_reviews', MarkReviewController::class)->except(['show', 'edit']);
+
+Route::resource('parts', PartController::class)->except(['show', 'edit']);
 
 
 // Sections
