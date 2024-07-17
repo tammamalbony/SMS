@@ -33,6 +33,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WifeController;
+use App\Http\Controllers\YearClassSubjectController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -233,6 +234,22 @@ Route::get('classs_school_year/{id}/edit', [ClasssSchoolYearController::class, '
 
 Route::resource('classs-school-years', ClasssSchoolYearController::class)->except(['index', 'create', 'store']);
 Route::post('school-years/{schoolYear}/add-all-classes', [ClasssSchoolYearController::class, 'addAllClasses'])->name('classs_school_year.add_all_classes');
+
+Route::resource('year_class_subject', YearClassSubjectController::class);
+
+
+Route::prefix('school-years/{classsSchoolYear}/year_class_subjects')->group(function () {
+    Route::get('/', [YearClassSubjectController::class, 'index'])->name('year_class_subject.index');
+    Route::get('/create', [YearClassSubjectController::class, 'create'])->name('year_class_subject.create');
+    Route::post('/', [YearClassSubjectController::class, 'store'])->name('year_class_subject.store');
+    Route::get('/{yearClassSubject}/edit', [YearClassSubjectController::class, 'edit'])->name('year_class_subject.edit');
+    Route::post('/{yearClassSubject}/update', [YearClassSubjectController::class, 'update'])->name('year_class_subject.update');
+    Route::post('/{yearClassSubject}/delete', [YearClassSubjectController::class, 'destroy'])->name('year_class_subject.destroy');
+    
+});
+Route::post('/year_class_subjects/{classsSchoolYear}/update_order', [YearClassSubjectController::class, 'updateOrder'])->name('year_class_subject.update_order');
+
+
 // Sections
 Route::resource('sections', SectionController::class);
 

@@ -5,7 +5,8 @@ use App\Models\Classs;
 use Illuminate\Support\Facades\Cookie;
 
 
-function gc($id) : Classs {
+function csy($id) : Classs {
+    dd($id);
     return Classs::findOrFail($id);
 }
 function getTemplate()

@@ -28,5 +28,10 @@ class SubjectDetail extends Model
         return $this->belongsTo(Grade::class);
     }
 
+    public function classsSchoolYears()
+    {
+        return $this->belongsToMany(ClasssSchoolYear::class, 'c_s_y_s_detail', 'subject_detail_id', 'c_s_y_id')
+                    ->withTimestamps();
+    }
     
 }

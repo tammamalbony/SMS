@@ -9,7 +9,7 @@ class ClasssSchoolYear extends Model
 {
     use HasFactory;
 
-    protected $table = 'classses_school_year';
+    protected $table = 'classses_school_years';
 
     protected $fillable = [
         'classs_id',
@@ -27,4 +27,9 @@ class ClasssSchoolYear extends Model
         return $this->belongsTo(SchoolYear::class);
     }
 
+    public function classsSchoolYears()
+    {
+        return $this->belongsToMany(ClasssSchoolYear::class, 'c_s_y_s_detail', 'subject_detail_id', 'c_s_y_id')
+                    ->withTimestamps();
+    }
 }

@@ -174,6 +174,7 @@
 <script src="{{ asset('/assets/default/vendors/sortable/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('/assets/default/js/admin/quiz.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/js/webinar.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/Sortable.min.js') }}"></script>
 
 <script>
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}

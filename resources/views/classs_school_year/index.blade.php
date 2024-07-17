@@ -23,6 +23,7 @@
                 <td>
                     <button class="btn btn-warning editButton" data-id="{{ $relation->id }}">تعديل</button>
                     <button class="btn btn-danger deleteButton" data-id="{{ $relation->id }}">حذف</button>
+                    <a href="{{ url('school-years/'.$relation->id.'/year_class_subjects') }}" class="btn btn-info">عرض المواد</a>
                 </td>
             </tr>
             @endforeach
