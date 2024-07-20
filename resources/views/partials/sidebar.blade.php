@@ -145,6 +145,12 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-student-list',
             ],
+            [
+                'name' => 'أنواع الخروج',
+                'link' => '/leave_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
         ],
     ],
     [

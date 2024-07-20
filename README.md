@@ -27,3 +27,5 @@ php artisan vendor:publish --tag=translatable
     php artisan db:seed
     
 ```
+
+php artisan storage:link

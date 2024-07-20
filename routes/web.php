@@ -4,6 +4,7 @@ use App\Http\Controllers\AttendanceRatioController;
 use App\Http\Controllers\BloodTypeController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
+use App\Http\Controllers\ClasssSchoolYearDetailController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobSequenceController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MarkReviewController;
 use App\Http\Controllers\MGradeController;
@@ -304,6 +306,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('/{documentId}', [DocumentController::class, 'destroy'])->name('documents.destroy');
     });
 
+
+    Route::prefix('classs_school_years/{classsSchoolYearId}/details')->group(function () {
+        Route::get('/', [ClasssSchoolYearDetailController::class, 'index'])->name('classs_school_year_details.index');
+        Route::post('/', [ClasssSchoolYearDetailController::class, 'store'])->name('classs_school_year_details.store');
+        Route::get('/edit', [ClasssSchoolYearDetailController::class, 'edit'])->name('classs_school_year_details.edit');
+        Route::put('/', [ClasssSchoolYearDetailController::class, 'update'])->name('classs_school_year_details.update');
+        Route::delete('/', [ClasssSchoolYearDetailController::class, 'destroy'])->name('classs_school_year_details.destroy');
+    });
+
+
+
+    Route::resource('leave_types', LeaveTypeController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::get('leave_types/{id}/edit', [LeaveTypeController::class, 'edit'])->name('leave_types.edit');
     // Parents
     Route::resource('parents', ParentController::class);
 

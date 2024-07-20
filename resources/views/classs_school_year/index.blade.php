@@ -35,6 +35,9 @@
                     <a href="{{ route('sections.index', ['classsSchoolYear' => $relation->id]) }}" class="btn btn-secondary">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </a>
+                    <a href="{{ route('classs_school_year_details.index', ['classsSchoolYearId' => $relation->id]) }}" class="btn btn-success">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
                 </td>
             </tr>
             @endforeach

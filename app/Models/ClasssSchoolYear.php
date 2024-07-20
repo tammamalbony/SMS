@@ -38,4 +38,9 @@ class ClasssSchoolYear extends Model
     {
         return $this->hasMany(Part::class, 'year_class_subject_id');
     }
+
+    public function details()
+    {
+        return $this->hasOne(ClasssSchoolYearDetail::class);
+    }
 }
