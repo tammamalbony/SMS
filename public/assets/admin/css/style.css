@@ -3561,7 +3561,7 @@ body.sidebar-mini .main-sidebar .sidebar-menu > li ul.dropdown-menu li.active > 
 body.sidebar-mini .main-sidebar .sidebar-menu > li ul.dropdown-menu li a {
     height: 40px;
     padding: 0 20px;
-    background-color: #fff;
+    background-color: #000;
 }
 
 body.sidebar-mini .main-sidebar .sidebar-menu > li ul.dropdown-menu li a.has-dropdown:after {

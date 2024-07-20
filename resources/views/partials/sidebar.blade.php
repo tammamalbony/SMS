@@ -15,6 +15,21 @@ $menuItems = [
         'permission' => 'manage-school',
     ],
     [
+        'name' => 'السنوات الدراسية',
+        'icon' => 'fa fa-calendar',
+        'link' => '#',
+        'roles' => ['admin', 'teacher'],
+        'permission' => 'view-classes',
+        'subMenu' => [
+            [
+                'name' => 'قائمة السنوات الدراسية',
+                'link' => '/school_years',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+        ],
+    ],
+    [
         'name' => 'المراحل الدراسية',
         'icon' => 'fa fa-building',
         'link' => '#',
@@ -44,21 +59,7 @@ $menuItems = [
             ],
         ],
     ],
-    [
-        'name' => 'السنوات الدراسية',
-        'icon' => 'fa fa-calendar',
-        'link' => '#',
-        'roles' => ['admin', 'teacher'],
-        'permission' => 'view-classes',
-        'subMenu' => [
-            [
-                'name' => 'قائمة السنوات الدراسية',
-                'link' => '/school_years',
-                'roles' => ['admin', 'teacher'],
-                'permission' => 'view-class-list',
-            ],
-        ],
-    ],
+   
     [
         'name' => 'الشعب',
         'icon' => 'fa fa-object-group',
@@ -68,7 +69,19 @@ $menuItems = [
         'subMenu' => [
             [
                 'name' => 'قائمة الشعب الدراسية',
-                'link' => '/Sections',
+                'link' => '/sections',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-section-list',
+            ],
+            [
+                'name' => 'اللغات',
+                'link' => '/languages',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-section-list',
+            ],
+            [
+                'name' => 'الانواع',
+                'link' => '/section_types',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-section-list',
             ],
@@ -180,6 +193,12 @@ $menuItems = [
             [
                 'name' => 'تفاصيل المواد',
                 'link' => '/subject_details',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-subject-list',
+            ],
+            [
+                'name' => 'العلامات',
+                'link' => '/marks',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-subject-list',
             ],

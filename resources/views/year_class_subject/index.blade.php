@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h1>قائمة الفصول الدراسية والتفاصيل للسنة الدراسية: {{ $classsSchoolYear->schoolYear->name }}</h1>
-
+        <h1>قائمة المواد: {{ $classsSchoolYear->schoolYear->name }}</h1>
+        <h2>
+            الصف  : {{ $classsSchoolYear->classs->class_name_ar }}
+        </h2>
         <button id="addNew" class="btn btn-success mb-3">إضافة جديد</button>
 
         <table class="table table-bordered">

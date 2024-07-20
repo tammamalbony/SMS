@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('classses_school_years', function (Blueprint $table) {
+        Schema::table('classs_school_years', function (Blueprint $table) {
             $table->unsignedInteger('fall_subject_count')->default(0)->after('school_year_id');
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('classses_school_years', function (Blueprint $table) {
+        Schema::table('classs_school_years', function (Blueprint $table) {
             $table->dropColumn('fall_subject_count');
         });
     }

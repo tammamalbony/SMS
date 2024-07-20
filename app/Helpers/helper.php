@@ -5,10 +5,7 @@ use App\Models\Classs;
 use Illuminate\Support\Facades\Cookie;
 
 
-function csy($id) : Classs {
-    dd($id);
-    return Classs::findOrFail($id);
-}
+
 function getTemplate()
 {
     /*$template = cache()->remember('view.template', 7 * 24 * 60 * 60, function () {

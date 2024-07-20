@@ -106,8 +106,9 @@
         </div>
 
         <div class="row mb-3">
-            <h2>معلومات إضافية</h2>
-
+            <div class="col-12">
+                <h2>معلومات إضافية</h2>
+            </div>
             <div class="col-md-4">
                 <label for="nationality_id">الجنسية:</label>
                 <select id="nationality_id" name="nationality_id" class="form-control" required>

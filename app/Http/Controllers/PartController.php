@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Part;
 use App\Models\PartOperation;
+use App\Models\YearClassSubject;
 use Illuminate\Http\Request;
 
 class PartController extends Controller
@@ -18,11 +19,11 @@ class PartController extends Controller
         if ($yearClassSubjectId) {
             $query->where('year_class_subject_id', $yearClassSubjectId);
         }
-
+        $yearClassSubject = YearClassSubject::findOrFail($yearClassSubjectId);
         $parts = $query->with('operations.operandPart')->get();
         $allParts = Part::all(); // Fetch all parts for the dropdown
 
-        return view('parts.index', compact('parts', 'yearClassSubjectId', 'allParts'));
+        return view('parts.index', compact('parts', 'yearClassSubjectId', 'allParts','yearClassSubject'));
     }
 
     public function store(Request $request)

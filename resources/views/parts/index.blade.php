@@ -4,9 +4,12 @@
     <div class="container">
         <h1>إدارة الأجزاء</h1>
         @if (isset($yearClassSubjectId))
-            <h3>الأجزاء لموضوع العام الدراسي ID: {{ $yearClassSubjectId }}</h3>
+        <h3>الأجزاء للمادة : {{ $yearClassSubject->subjectDetail->grade->grade_name_ar }}
+        : "{{ $yearClassSubject->subjectDetail->subject->name_ar }}"
+            
+        
+        </h3>
         @endif
-
         <button class="btn btn-primary" onclick="openCreateModal()">إضافة جزء جديد</button>
 
         <table class="table mt-3">

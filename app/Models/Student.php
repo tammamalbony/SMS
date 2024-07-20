@@ -61,4 +61,9 @@ class Student extends Model
     {
         return $this->belongsTo(Wife::class);
     }
+
+    public function verifiedStudent()
+    {
+        return $this->hasOne(VerifiedStudent::class);
+    }
 }

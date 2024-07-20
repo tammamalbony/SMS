@@ -36,6 +36,6 @@ class ClasssSchoolYearSeeder extends Seeder
 
             
         ];
-        DB::table('classses_school_years')->insert($classsSchoolYears);
+        DB::table('classs_school_years')->insert($classsSchoolYears);
     }
 }

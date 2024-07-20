@@ -29,7 +29,7 @@ class YearClassSubjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'classses_school_year_id' => 'required|exists:classses_school_years,id',
+            'classses_school_year_id' => 'required|exists:classs_school_years,id',
             'subject_detail_id' => 'required|exists:subject_details,id',
             'order' => 'nullable|integer',
         ]);
@@ -52,7 +52,7 @@ class YearClassSubjectController extends Controller
     public function update(Request $request, ClasssSchoolYear $classsSchoolYear, YearClassSubject $yearClassSubject)
     {
         $request->validate([
-            'classses_school_year_id' => 'required|exists:classses_school_years,id',
+            'classses_school_year_id' => 'required|exists:classs_school_years,id',
             'subject_detail_id' => 'required|exists:subject_details,id',
         ]);
 

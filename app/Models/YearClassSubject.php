@@ -22,6 +22,11 @@ class YearClassSubject extends Model
         return $this->belongsTo(ClasssSchoolYear::class);
     }
 
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
+
     public function subjectDetail()
     {
         return $this->belongsTo(SubjectDetail::class);
