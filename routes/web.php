@@ -6,6 +6,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FatherController;
 use App\Http\Controllers\GeneralSettingsController;
@@ -25,12 +26,14 @@ use App\Http\Controllers\PreviousYearController;
 use App\Http\Controllers\ProcessingFeeController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\RegistrationTypeController;
 use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\RewardPunishmentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SectionTypeController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\StudentAdditionalDetailController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectDetailController;
 use App\Http\Controllers\UserController;
@@ -284,6 +287,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
     Route::resource('marks', MarkController::class);
+    Route::resource('registration-types', RegistrationTypeController::class);
+
+    Route::prefix('students/{studentId}/additional-details')->group(function () {
+        Route::get('/', [StudentAdditionalDetailController::class, 'index'])->name('students.additional_details.index');
+        Route::post('/', [StudentAdditionalDetailController::class, 'store'])->name('students.additional_details.store');
+        Route::get('/edit', [StudentAdditionalDetailController::class, 'edit'])->name('students.additional_details.edit');
+        Route::put('/', [StudentAdditionalDetailController::class, 'update'])->name('students.additional_details.update');
+        Route::delete('/', [StudentAdditionalDetailController::class, 'destroy'])->name('students.additional_details.destroy');
+    });
+
+
+    Route::prefix('{type}/{id}/documents')->group(function () {
+        Route::get('/', [DocumentController::class, 'index'])->name('documents.index');
+        Route::post('/', [DocumentController::class, 'store'])->name('documents.store');
+        Route::delete('/{documentId}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+    });
+
     // Parents
     Route::resource('parents', ParentController::class);
 

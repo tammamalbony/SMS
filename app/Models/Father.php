@@ -47,4 +47,9 @@ class Father extends Model
     {
         return $this->hasMany(Wife::class);
     }
+
+    public function documents()
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }

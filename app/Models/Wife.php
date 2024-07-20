@@ -46,4 +46,9 @@ class Wife extends Model
     {
         return $this->belongsTo(Religion::class);
     }
+
+    public function documents()
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }

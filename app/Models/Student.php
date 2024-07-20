@@ -66,4 +66,12 @@ class Student extends Model
     {
         return $this->hasOne(VerifiedStudent::class);
     }
+    public function additionalDetail()
+    {
+        return $this->hasOne(StudentAdditionalDetail::class);
+    }
+    public function documents()
+    {
+        return $this->morphMany(Document::class, 'documentable');
+    }
 }

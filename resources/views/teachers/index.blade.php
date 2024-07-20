@@ -47,6 +47,9 @@
                                         <a href="{{ url('job_sequences/'.$teacher->id) }}" class="btn btn-info"><i class="fa fa-info-circle"></i></a>
                                         <a href="{{ url('rewards_punishments/'.$teacher->id) }}" class="btn btn-warning"><i class="fa fa-certificate"></i></a>
                                         <a href="{{ url('courses/'.$teacher->id) }}" class="btn btn-success"><i class="fa fa-check"></i></a>
+                                        <a href="{{ route('documents.index', ['type' => 'teacher', 'id' => $teacher->id]) }}" class="btn btn-secondary" title="مستندات المعلم">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
