@@ -5,7 +5,8 @@
         <div class="page-title">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4 class="mb-0 d-inline-block">الطلاب المؤكدون في الشعبة: {{ $section->name }}</h4>
+                    <h4 class="mb-0 ">الطلاب المؤكدون في الشعبة: {{ $section->name }} </h4>
+                    <h4 class="mb-0 ">الصف: {{ $section->classsSchoolYear->classs->class_name_ar }} </h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
@@ -51,6 +52,11 @@
                                                 data-status="{{ $verifiedStudent->status->value }}">تعديل</button>
                                             <button class="btn btn-danger deleteButton"
                                                 data-id="{{ $verifiedStudent->id }}">حذف</button>
+                                            <button class="btn btn-secondary notesButton"
+                                                data-id="{{ $verifiedStudent->id }}">ملاحظات المدير</button>
+                                                <button class="btn btn-secondary teacher-notes-button"
+                                                data-id="{{ $verifiedStudent->id }}">ملاحظات المعلم</button>
+                                                <a href="{{ route('exam_results.index', $verifiedStudent->id) }}" class="btn btn-info">عرض نتائج الامتحان</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -65,6 +71,16 @@
         </div>
     </div>
     <script>
+        $('.notesButton').on('click', function() {
+            var verifiedStudentId = $(this).data('id');
+            window.location.href = '/verified_students/' + verifiedStudentId + '/admin_notes';
+        });
+        $('.teacher-notes-button').on('click', function() {
+                var verifiedStudentId = $(this).data('id');
+                window.location.href = '/verified_students/' + verifiedStudentId + '/teacher_notes';
+            });
+    </script>
+    <script>
         document.getElementById('sortAlphabetically').addEventListener('click', function() {
             fetch("{{ route('verified-students.sort_alphabetically', ['sectionId' => $section->id]) }}", {
                     method: 'POST',
@@ -73,7 +89,7 @@
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
                             'content')
                     },
-                    body: JSON.stringify({}) 
+                    body: JSON.stringify({})
                 })
                 .then(response => response.json())
                 .then(data => {
@@ -251,7 +267,7 @@
                     });
 
                     document.getElementById('edit-form').addEventListener('submit', function(
-                    event) {
+                        event) {
                         event.preventDefault();
 
                         let form = event.target;

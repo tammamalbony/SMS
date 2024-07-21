@@ -5,13 +5,13 @@
         <div class="page-title">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4 class="mb-0 d-inline-block">أنواع الخروج من المدرسة</h4>
-                    <button class="btn btn-primary d-inline-block" id="addLeaveType">إضافة</button>
+                    <h4 class="mb-0 d-inline-block">الفصول الدراسية</h4>
+                    <button class="btn btn-primary d-inline-block" id="addTerm">إضافة</button>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">الرئيسية</a></li>
-                        <li class="breadcrumb-item active">أنواع الخروج من المدرسة</li>
+                        <li class="breadcrumb-item active">الفصول الدراسية</li>
                     </ol>
                 </div>
             </div>
@@ -29,20 +29,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($leaveTypes as $index => $leaveType)
+                                @foreach ($terms as $index => $term)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $leaveType->name }}</td>
+                                        <td>{{ $term->name }}</td>
                                         <td>
-                                            <button class="btn btn-primary edit-button" data-id="{{ $leaveType->id }}"><i class="fa fa-edit"></i></button>
-                                            <button class="btn btn-danger delete-button" data-id="{{ $leaveType->id }}"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-primary edit-button" data-id="{{ $term->id }}"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-danger delete-button" data-id="{{ $term->id }}"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center">
-                            {!! $leaveTypes->links() !!}
+                            {!! $terms->links() !!}
                         </div>
                     </div>
                 </div>
@@ -51,12 +51,12 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#addLeaveType').on('click', function() {
+            $('#addTerm').on('click', function() {
                 Swal.fire({
-                    title: 'إضافة نوع الخروج',
+                    title: 'إضافة فصل دراسي',
                     html: `
-                        <label for="name">اسم النوع:</label>
-                        <input type="text" id="name" class="swal2-input" placeholder="اسم النوع">
+                        <label for="name">اسم الفصل:</label>
+                        <input type="text" id="name" class="swal2-input" placeholder="اسم الفصل">
                     `,
                     confirmButtonText: 'حفظ البيانات',
                     showCancelButton: true,
@@ -71,7 +71,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ route('leave_types.store') }}',
+                            url: '{{ route('terms.store') }}',
                             method: 'POST',
                             data: {
                                 _token: '{{ csrf_token() }}',
@@ -79,11 +79,11 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الإضافة!', 'تم إضافة النوع بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الإضافة!', 'تم إضافة الفصل بنجاح.', 'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة النوع.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة الفصل.', 'error');
                                 }
                             }
                         });
@@ -94,13 +94,13 @@
             $('.edit-button').on('click', function() {
                 var typeId = $(this).data('id');
                 $.ajax({
-                    url: '{{ url('leave_types') }}/' + typeId + '/edit',
+                    url: '/terms/' + typeId + '/edit',
                     method: 'GET',
                     success: function(data) {
                         Swal.fire({
-                            title: 'تعديل نوع الخروج',
+                            title: 'تعديل فصل دراسي',
                             html: `
-                                <label for="name">اسم النوع:</label>
+                                <label for="name">اسم الفصل:</label>
                                 <input type="text" id="name" class="swal2-input" value="${data.name}">
                             `,
                             confirmButtonText: 'حفظ البيانات',
@@ -116,7 +116,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: '{{ url('leave_types') }}/' + typeId,
+                                    url: '/terms/' + typeId,
                                     method: 'PUT',
                                     data: {
                                         _token: '{{ csrf_token() }}',
@@ -124,11 +124,11 @@
                                     },
                                     success: function(response) {
                                         if (response.success) {
-                                            Swal.fire('تم التعديل!', 'تم تعديل النوع بنجاح.', 'success').then(() => {
+                                            Swal.fire('تم التعديل!', 'تم تعديل الفصل بنجاح.', 'success').then(() => {
                                                 location.reload();
                                             });
                                         } else {
-                                            Swal.fire('خطأ!', 'حدث خطأ أثناء تعديل النوع.', 'error');
+                                            Swal.fire('خطأ!', 'حدث خطأ أثناء تعديل الفصل.', 'error');
                                         }
                                     }
                                 });
@@ -152,22 +152,22 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ url('leave_types') }}/' + typeId,
+                            url: '/terms/' + typeId,
                             type: 'DELETE',
                             data: {
                                 _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الحذف!', 'تم حذف النوع بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الحذف!', 'تم حذف الفصل بنجاح.', 'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف النوع.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف الفصل.', 'error');
                                 }
                             },
                             error: function(response) {
-                                Swal.fire('خطأ!', 'حدث خطأ أثناء حذف النوع.', 'error');
+                                Swal.fire('خطأ!', 'حدث خطأ أثناء حذف الفصل.', 'error');
                             }
                         });
                     }

@@ -1,64 +1,68 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\ClasssSchoolYear;
+use App\Models\Exam;
+use App\Models\Term;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $classsSchoolYearId = request()->input("classsSchoolYearId");
+        $classsSchoolYear = ClasssSchoolYear::findOrFail($classsSchoolYearId);
+        $exams = $classsSchoolYear->exams()->paginate(10);
+        $terms = Term::all();
+        
+        return view('exams.index', compact('classsSchoolYear', 'exams', 'terms'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $request, $classsSchoolYearId)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'max_degree' => 'required|integer',
+            'min_mark' => 'required|integer',
+            'total' => 'required|integer',
+            'part_id' => 'nullable|exists:parts,id',
+            'term_id' => 'required|exists:terms,id'
+        ]);
+
+        $classsSchoolYear = ClasssSchoolYear::findOrFail($classsSchoolYearId);
+        $classsSchoolYear->exams()->create($request->all());
+
+        return response()->json(['success' => true]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function edit($classsSchoolYearId, $examId)
     {
-        //
+        $exam = Exam::findOrFail($examId);
+        return response()->json($exam);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, $classsSchoolYearId, $examId)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'max_degree' => 'required|integer',
+            'min_mark' => 'required|integer',
+            'total' => 'required|integer',
+            'part_id' => 'nullable|exists:parts,id',
+            'term_id' => 'required|exists:terms,id'
+        ]);
+
+        $exam = Exam::findOrFail($examId);
+        $exam->update($request->all());
+
+        return response()->json(['success' => true]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function destroy($classsSchoolYearId, $examId)
     {
-        //
-    }
+        $exam = Exam::findOrFail($examId);
+        $exam->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json(['success' => true]);
     }
 }

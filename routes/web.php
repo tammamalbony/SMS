@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRatioController;
 use App\Http\Controllers\BloodTypeController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\FatherController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\GradeController;
@@ -38,11 +40,15 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StudentAdditionalDetailController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectDetailController;
+use App\Http\Controllers\SvgController;
+use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\VerifiedStudentAdminNoteController;
 use App\Http\Controllers\VerifiedStudentController;
+use App\Http\Controllers\VerifiedStudentTeacherNoteController;
 use App\Http\Controllers\WifeController;
 use App\Http\Controllers\YearClassSubjectController;
 use Illuminate\Support\Facades\Route;
@@ -319,6 +325,83 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::resource('leave_types', LeaveTypeController::class)->only(['index', 'store', 'update', 'destroy']);
     Route::get('leave_types/{id}/edit', [LeaveTypeController::class, 'edit'])->name('leave_types.edit');
+
+    Route::prefix('classs_school_years/{classsSchoolYearId}/exams')->group(function () {
+        Route::get('/', [ExamController::class, 'index'])->name('exams.index');
+        Route::post('/store', [ExamController::class, 'store'])->name('exams.store');
+        Route::post('/{examId}/edit', [ExamController::class, 'edit'])->name('exams.edit');
+        Route::put('/{examId}/update', [ExamController::class, 'update'])->name('exams.update');
+        Route::delete('/{examId}/delete', [ExamController::class, 'destroy'])->name('exams.destroy');
+    });
+    Route::prefix('terms')->group(function () {
+        Route::get('/', [TermController::class, 'index'])->name('terms.index');
+        Route::post('/', [TermController::class, 'store'])->name('terms.store');
+        Route::get('/{id}/edit', [TermController::class, 'edit'])->name('terms.edit');
+        Route::put('/{id}', [TermController::class, 'update'])->name('terms.update');
+        Route::delete('/{id}', [TermController::class, 'destroy'])->name('terms.destroy');
+    });
+
+
+    Route::prefix('verified_students/{verifiedStudentId}/admin_notes')->group(function () {
+        Route::get('/', [VerifiedStudentAdminNoteController::class, 'index'])->name('verified_student_admin_notes.index');
+        Route::post('/', [VerifiedStudentAdminNoteController::class, 'store'])->name('verified_student_admin_notes.store');
+        Route::put('/{noteId}', [VerifiedStudentAdminNoteController::class, 'update'])->name('verified_student_admin_notes.update');
+        Route::delete('/{noteId}', [VerifiedStudentAdminNoteController::class, 'destroy'])->name('verified_student_admin_notes.destroy');
+    });
+
+    Route::prefix('verified_students/{verifiedStudentId}/teacher_notes')->group(function () {
+        Route::get('/', [VerifiedStudentTeacherNoteController::class, 'index'])->name('verified_student_teacher_notes.index');
+        Route::post('/', [VerifiedStudentTeacherNoteController::class, 'store'])->name('verified_student_teacher_notes.store');
+        Route::put('/{noteId}', [VerifiedStudentTeacherNoteController::class, 'update'])->name('verified_student_teacher_notes.update');
+        Route::delete('/{noteId}', [VerifiedStudentTeacherNoteController::class, 'destroy'])->name('verified_student_teacher_notes.destroy');
+    });
+
+    Route::prefix('absences')->group(function () {
+        Route::get('/', [AbsenceController::class, 'index'])->name('absences.index');
+        Route::post('/', [AbsenceController::class, 'store'])->name('absences.store');
+        Route::put('/{id}', [AbsenceController::class, 'update'])->name('absences.update');
+        Route::delete('/{id}', [AbsenceController::class, 'destroy'])->name('absences.destroy');
+    });
+
+    Route::prefix('attendances')->group(function () {
+        Route::get('/', [AttendanceController::class, 'index'])->name('attendances.index');
+        Route::post('/', [AttendanceController::class, 'store'])->name('attendances.store');
+        Route::put('/{id}', [AttendanceController::class, 'update'])->name('attendances.update');
+        Route::delete('/{id}', [AttendanceController::class, 'destroy'])->name('attendances.destroy');
+        Route::post('/storeAll', [AttendanceController::class, 'storeAll'])->name('attendances.storeAll');
+    });
+
+    Route::post('get-class-school-years', [AttendanceController::class, 'getClassSchoolYears'])->name('get.class_school_years');
+    Route::post('get-sections', [AttendanceController::class, 'getSections'])->name('get.sections');
+    Route::post('get-verified-students', [AttendanceController::class, 'getVerifiedStudents'])->name('get.verified_students');
+
+
+
+    Route::prefix('exam_results')->group(function () {
+        // Route to display the list of exam results for a specific verified student
+        Route::get('{verifiedStudentId}', [ExamResultController::class, 'index'])->name('exam_results.index');
+
+        // Route to display the form to create a new exam result for a specific student and exam
+        Route::get('create/{verifiedStudentId}/{examId}', [ExamResultController::class, 'create'])->name('exam_results.create');
+
+        // Route to store a new exam result
+        Route::post('/', [ExamResultController::class, 'store'])->name('exam_results.store');
+
+        // Route to display the form to edit an existing exam result
+        Route::get('{examResult}/edit', [ExamResultController::class, 'edit'])->name('exam_results.edit');
+
+        // Route to update an existing exam result
+        Route::put('{examResult}', [ExamResultController::class, 'update'])->name('exam_results.update');
+    });
+
+
+    Route::get('/svg-files', [SvgController::class, 'index'])->name('svg.index');
+    Route::get('/svg-upload', [SvgController::class, 'showUploadForm'])->name('svg.upload.form');
+    Route::post('/svg-upload', [SvgController::class, 'uploadSvg'])->name('svg.upload');
+    Route::get('/svg-ids/{filename}', [SvgController::class, 'getSvgIds'])->name('svg.ids');
+    Route::post('/svg-ids/store', [SvgController::class, 'storeSvgId'])->name('svg.ids.store');
+
+
     // Parents
     Route::resource('parents', ParentController::class);
 

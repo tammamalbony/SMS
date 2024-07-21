@@ -5,7 +5,10 @@
         <div class="page-title">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4 class="mb-0 d-inline-block">الشعب : {{ $classsYear->schoolYear->name }}</h4>
+                    <div >
+                        <h4 class="mb-0 ">الشعب : {{ $classsYear->schoolYear->name }}</h4>
+                        <h4 class="mb-0 ">الصف : {{ $classsYear->classs->class_name_ar }}</h4>
+                    </div>
                     <button class="btn btn-primary d-inline-block" id="addSection"
                         data-classsSchoolYear="{{ $classsYear->id }}">إضافة</button>
                 </div>

@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CSYSDetailSeeder::class);
         $this->call(LanguageSeeder::class);
         $this->call(SectionTypeSeeder::class);
+        $this->call(TermsTableSeeder::class);
 
         // Father::factory()
         // ->count(10) // Adjust the count as needed
@@ -42,6 +43,6 @@ class DatabaseSeeder extends Seeder
         // Student::factory()->count(10)->create();
         // Teacher::factory()->count(10)->create();
         Section::factory()->count(40)->create();
-        VerifiedStudent::factory()->count(400)->create();
+        VerifiedStudent::factory()->count(40)->create();
     }
 }

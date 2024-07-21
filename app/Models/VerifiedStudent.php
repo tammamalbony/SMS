@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\VerifiedStudentStatus;
+use App\Models\ExamResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,5 +31,25 @@ class VerifiedStudent extends Model
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    public function adminNotes()
+    {
+        return $this->hasMany(VerifiedStudentAdminNote::class);
+    }
+
+    public function teacherNotes()
+    {
+        return $this->hasMany(VerifiedStudentTeacherNote::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+
+    public function examResults()
+    {
+        return $this->hasMany(ExamResult::class, 'verified_student_id');
     }
 }

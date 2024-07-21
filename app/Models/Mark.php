@@ -10,4 +10,9 @@ class Mark extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'note', 'info'];
+
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
 }

@@ -17,7 +17,7 @@ class YearClassSubject extends Model
         'order',
         'is_falling',
     ];
-    public function classsSchoolYear()
+    public function c_s_y()
     {
         return $this->belongsTo(ClasssSchoolYear::class);
     }

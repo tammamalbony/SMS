@@ -59,5 +59,8 @@ class Section extends Model
 
         return $relationships;
     }
-
+    public function verifiedStudents()
+    {
+        return $this->hasMany(VerifiedStudent::class);
+    }
 }

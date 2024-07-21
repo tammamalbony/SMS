@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ExamResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,5 +43,20 @@ class ClasssSchoolYear extends Model
     public function details()
     {
         return $this->hasOne(ClasssSchoolYearDetail::class);
+    }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class);
+    }
+
+    public function examResults()
+    {
+        return $this->hasMany(ExamResult::class, 'class_id');
+    }
+
+    public function svgIds()
+    {
+        return $this->hasMany(SvgId::class);
     }
 }

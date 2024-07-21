@@ -57,6 +57,12 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],
+            [
+                'name' => 'قائمة الفصول الدراسية',
+                'link' => '/terms',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
         ],
     ],
    
@@ -67,12 +73,12 @@ $menuItems = [
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-sections',
         'subMenu' => [
-            [
-                'name' => 'قائمة الشعب الدراسية',
-                'link' => '/sections',
-                'roles' => ['admin', 'teacher'],
-                'permission' => 'view-section-list',
-            ],
+            // [
+            //     'name' => 'قائمة الشعب الدراسية',
+            //     'link' => '/sections',
+            //     'roles' => ['admin', 'teacher'],
+            //     'permission' => 'view-section-list',
+            // ],
             [
                 'name' => 'اللغات',
                 'link' => '/languages',
@@ -208,12 +214,7 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-subject-list',
             ],
-            [
-                'name' => 'العلامات',
-                'link' => '/marks',
-                'roles' => ['admin', 'teacher'],
-                'permission' => 'view-subject-list',
-            ],
+            
         ],
     ],
     // [
@@ -250,6 +251,27 @@ $menuItems = [
     //     ],
     // ],
     [
+        'name' => 'إدارة SVG',
+        'icon' => 'fa fa-file-code',
+        'link' => '#',
+        'roles' => ['admin'],
+        'permission' => 'manage-attendance',
+        'subMenu' => [
+            // [
+            //     'name' => 'رفع SVG',
+            //     'link' => '/svg-upload',
+            //     'roles' => ['admin'],
+            //     'permission' => 'manage-attendance',
+            // ],
+            [
+                'name' => 'قائمة SVG',
+                'link' => '/svg-files',
+                'roles' => ['admin'],
+                'permission' => 'manage-attendance',
+            ],
+        ],
+    ],
+    [
         'name' => 'الحضور والغياب',
         'icon' => 'fa fa-calendar-check',
         'link' => '#',
@@ -257,14 +279,20 @@ $menuItems = [
         'permission' => 'manage-attendance',
         'subMenu' => [
             [
-                'name' => 'قائمة الطلاب',
-                'link' => '/Attendance',
+                'name' => 'تسجيل الغياب',
+                'link' => '/attendances',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-attendance',
             ],
             [
                 'name' => 'الدوام المدرسي',
                 'link' => '/attenderatios',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-attendance-ratios',
+            ],
+            [
+                'name' => 'اسباب الغياب',
+                'link' => '/absences',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-attendance-ratios',
             ],
@@ -289,35 +317,41 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-grades',
             ],
-        ],
-    ],
-    [
-        'name' => 'الاعدادات',
-        'icon' => 'fa fa-cog',
-        'link' => '#',
-        'roles' => ['admin'],
-        'permission' => 'manage-settings',
-        'subMenu' => [
             [
-                'name' => 'المستخدمون',
-                'link' => '/users',
-                'roles' => ['admin'],
-                'permission' => 'view-users',
-            ],
-            [
-                'name' => 'ادارة الاعوام السابقة',
-                'link' => '/previous-years',
-                'roles' => ['admin'],
-                'permission' => 'manage-previous-years',
-            ],
-            [
-                'name' => 'الاعدادات العامة',
-                'link' => '/settings',
-                'roles' => ['admin'],
-                'permission' => 'update-settings',
+                'name' => 'العلامات',
+                'link' => '/marks',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-subject-list',
             ],
         ],
     ],
+    // [
+    //     'name' => 'الاعدادات',
+    //     'icon' => 'fa fa-cog',
+    //     'link' => '#',
+    //     'roles' => ['admin'],
+    //     'permission' => 'manage-settings',
+    //     'subMenu' => [
+    //         [
+    //             'name' => 'المستخدمون',
+    //             'link' => '/users',
+    //             'roles' => ['admin'],
+    //             'permission' => 'view-users',
+    //         ],
+    //         [
+    //             'name' => 'ادارة الاعوام السابقة',
+    //             'link' => '/previous-years',
+    //             'roles' => ['admin'],
+    //             'permission' => 'manage-previous-years',
+    //         ],
+    //         [
+    //             'name' => 'الاعدادات العامة',
+    //             'link' => '/settings',
+    //             'roles' => ['admin'],
+    //             'permission' => 'update-settings',
+    //         ],
+    //     ],
+    // ],
 ];
 
 ?>

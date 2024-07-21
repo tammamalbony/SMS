@@ -21,4 +21,9 @@ class Subject extends Model
     {
         return $this->hasMany(Subject::class, 'parent_id');
     }
+
+    public function subjectDetails()
+    {
+        return $this->hasMany(SubjectDetail::class);
+    }
 }

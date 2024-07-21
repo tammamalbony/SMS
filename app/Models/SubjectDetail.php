@@ -33,5 +33,10 @@ class SubjectDetail extends Model
         return $this->belongsToMany(ClasssSchoolYear::class, 'c_s_y_s_detail', 'subject_detail_id', 'c_s_y_id')
                     ->withTimestamps();
     }
-    
+
+
+    public function svgIds()
+    {
+        return $this->hasMany(SvgId::class);
+    }
 }

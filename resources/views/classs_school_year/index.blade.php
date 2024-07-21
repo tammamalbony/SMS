@@ -38,6 +38,9 @@
                     <a href="{{ route('classs_school_year_details.index', ['classsSchoolYearId' => $relation->id]) }}" class="btn btn-success">
                         <i class="fas fa-info-circle"></i>
                     </a>
+                    <a href="{{ route('exams.index', ['classsSchoolYearId' => $relation->id]) }}" class="btn btn-dark">
+                        <i class="fas fa-file-alt"></i>
+                    </a>
                 </td>
             </tr>
             @endforeach

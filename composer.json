@@ -30,7 +30,8 @@
         "files": [
             "app/Helpers/helper.php",
             "app/Helpers/ApiHelper.php",
-            "app/Helpers/CurrencyHelper.php"
+            "app/Helpers/CurrencyHelper.php",
+            "app/Helpers/ExamResultHelper.php"
         ]
     },
     "autoload-dev": {
