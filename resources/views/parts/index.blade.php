@@ -4,11 +4,11 @@
     <div class="container">
         <h1>إدارة الأجزاء</h1>
         @if (isset($yearClassSubjectId))
-        <h3>الأجزاء للمادة : {{ $yearClassSubject->subjectDetail->grade->grade_name_ar }}
-        : "{{ $yearClassSubject->subjectDetail->subject->name_ar }}"
-            
-        
-        </h3>
+            <h3>الأجزاء للمادة : {{ $yearClassSubject->subjectDetail->grade->grade_name_ar }}
+                : "{{ $yearClassSubject->subjectDetail->subject->name_ar }}"
+
+
+            </h3>
         @endif
         <button class="btn btn-primary" onclick="openCreateModal()">إضافة جزء جديد</button>
 
@@ -114,16 +114,30 @@
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="operation">عملية</label>
-                <select class="form-control" id="operation" name="operation">
-                    <option value="">اختر عملية</option>
-                    <option value="add" ${part.operation === 'add' ? 'selected' : ''}>إضافة</option>
-                    <option value="subtract" ${part.operation === 'subtract' ? 'selected' : ''}>طرح</option>
-                    <option value="multiply" ${part.operation === 'multiply' ? 'selected' : ''}>ضرب</option>
-                    <option value="divide" ${part.operation === 'divide' ? 'selected' : ''}>قسمة</option>
-                </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="operation">عملية</label>
+                        <select class="form-control" id="operation" name="operation">
+                            <option value="">اختر عملية</option>
+                            <option value="add" ${part.operation === 'add' ? 'selected' : ''}>إضافة</option>
+                            <option value="subtract" ${part.operation === 'subtract' ? 'selected' : ''}>طرح</option>
+                            <option value="multiply" ${part.operation === 'multiply' ? 'selected' : ''}>ضرب</option>
+                            <option value="divide" ${part.operation === 'divide' ? 'selected' : ''}>قسمة</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="operation">تابعة لفصل واحد فقط</label>
+                        <select class="form-control" id="term_id" name="term_id">
+                            <option value="">اختر الفص</option>
+                            @foreach ($terms as $term)
+                                <option value="{{ $term->id }}"  ${part.term_id == '{{ $term->id }}' ? 'selected' : ''}>{{ $term->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
            <div class="row">
                 <div class="col-md-6">
@@ -132,7 +146,27 @@
                             <input type="hidden" id="is_visible_hidden" name="is_visible" value="0">
                             <input type="checkbox" id="is_visible" name="is_visible" value="1" class="custom-switch-input" ${part.is_visible ? 'checked' : ''}/>
                             <span class="custom-switch-indicator"></span>
-                            <label class="custom-switch-description mb-0 cursor-pointer" for="is_visible">مرئي</label>
+                            <label class="custom-switch-description mb-0 cursor-pointer" for="is_visible">مرئي في الجلاء</label>
+                        </label>
+                    </div>
+                </div>
+                 <div class="col-md-6">
+                    <div class="form-group mb-0 mt-1 custom-switches-stacked">
+                        <label class="custom-switch pl-0 d-flex align-items-center mb-0">
+                            <input type="hidden" id="is_in_results_hidden" name="is_in_results" value="0">
+                            <input type="checkbox" id="is_in_results" name="is_in_results" value="1" class="custom-switch-input" ${part.is_in_results ? 'checked' : ''}/>
+                            <span class="custom-switch-indicator"></span>
+                            <label class="custom-switch-description mb-0 cursor-pointer" for="is_in_results">مرئي في المحصلات</label>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-0 mt-1 custom-switches-stacked">
+                        <label class="custom-switch pl-0 d-flex align-items-center mb-0">
+                            <input type="hidden" id="is_in_final_hidden" name="is_in_final" value="0">
+                            <input type="checkbox" id="is_in_final" name="is_in_final" value="1" class="custom-switch-input" ${part.is_in_final ? 'checked' : ''}/>
+                            <span class="custom-switch-indicator"></span>
+                            <label class="custom-switch-description mb-0 cursor-pointer" for="is_in_final">مرئي المرايا</label>
                         </label>
                     </div>
                 </div>
@@ -226,7 +260,7 @@
                         <label>عملية</label>
                         <div class="d-flex">
                             <label class="radio-inline mr-3">
-                                <input type="radio" name="operations[${index}][operation]" value="add" ${operation.operation === 'add' ? 'checked' : ''}> إضافة
+                                <input type="radio" name="operations[${index}][operation]" value="add" ${operation.operation === 'add' ? 'checked' : ''}  ${operation.operation === undefined  ? 'checked' : ''}> إضافة
                             </label>
                             <label class="radio-inline mr-3">
                                 <input type="radio" name="operations[${index}][operation]" value="subtract" ${operation.operation === 'subtract' ? 'checked' : ''}> طرح

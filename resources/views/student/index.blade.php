@@ -88,7 +88,7 @@
                             <option value="">اختر الشعبة</option>
                         </select>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="language-${studentId}">اللغة:</label>
                         <select id="language-${studentId}" name="language" class="form-control">
                             <option value="">اختر اللغة</option>
@@ -100,6 +100,10 @@
                     <div class="form-group">
                         <label for="general_record-${studentId}">السجل العام:</label>
                         <input type="text" class="form-control" id="general_record-${studentId}" name="general_record">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_register_date-${studentId}">تاريخ تأكيد التسجيل:</label>
+                        <input type="date" class="form-control" id="confirm_register_date-${studentId}" name="confirm_register_date">
                     </div>
                 </form>
             `,

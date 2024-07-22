@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RegisterStatus;
 use App\Enums\VerifiedStudentStatus;
 use App\Models\BloodType;
 use App\Models\Father;
@@ -50,6 +51,7 @@ class StudentController extends Controller
             'section' => 'required|exists:sections,id',
             'general_record' => 'required|string|max:255',
             'language' => 'required|exists:languages,id',
+             'confirm_register_date' => 'required|date'
         ]);
 
         // Create or update the VerifiedStudent record
@@ -59,12 +61,13 @@ class StudentController extends Controller
                 'section_id' => $request->input('section'),
                 'general_record' => $request->input('general_record'),
                 'language_id' => $request->input('language'),
+                'confirm_register_date' => $request->input('confirm_register_date'),
                 'is_confirmed' => true,
                 'status' => VerifiedStudentStatus::ACTIVE, // Adjust according to your enum
+                'register_status' => RegisterStatus::Normal, // Adjust according to your enum
                 'order' => VerifiedStudent::max('order') + 1 // Example for setting order
             ]
         );
-
         return redirect()->route('students.index')->with('success', 'تم التحقق من الطالب بنجاح');
     }
     /**

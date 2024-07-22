@@ -18,11 +18,14 @@ class VerifiedStudent extends Model
         'order',
         'status',
          'general_record',
-        'language_id'
+        'language_id',
+        'register_status',
+        'confirm_register_date'
     ];
 
     protected $casts = [
         'status' => VerifiedStudentStatus::class,
+          'register_status' => RegisterStatus::class
     ];
     // Relationships
     public function student()

@@ -24,6 +24,9 @@ class Part extends Model
         'is_active',
         'must_be_calculated',
         'must_be_ceiled',
+        'is_in_final',
+        'term_id',
+        'is_in_results'
     ];
 
     public function yearClassSubject()

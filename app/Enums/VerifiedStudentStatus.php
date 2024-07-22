@@ -2,7 +2,6 @@
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
 enum VerifiedStudentStatus: string
 {
     case PENDING = 'pending';

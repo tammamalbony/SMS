@@ -305,12 +305,12 @@ $menuItems = [
         'roles' => ['admin', 'teacher'],
         'permission' => 'manage-exams',
         'subMenu' => [
-            [
-                'name' => 'الامتحانات',
-                'link' => '/Exams',
-                'roles' => ['admin', 'teacher'],
-                'permission' => 'view-exams',
-            ],
+            // [
+            //     'name' => 'الامتحانات',
+            //     'link' => '/Exams',
+            //     'roles' => ['admin', 'teacher'],
+            //     'permission' => 'view-exams',
+            // ],
             [
                 'name' => 'التقديرات',
                 'link' => '/mark_reviews',
