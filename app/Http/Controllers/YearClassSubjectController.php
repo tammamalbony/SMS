@@ -11,13 +11,18 @@ class YearClassSubjectController extends Controller
 {
     public function index(ClasssSchoolYear $classsSchoolYear)
     {
-        $subjectDetails = SubjectDetail::all();
+        $subjectDetails = SubjectDetail::where("grade_id" ,$classsSchoolYear->classs->grade_id)->get();
         $yearClassSubjects = YearClassSubject::with(['subjectDetail'])
             ->where('c_s_y_id', $classsSchoolYear->id)
             ->orderBy('order')
             ->get();
-
-        return view('year_class_subject.index', compact('yearClassSubjects', 'classsSchoolYear', 'subjectDetails'));
+         $hasnew = false;
+         foreach ($subjectDetails as $key => $subjectDetail) {
+            if(!$yearClassSubjects->contains('subject_detail_id', $subjectDetail->id)){
+                $hasnew = true;
+            }
+         }
+        return view('year_class_subject.index', compact('yearClassSubjects', 'classsSchoolYear', 'subjectDetails','hasnew'));
     }
 
     public function create(ClasssSchoolYear $classsSchoolYear)

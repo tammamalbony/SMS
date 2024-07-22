@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RegisterStatus;
 use App\Enums\VerifiedStudentStatus;
 use App\Models\ExamResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

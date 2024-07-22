@@ -26,33 +26,34 @@
                     <td>{{ $student->father->name }}</td>
                     <td>{{ $student->mother->name }}</td>
                     <td>
-                        <a href="{{ route('students.edit', $student) }}" class="btn btn-primary">
+                        <a href="{{ route('students.edit', $student) }}" class="btn btn-primary" title="تعديل الطالب">
                             <i class="fas fa-edit"></i>
                         </a>
                         <form action="{{ route('students.destroy', $student) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
+                            <button type="submit" class="btn btn-danger" title="حذف الطالب">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
-                        <a href="{{ route('students.additional_details.index', $student) }}" class="btn btn-info">
+                        <a href="{{ route('students.additional_details.index', $student) }}" class="btn btn-info" title="تفاصيل إضافية عن الطالب">
                             <i class="fas fa-info-circle"></i>
                         </a>
-                        <a href="{{ route('documents.index', ['type' => 'student', 'id' => $student->id]) }}" class="btn btn-secondary">
+                        <a href="{{ route('documents.index', ['type' => 'student', 'id' => $student->id]) }}" class="btn btn-secondary" title="مستندات الطالب">
                             <i class="fas fa-file-alt"></i>
                         </a>
                         <a href="{{ route('documents.index', ['type' => 'father', 'id' => $student->father->id]) }}" class="btn btn-secondary" title="مستندات الأب">
                             <i class="fas fa-user-tie"></i>
                         </a>
-                        <a href="{{ route('documents.index', ['type' => 'wife', 'id' => $student->mother->id]) }}" class="btn btn-secondary" title="مستندات الأم">
+                        <a href="{{ route('documents.index', ['type' => 'mother', 'id' => $student->mother->id]) }}" class="btn btn-secondary" title="مستندات الأم">
                             <i class="fas fa-female"></i>
                         </a>
                         @if (!$student->hasVerified())
-                            <button class="btn btn-warning" onclick="showVerifyModal({{ $student->id }})">
+                            <button class="btn btn-success" onclick="showVerifyModal({{ $student->id }})" title="تثبيت التسجيل">
                                 <i class="fas fa-check-circle"></i>
                             </button>
                         @endif
+                        
                     </td>
                 </tr>
             @endforeach

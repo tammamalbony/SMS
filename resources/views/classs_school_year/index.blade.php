@@ -23,25 +23,26 @@
                 <td>{{ $relation->schoolYear->name }}</td>
                 <td>{{ $relation->fall_subject_count }}</td>
                 <td>
-                    <button class="btn btn-warning editButton" data-id="{{ $relation->id }}">
+                    <button class="btn btn-warning editButton" data-id="{{ $relation->id }}" title="تعديل">
                         <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger deleteButton" data-id="{{ $relation->id }}">
+                    <button class="btn btn-danger deleteButton" data-id="{{ $relation->id }}" title="حذف">
                         <i class="fas fa-trash-alt"></i>
                     </button>
-                    <a href="{{ url('school-years/'.$relation->id.'/year_class_subjects') }}" class="btn btn-info">
+                    <a href="{{ url('school-years/'.$relation->id.'/year_class_subjects') }}" class="btn btn-info" title="مواد الصف">
                         <i class="fas fa-book-open"></i>
                     </a>
-                    <a href="{{ route('sections.index', ['classsSchoolYear' => $relation->id]) }}" class="btn btn-secondary">
+                    <a href="{{ route('sections.index', ['classsSchoolYear' => $relation->id]) }}" class="btn btn-secondary" title="الشعب">
                         <i class="fas fa-chalkboard-teacher"></i>
                     </a>
-                    <a href="{{ route('classs_school_year_details.index', ['classsSchoolYearId' => $relation->id]) }}" class="btn btn-success">
+                    <a href="{{ route('classs_school_year_details.index', ['classsSchoolYearId' => $relation->id]) }}" class="btn btn-success" title="عرض تفاصيل الصف الدراسي">
                         <i class="fas fa-info-circle"></i>
                     </a>
-                    <a href="{{ route('exams.index', ['classsSchoolYearId' => $relation->id]) }}" class="btn btn-dark">
+                    <a href="{{ route('exams.index', ['classsSchoolYearId' => $relation->id]) }}" class="btn btn-dark" title="لامتحانات">
                         <i class="fas fa-file-alt"></i>
                     </a>
                 </td>
+                
             </tr>
             @endforeach
         </tbody>

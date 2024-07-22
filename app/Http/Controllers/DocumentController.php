@@ -16,7 +16,6 @@ class DocumentController extends Controller
         $class = $this->getClass($type);
         $model = $class::findOrFail($id);
         $documents = $model->documents()->paginate(10);
-
         return view('documents.index', compact('model', 'documents', 'type'));
     }
 
@@ -77,10 +76,10 @@ class DocumentController extends Controller
                 return Teacher::class;
             case 'father':
                 return Father::class;
-            case 'wife':
+            case 'mother':
                 return Wife::class;
             default:
-                throw new \Exception('Invalid type');
+                throw new \Exception('Invalid type : '.$type);
         }
     }
 }

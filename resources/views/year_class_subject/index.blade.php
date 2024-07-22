@@ -4,10 +4,11 @@
     <div class="container">
         <h1>قائمة المواد: {{ $classsSchoolYear->schoolYear->name }}</h1>
         <h2>
-            الصف  : {{ $classsSchoolYear->classs->class_name_ar }}
+            الصف : {{ $classsSchoolYear->classs->class_name_ar }}
         </h2>
-        <button id="addNew" class="btn btn-success mb-3">إضافة جديد</button>
-
+        @if ($hasnew == true)
+            <button id="addNew" class="btn btn-success mb-3">إضافة مادة جديد</button>
+        @endif
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -88,6 +89,7 @@
                 }
             });
         });
+        @if($hasnew == true)
         document.getElementById('addNew').addEventListener('click', function() {
             Swal.fire({
                 title: 'إضافة تفاصيل جديدة',
@@ -99,7 +101,9 @@
                     '<select name="subject_detail_id" id="subject_detail_id" class="form-select">' +
                     @foreach ($subjectDetails as $subjectDetail)
                         @if ($subjectDetail->grade->id == $classsSchoolYear->classs->grade->id)
-                            '<option value="{{ $subjectDetail->id }}">{{ $subjectDetail->subject->name_ar }} || Max : {{ $subjectDetail->max_grade }} ||  Falling: {{ $subjectDetail->failing_grade }}</option>' +
+                            @if (!$yearClassSubjects->contains(fn($yearClassSubject) => $yearClassSubject->subject_detail_id == $subjectDetail->id))
+                                '<option value="{{ $subjectDetail->id }}">{{ $subjectDetail->subject->name_ar }} || Max : {{ $subjectDetail->max_grade }} ||  Falling: {{ $subjectDetail->failing_grade }}</option>' +
+                            @endif
                         @endif
                     @endforeach
                 '</select>' +
@@ -149,7 +153,7 @@
                     });
             });
         });
-
+        @endif
         function deleteYearClassSubject(id) {
             Swal.fire({
                 title: 'هل أنت متأكد؟',
@@ -208,7 +212,7 @@
                     let form = event.target;
                     let formData = new FormData(form);
                     formData.append('_method',
-                    'PUT'); // Include _method field to simulate PUT request
+                        'PUT'); // Include _method field to simulate PUT request
 
                     fetch(`{{ url('school-years/' . $classsSchoolYear->id . '/year_class_subjects') }}/${id}/update`, {
                             method: 'POST', // Use POST method to send the request

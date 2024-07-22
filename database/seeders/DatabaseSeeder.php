@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SubjectSeeder::class);
         $this->call(SubjectDetailSeeder::class);
         $this->call(ClasssSchoolYearSeeder::class);
-        // $this->call(CSYSDetailSeeder::class);
+        $this->call(CSYSDetailSeeder::class);
         $this->call(LanguageSeeder::class);
         $this->call(SectionTypeSeeder::class);
         $this->call(TermsTableSeeder::class);
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         // ->create();
         // Student::factory()->count(10)->create();
         // Teacher::factory()->count(10)->create();
-        // Section::factory()->count(40)->create();
-        // VerifiedStudent::factory()->count(40)->create();
+        Section::factory()->count(40)->create();
+        VerifiedStudent::factory()->count(40)->create();
     }
 }

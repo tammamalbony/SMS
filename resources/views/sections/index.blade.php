@@ -49,15 +49,21 @@
                                         <td>
                                             <button class="btn btn-primary edit-button" data-id="{{ $section->id }}"
                                                 data-url="{{ route('sections.edit', ['classsSchoolYear' => $section->classs_school_year_id, 'section' => $section->id]) }}"
-                                                data-updates="/year-class-subject/{{ $section->classs_school_year_id }}/sections/{{ $section->id }}/update/">
-                                                <i class="fa fa-edit"></i></button>
-                                            <button class="btn btn-danger delete-button" data-id="{{ $section->id }}"
-                                                data-url="/year-class-subject/{{ $section->classs_school_year_id }}/sections/{{ $section->id }}/delete/"><i
-                                                    class="fa fa-trash"></i></button>
-                                            <button class="btn btn-info verified-students-button"
-                                                data-id="{{ $section->id }}"
-                                                data-url="{{ route('sections.verified-students', ['section' => $section->id]) }}">
-                                                <i class="fa fa-users"></i></button>
+                                                data-updates="/year-class-subject/{{ $section->classs_school_year_id }}/sections/{{ $section->id }}/update/"
+                                                title="تعديل القسم">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger delete-button" data-id="{{ $section->id }}"
+                                                data-url="/year-class-subject/{{ $section->classs_school_year_id }}/sections/{{ $section->id }}/delete/"
+                                                title="حذف القسم">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <button class="btn btn-info verified-students-button" data-id="{{ $section->id }}"
+                                                data-url="{{ route('sections.verified-students', ['section' => $section->id]) }}"
+                                                title="الطلاب المسجلين">
+                                            <i class="fa fa-users"></i>
+                                        </button>
+                                        
                                         </td>
                                     </tr>
                                 @endforeach
