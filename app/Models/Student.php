@@ -74,4 +74,10 @@ class Student extends Model
     {
         return $this->morphMany(Document::class, 'documentable');
     }
+
+    public function hasVerified()
+    {
+        return VerifiedStudent::where('student_id', $this->id)
+                   ->exists();
+    }
 }

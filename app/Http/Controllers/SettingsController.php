@@ -63,10 +63,14 @@ class SettingsController extends Controller
             'internet_coount' => 'nullable|integer',
             'internet_type' => 'nullable|string|max:255',
             'electric_type' => 'required|integer',
+            'telephone' => 'required|max:255',
+            'manager_name' => 'required|max:255',
+            'mobile' => 'required|max:255',
         ]);
+        School::updateOrCreate($data);
 
         $school = School::orderBy('id', 'DESC')->first();
-
+        // dd(  $school);
         return view('setting.create',compact('school'));
     }
 
@@ -93,6 +97,7 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $data = $request->validate([
             'statistical_number' => 'required|integer',
             'school_name' => 'required|string|max:255',
@@ -125,6 +130,9 @@ class SettingsController extends Controller
             'internet_coount' => 'nullable|integer',
             'internet_type' => 'nullable|string|max:255',
             'electric_type' => 'required|integer',
+            'telephone' => 'required|max:255',
+            'manager_name' => 'required|max:255',
+            'mobile' => 'required|max:255',
         ]);
         $school = School::findOrFail($id);
         $school->update($data);

@@ -11,7 +11,7 @@
                     @php
                         $examResult = $exam->getExamResult(
                             $yearClassSubject->id,
-                            $yearClassSubject->c_s_y->school_year_id,
+                            $yearClassSubject->c_s_y->id,
                             $exam->id,
                             $verifiedStudent->id,
                         );
@@ -21,6 +21,7 @@
                         {{ $yearClassSubject->subjectDetail->subject->name_ar }} :
                     </h6>
 
+                    {{-- @dd($examResult); --}}
                     @if ($examResult)
                         <form action="{{ route('exam_results.update', $examResult->id) }}" method="POST">
                             @csrf
@@ -55,6 +56,12 @@
                                         {{ __('Value must be between 0 and') }} {{ $examResult->max_grade }}
                                     </div>
                                 @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="short_name_{{ $examResult->id }}">{{ __('Short Name (اسم مختصر)') }}</label>
+                                <input type="text" id="short_name_{{ $examResult->id }}" name="short_name" class="form-control"
+                                    value="{{ $examResult->short_name }}" required>
                             </div>
 
                             <div class="form-group mb-0 mt-1 custom-switches-stacked">
@@ -137,6 +144,12 @@
                                     {{ __('Value must be between 0 and') }}
                                     {{ $yearClassSubject->subjectDetail->max_grade }}
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="short_name_{{ $exam->id }}">{{ __('Short Name (اسم مختصر)') }}</label>
+                                <input type="text" id="short_name_{{ $exam->id }}" name="short_name" class="form-control"
+                                    required>
                             </div>
 
                             <div class="form-group mb-0 mt-1 custom-switches-stacked">

@@ -16,7 +16,9 @@ class VerifiedStudent extends Model
         'section_id',
         'is_confirmed',
         'order',
-        'status'
+        'status',
+         'general_record',
+        'language_id'
     ];
 
     protected $casts = [
@@ -51,5 +53,10 @@ class VerifiedStudent extends Model
     public function examResults()
     {
         return $this->hasMany(ExamResult::class, 'verified_student_id');
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
     }
 }

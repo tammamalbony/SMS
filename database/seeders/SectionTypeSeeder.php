@@ -15,8 +15,8 @@ class SectionTypeSeeder extends Seeder
     {
         DB::table('section_types')->insert([
             ['name' => 'مختلط'],
-            ['name' => 'بنين'],
-            ['name' => 'بنات'],
+            ['name' => 'ذكور'],
+            ['name' => 'اناث'],
         ]);
     }
 }

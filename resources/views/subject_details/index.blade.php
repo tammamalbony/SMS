@@ -52,11 +52,15 @@ $(document).ready(function() {
             html: `
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="max_grade">أعلى درجة:</label>
                             <input type="number" id="max_grade" class="swal2-input" placeholder="أعلى درجة">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <label for="min_grade">الحد الأدنى للنجاح:</label>
+                            <input type="number" id="min_grade" class="swal2-input" placeholder="درجة الأدنى للنجاح">
+                        </div>
+                           <div class="col-md-4">
                             <label for="failing_grade">درجة الرسوب:</label>
                             <input type="number" id="failing_grade" class="swal2-input" placeholder="درجة الرسوب">
                         </div>
@@ -68,7 +72,7 @@ $(document).ready(function() {
                                     <input type="hidden" id="is_failing_hidden" value="0">
                                     <input type="checkbox" id="is_failing" value="1" class="custom-switch-input" />
                                     <span class="custom-switch-indicator"></span>
-                                    <label class="custom-switch-description mb-0 cursor-pointer" for="is_failing">مادة مرسبة</label>
+                                    <label class="custom-switch-description mb-0 cursor-pointer" for="is_failing">مادة مرسبة لوحدها</label>
                                 </label>
                             </div>
                         </div>
@@ -114,6 +118,7 @@ $(document).ready(function() {
                 return {
                     subject_id: $('#subject_id').val(),
                     max_grade: $('#max_grade').val(),
+                    min_grade: $('#min_grade').val(),
                     failing_grade: $('#failing_grade').val(),
                     is_failing: $('#is_failing').is(':checked') ? 1 : 0,
                     is_active: $('#is_active').is(':checked') ? 1 : 0,
@@ -159,11 +164,15 @@ $(document).ready(function() {
                         html: `
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label for="max_grade">أعلى درجة:</label>
                                         <input type="number" id="max_grade" class="swal2-input" value="${data.subjectDetail.max_grade}">
                                     </div>
-                                    <div class="col-md-6">
+                                      <div class="col-md-4">
+                                        <label for="min_grade">الحد الأدنى للنجاح:</label>
+                                        <input type="number" id="min_grade" class="swal2-input" placeholder="درجة الأدنى للنجاح">
+                                    </div>
+                                    <div class="col-md-4">
                                         <label for="failing_grade">درجة الرسوب:</label>
                                         <input type="number" id="failing_grade" class="swal2-input" value="${data.subjectDetail.failing_grade}">
                                     </div>
@@ -175,7 +184,7 @@ $(document).ready(function() {
                                                 <input type="hidden" id="is_failing_hidden" value="0">
                                                 <input type="checkbox" id="is_failing" value="1" class="custom-switch-input" ${data.subjectDetail.is_failing ? 'checked' : ''} />
                                                 <span class="custom-switch-indicator"></span>
-                                                <label class="custom-switch-description mb-0 cursor-pointer" for="is_failing">مادة مرسبة</label>
+                                                <label class="custom-switch-description mb-0 cursor-pointer" for="is_failing">مادة مرسبة لوحدها</label>
                                             </label>
                                         </div>
                                     </div>
@@ -217,6 +226,7 @@ $(document).ready(function() {
                             return {
                                 subject_id: $('#subject_id').val(),
                                 max_grade: $('#max_grade').val(),
+                                min_grade: $('#min_grade').val(),
                                 failing_grade: $('#failing_grade').val(),
                                 is_failing: $('#is_failing').is(':checked') ? 1 : 0,
                                 is_active: $('#is_active').is(':checked') ? 1 : 0,

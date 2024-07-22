@@ -21,7 +21,8 @@ class ExamResult extends Model
         'failing_grade',
         'subject_is_failing',
         'verified_student_id',
-        'subject_detail_id'
+        'subject_detail_id',
+        'short_name'
     ];
 
     public function exam()

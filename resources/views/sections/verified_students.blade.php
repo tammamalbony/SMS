@@ -49,14 +49,31 @@
                                             <button class="btn btn-primary editButton" data-id="{{ $verifiedStudent->id }}"
                                                 data-student="{{ $verifiedStudent->student->id }}"
                                                 data-isconfirmed="{{ $verifiedStudent->is_confirmed }}"
-                                                data-status="{{ $verifiedStudent->status->value }}">تعديل</button>
-                                            <button class="btn btn-danger deleteButton"
-                                                data-id="{{ $verifiedStudent->id }}">حذف</button>
-                                            <button class="btn btn-secondary notesButton"
-                                                data-id="{{ $verifiedStudent->id }}">ملاحظات المدير</button>
-                                                <button class="btn btn-secondary teacher-notes-button"
-                                                data-id="{{ $verifiedStudent->id }}">ملاحظات المعلم</button>
-                                                <a href="{{ route('exam_results.index', $verifiedStudent->id) }}" class="btn btn-info">عرض نتائج الامتحان</a>
+                                                data-status="{{ $verifiedStudent->status->value }}"
+                                                title="تعديل">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-danger deleteButton" data-id="{{ $verifiedStudent->id }}"
+                                                title="حذف">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            <button class="btn btn-secondary notesButton" data-id="{{ $verifiedStudent->id }}"
+                                                title="ملاحظات المدير">
+                                                <i class="fas fa-sticky-note"></i>
+                                            </button>
+                                            <button class="btn btn-secondary teacher-notes-button" data-id="{{ $verifiedStudent->id }}"
+                                                title="ملاحظات المعلم">
+                                                <i class="fas fa-chalkboard-teacher"></i>
+                                            </button>
+                                            <a href="{{ route('exam_results.index', $verifiedStudent->id) }}" class="btn btn-info" title="عرض نتائج الامتحان">
+                                                <i class="fas fa-file-alt"></i>
+                                            </a>
+                                            <a href="{{ route('student.term1_results', $verifiedStudent->id) }}" class="btn btn-warning" title="عرض نتائج الفصل الأول">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </a>
+                                            <a href="{{ route('student.term2_results', $verifiedStudent->id) }}" class="btn btn-dark" title="عرض نتائج الفصل الثاني">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -76,9 +93,9 @@
             window.location.href = '/verified_students/' + verifiedStudentId + '/admin_notes';
         });
         $('.teacher-notes-button').on('click', function() {
-                var verifiedStudentId = $(this).data('id');
-                window.location.href = '/verified_students/' + verifiedStudentId + '/teacher_notes';
-            });
+            var verifiedStudentId = $(this).data('id');
+            window.location.href = '/verified_students/' + verifiedStudentId + '/teacher_notes';
+        });
     </script>
     <script>
         document.getElementById('sortAlphabetically').addEventListener('click', function() {

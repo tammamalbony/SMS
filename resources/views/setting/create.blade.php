@@ -27,7 +27,7 @@
                 <div class="card card-statistics h-100">
                     <div class="card-body">
                         <form enctype="multipart/form-data" method="post"
-                            action="{{ isset($school) ? url('/settings/' . $school->id . '/update') : url('/settings/create') }}">
+                            action="{{ isset($school) ? url('/settings/' . $school->id . '/update') : url('/settings/store') }}">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -377,6 +377,24 @@
                                     <label class="mr-sm-2">عدد كتل البناء</label>
                                     <input name="count_build" value="{{ $school->count_build ?? '' }}" type="text"
                                         class="form-control">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="mr-sm-2">مدير المدرسة</label>
+                                    <input name="manager_name" value="{{ $school->manager_name ?? '' }}" type="text"
+                                        class="form-control" placeholder="مدير المدرسة">
+                                </div>
+                                <div class="col">
+                                    <label class="mr-sm-2">رقم الجوال</label>
+                                    <input name="mobile" value="{{ $school->mobile ?? '' }}" type="text"
+                                        class="form-control" placeholder="رقم الجوال">
+                                </div>
+                                <div class="col">
+                                    <label class="mr-sm-2">رقم الهاتف</label>
+                                    <input name="telephone" value="{{ $school->telephone ?? '' }}" type="text"
+                                        class="form-control" placeholder="رقم الهاتف">
                                 </div>
                             </div>
                             <hr>

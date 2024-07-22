@@ -32,7 +32,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>الاسم</th>
-                                    <th>نوع الشعبة</th>
+                                    <th>جنس الشعبة</th>
                                     <th>السنة الدراسية</th>
                                     <th>المعلم</th>
                                     <th>العمليات</th>
@@ -89,9 +89,9 @@
                     html: `
                         <label for="name">اسم الشعبة:</label>
                         <input type="text" id="name" class="swal2-input" placeholder="اسم الشعبة">
-                        <label for="section_type_id">نوع الشعبة:</label>
+                        <label for="section_type_id">جنس الشعبة:</label>
                         <select id="section_type_id" class="swal2-input">
-                            <option value="">اختر نوع الشعبة</option>
+                            <option value="">اختر جنس الشعبة</option>
                             @foreach ($sectionTypes as $sectionType)
                                 <option value="{{ $sectionType->id }}">{{ $sectionType->name }}</option>
                             @endforeach
@@ -172,7 +172,7 @@
                             html: `
                                 <label for="name">اسم الشعبة:</label>
                                 <input type="text" id="name" class="swal2-input" value="${data.section.name}">
-                                <label for="section_type_id">نوع الشعبة:</label>
+                                <label for="section_type_id">جنس الشعبة:</label>
                                 <select id="section_type_id" class="swal2-input">
                                     @foreach ($sectionTypes as $sectionType)
                                         <option value="{{ $sectionType->id }}" ${data.section_type_id == {{ $sectionType->id }} ? 'selected' : ''}>{{ $sectionType->name }}</option>

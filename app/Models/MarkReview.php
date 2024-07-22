@@ -20,4 +20,11 @@ class MarkReview extends Model
     {
         return $this->belongsTo(YearClassSubject::class);
     }
+
+    public static function getByMark(float $mark)
+    {
+        return self::where('min_mark', '<=', $mark)
+                   ->where('max_mark', '>=', $mark)
+                   ->first();
+    }
 }

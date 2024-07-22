@@ -30,6 +30,7 @@ class SubjectDetailController extends Controller
         $validator = Validator::make($request->all(), [
             'subject_id' => 'required|exists:subjects,id',
             'max_grade' => 'required|integer',
+            'min_grade' => 'required|integer',
             'failing_grade' => 'required|integer',
             'is_failing' => 'required|boolean',
             'is_active' => 'required|boolean',
@@ -57,6 +58,7 @@ class SubjectDetailController extends Controller
 
         $validator = Validator::make($request->all(), [
             'subject_id' => 'required|exists:subjects,id',
+            'min_grade' => 'required|integer',
             'max_grade' => 'required|integer',
             'failing_grade' => 'required|integer',
             'is_failing' => 'required|boolean',

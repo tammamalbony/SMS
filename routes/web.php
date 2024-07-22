@@ -42,6 +42,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectDetailController;
 use App\Http\Controllers\SvgController;
 use App\Http\Controllers\TermController;
+use App\Http\Controllers\TermsResultsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
@@ -394,7 +395,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('{examResult}', [ExamResultController::class, 'update'])->name('exam_results.update');
     });
 
+    Route::get('student/{id}/term1-results', [TermsResultsController::class, 'showTerm1Results'])->name('student.term1_results');
+    Route::get('student/{id}/term2-results', [TermsResultsController::class, 'showTerm2Results'])->name('student.term2_results');
+    Route::post('/students/{student}/verify', [StudentController::class, 'verify'])->name('students.verify');
 
+
+    
     Route::get('/svg-files', [SvgController::class, 'index'])->name('svg.index');
     Route::get('/svg-upload', [SvgController::class, 'showUploadForm'])->name('svg.upload.form');
     Route::post('/svg-upload', [SvgController::class, 'uploadSvg'])->name('svg.upload');

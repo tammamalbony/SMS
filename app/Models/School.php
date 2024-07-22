@@ -39,5 +39,8 @@ class School extends Model
         'internet_coount',
         'internet_type',
         'electric_type',
+        'manager_name',
+        'mobile',
+        'telephone',
     ];
 }

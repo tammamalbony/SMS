@@ -86,7 +86,7 @@ $menuItems = [
                 'permission' => 'view-section-list',
             ],
             [
-                'name' => 'الانواع',
+                'name' => 'الاجناس',
                 'link' => '/section_types',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-section-list',

@@ -12,6 +12,7 @@ class SubjectDetail extends Model
     protected $fillable = [
         'subject_id',
         'max_grade',
+        'min_grade',
         'failing_grade',
         'is_failing',
         'is_active',

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\VerifiedStudentStatus;
 use App\Models\BloodType;
 use App\Models\Father;
+use App\Models\Language;
 use App\Models\Nationality;
 use App\Models\Religion;
+use App\Models\SchoolYear;
 use App\Models\Student;
+use App\Models\VerifiedStudent;
 use App\Models\Wife;
 use Illuminate\Http\Request;
 
@@ -20,7 +24,9 @@ class StudentController extends Controller
     {
 
         $students = Student::all();
-        return view('student.index', compact('students'));
+        $schoolYears = SchoolYear::all();
+        $languages = Language::all();
+        return view('student.index', compact('students', 'schoolYears', 'languages'));
     }
 
     /**
@@ -36,7 +42,31 @@ class StudentController extends Controller
         return view('student.create', compact('nationalities', 'bloodTypes', 'religions', 'fathers', 'mothers'));
 
     }
+    public function verify(Request $request, Student $student)
+    {
+        $request->validate([
+            'school_year' => 'required|exists:school_years,id',
+            'class_school_year' => 'required|exists:classs_school_years,id',
+            'section' => 'required|exists:sections,id',
+            'general_record' => 'required|string|max:255',
+            'language' => 'required|exists:languages,id',
+        ]);
 
+        // Create or update the VerifiedStudent record
+        $verifiedStudent = VerifiedStudent::updateOrCreate(
+            ['student_id' => $student->id],
+            [
+                'section_id' => $request->input('section'),
+                'general_record' => $request->input('general_record'),
+                'language_id' => $request->input('language'),
+                'is_confirmed' => true,
+                'status' => VerifiedStudentStatus::ACTIVE, // Adjust according to your enum
+                'order' => VerifiedStudent::max('order') + 1 // Example for setting order
+            ]
+        );
+
+        return redirect()->route('students.index')->with('success', 'تم التحقق من الطالب بنجاح');
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -87,7 +117,7 @@ class StudentController extends Controller
         $religions = Religion::all();
         $fathers = Father::all();
         $mothers = Wife::all();
-        return view('student.create', compact('student','nationalities', 'bloodTypes', 'religions', 'fathers', 'mothers')); // Uncomment when you create the view
+        return view('student.create', compact('student', 'nationalities', 'bloodTypes', 'religions', 'fathers', 'mothers')); // Uncomment when you create the view
     }
 
     /**

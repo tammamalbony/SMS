@@ -18,6 +18,7 @@ class Exam extends Model
         'total',
         'part_id',
         'term_id',
+        'short_name',
     ];
 
     public function classsSchoolYear()

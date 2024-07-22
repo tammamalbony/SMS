@@ -5,13 +5,13 @@
         <div class="page-title">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4 class="mb-0 d-inline-block">أنواع الأقسام</h4>
+                    <h4 class="mb-0 d-inline-block">جنس الشعبة</h4>
                     <button class="btn btn-primary d-inline-block" id="addSectionType">إضافة</button>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">الرئيسية</a></li>
-                        <li class="breadcrumb-item active">أنواع الأقسام</li>
+                        <li class="breadcrumb-item active">جنس الشعبة</li>
                     </ol>
                 </div>
             </div>
@@ -55,10 +55,10 @@
         $(document).ready(function() {
             $('#addSectionType').on('click', function() {
                 Swal.fire({
-                    title: 'إضافة نوع قسم',
+                    title: 'إضافة جديد',
                     html: `
-                        <label for="name">اسم نوع القسم:</label>
-                        <input type="text" id="name" class="swal2-input" placeholder="اسم نوع القسم">
+                        <label for="name">الاسم:</label>
+                        <input type="text" id="name" class="swal2-input" placeholder="الاسم">
                     `,
                     confirmButtonText: 'حفظ البيانات',
                     showCancelButton: true,
@@ -66,7 +66,7 @@
                     preConfirm: () => {
                         const name = Swal.getPopup().querySelector('#name').value;
                         if (!name) {
-                            Swal.showValidationMessage(`الرجاء إدخال اسم نوع القسم`);
+                            Swal.showValidationMessage(`الرجاء إدخال الاسم`);
                         }
                         return { name: name };
                     }
@@ -81,11 +81,11 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الإضافة!', 'تم إضافة نوع القسم بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الإضافة!', 'تم إضافة بنجاح.', 'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة نوع القسم.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء الإضافة.', 'error');
                                 }
                             }
                         });
@@ -100,9 +100,9 @@
                     method: 'GET',
                     success: function(data) {
                         Swal.fire({
-                            title: 'تعديل نوع قسم',
+                            title: 'تعديل ',
                             html: `
-                                <label for="name">اسم نوع القسم:</label>
+                                <label for="name">الاسم:</label>
                                 <input type="text" id="name" class="swal2-input" value="${data.name}">
                             `,
                             confirmButtonText: 'حفظ البيانات',
@@ -111,7 +111,7 @@
                             preConfirm: () => {
                                 const name = Swal.getPopup().querySelector('#name').value;
                                 if (!name) {
-                                    Swal.showValidationMessage(`الرجاء إدخال اسم نوع القسم`);
+                                    Swal.showValidationMessage(`الرجاء إدخال الاسم`);
                                 }
                                 return { name: name };
                             }
@@ -126,11 +126,11 @@
                                     },
                                     success: function(response) {
                                         if (response.success) {
-                                            Swal.fire('تم التعديل!', 'تم تعديل نوع القسم بنجاح.', 'success').then(() => {
+                                            Swal.fire('تم التعديل!', 'تم التعديل بنجاح.', 'success').then(() => {
                                                 location.reload();
                                             });
                                         } else {
-                                            Swal.fire('خطأ!', 'حدث خطأ أثناء تعديل نوع القسم.', 'error');
+                                            Swal.fire('خطأ!', 'حدث خطأ أثناء التعديل.', 'error');
                                         }
                                     }
                                 });
@@ -161,15 +161,15 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الحذف!', 'تم حذف نوع القسم بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الحذف!', 'تم الحذف بنجاح.', 'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع القسم.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء الحذف .', 'error');
                                 }
                             },
                             error: function(response) {
-                                Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع القسم.', 'error');
+                                Swal.fire('خطأ!', 'حدث خطأ أثناء الحذف.', 'error');
                             }
                         });
                     }
