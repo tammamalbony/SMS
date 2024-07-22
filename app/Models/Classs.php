@@ -25,4 +25,9 @@ class Classs extends Model
     {
         return $this->belongsToMany(SchoolYear::class, 'classses_school_year');
     }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
 }

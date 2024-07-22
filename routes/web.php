@@ -3,6 +3,8 @@ use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRatioController;
 use App\Http\Controllers\BloodTypeController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookStudentController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\ClasssSchoolYearDetailController;
@@ -406,6 +408,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/svg-upload', [SvgController::class, 'uploadSvg'])->name('svg.upload');
     Route::get('/svg-ids/{filename}', [SvgController::class, 'getSvgIds'])->name('svg.ids');
     Route::post('/svg-ids/store', [SvgController::class, 'storeSvgId'])->name('svg.ids.store');
+
+
+    Route::prefix('classes/{classId}/books')->group(function () {
+        Route::get('/', [BookController::class, 'index'])->name('books.index');
+        Route::post('/store', [BookController::class, 'store'])->name('books.store');
+        Route::post('/{bookId}/update', [BookController::class, 'update'])->name('books.update');
+        Route::DELETE ('/{bookId}/delete', [BookController::class, 'destroy'])->name('books.destroy');
+    });
+    
+
+    Route::prefix('verified-students/{verifiedStudentId}/books')->group(function () {
+        Route::get('/', [BookStudentController::class, 'index'])->name('verified-students.books.index');
+        Route::post('/store', [BookStudentController::class, 'store'])->name('verified-students.books.store');
+        Route::post('/{bookId}/update', [BookStudentController::class, 'update'])->name('verified-students.books.update');
+        Route::post('/{bookId}/delete', [BookStudentController::class, 'destroy'])->name('verified-students.books.destroy');
+    });
+
 
 
     // Parents

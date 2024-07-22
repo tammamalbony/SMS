@@ -63,4 +63,24 @@ class VerifiedStudent extends Model
     {
         return $this->belongsTo(Language::class);
     }
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'book_verified_student');
+    }
+
+    public function booksStatus()
+    {
+        $classId = $this->section->classsSchoolYear->classs_id;
+        $allBooks = Book::where('class_id', $classId)->pluck('id')->toArray();
+        $studentBooks = $this->books->pluck('id')->toArray();
+
+        if (empty($studentBooks)) {
+            return 'لم يستلم كتب';
+        } elseif (empty(array_diff($allBooks, $studentBooks))) {
+            return 'نسخة كاملة';
+        } else {
+            return 'بعض الكتب';
+        }
+    }
 }

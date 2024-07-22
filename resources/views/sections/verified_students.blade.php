@@ -74,6 +74,9 @@
                                             <a href="{{ route('student.term2_results', $verifiedStudent->id) }}" class="btn btn-dark" title="عرض نتائج الفصل الثاني">
                                                 <i class="fas fa-chart-bar"></i>
                                             </a>
+                                            <a href="{{ route('verified-students.books.index', $verifiedStudent->id) }}" class="btn btn-success" title="إدارة الكتب">
+                                                <i class="fas fa-book"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

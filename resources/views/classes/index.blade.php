@@ -26,12 +26,15 @@
                 <td>{{ $class->class_name_en }}</td>
                 <td>{{ $class->grade->grade_name_ar }}</td>
                 <td>
-                    <button class="btn btn-info btn-sm" onclick="showClassModal({{ $class->id }}, {{ $class->grade_id }}, '{{ $class->class_name_ar }}', '{{ $class->class_name_en }}')">
+                    <button class="btn btn-info btn-sm" title="تعديل الصف" onclick="showClassModal({{ $class->id }}, {{ $class->grade_id }}, '{{ $class->class_name_ar }}', '{{ $class->class_name_en }}')">
                         <i class="fa fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm" onclick="confirmDelete({{ $class->id }})">
+                    <button class="btn btn-danger btn-sm" title="حذف الصف" onclick="confirmDelete({{ $class->id }})">
                         <i class="fa fa-trash"></i>
                     </button>
+                    <a href="{{ route('books.index', ['classId' => $class->id]) }}" class="btn btn-primary btn-sm" title="عرض الكتب">
+                        <i class="fa fa-book"></i> 
+                    </a>
                 </td>
             </tr>
             @endforeach
