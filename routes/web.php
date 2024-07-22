@@ -8,6 +8,7 @@ use App\Http\Controllers\BookStudentController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\ClasssSchoolYearDetailController;
+use App\Http\Controllers\CollaborationAndActivityController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
@@ -425,6 +426,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/{bookId}/delete', [BookStudentController::class, 'destroy'])->name('verified-students.books.destroy');
     });
 
+    Route::prefix('verified-students/{verified_student_id}')->group(function () {
+        Route::get('collaboration_activity', [CollaborationAndActivityController::class, 'index'])->name('collaboration_activity.index');
+        Route::post('collaboration_activity/store', [CollaborationAndActivityController::class, 'store'])->name('collaboration_activity.store');
+        Route::post('collaboration_activity/{id}/update', [CollaborationAndActivityController::class, 'update'])->name('collaboration_activity.update');
+        Route::post('collaboration_activity/{id}/delete', [CollaborationAndActivityController::class, 'destroy'])->name('collaboration_activity.destroy');
+    });
 
 
     // Parents

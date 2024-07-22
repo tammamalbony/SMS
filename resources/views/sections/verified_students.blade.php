@@ -77,6 +77,9 @@
                                             <a href="{{ route('verified-students.books.index', $verifiedStudent->id) }}" class="btn btn-success" title="إدارة الكتب">
                                                 <i class="fas fa-book"></i>
                                             </a>
+                                            <a href="{{ route('collaboration_activity.index', $verifiedStudent->id) }}" class="btn btn-primary" title="إدارة الأنشطة">
+                                                <i class="fas fa-tasks"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
