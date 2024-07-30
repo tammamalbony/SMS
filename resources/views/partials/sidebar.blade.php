@@ -26,8 +26,129 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],
+            [
+                'name' => 'الأمراض',
+                'link' => '/diseases',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ], [
+                'name' => 'أنواع الأمراض',
+                'link' => '/disease_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],[
+                'name' => 'الصفات الاجتماعية',
+                'link' => '/social_traits',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'الحالات الصحية',
+                'link' => '/health_conditions',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],  [
+                'name' => 'الحالات الطبية',
+                'link' => '/medical_conditions',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'الحالات الطبية',
+                'link' => '/medical_conditions',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أنواع الأنشطة الشبيبية ',
+                'link' => '/youth_activity_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أنواع الأنشطة الشبيبية ',
+                'link' => '/youth_activity_locations',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'معايير الأنشطة الشبيبية ',
+                'link' => '/youth_standards',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'تقييمات الأنشطة الشبيبية ',
+                'link' => '/youth_standard_ratings',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'الأنشطة الشبيبية ',
+                'link' => '/youth_activities',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+
+            [
+                'name' => 'أنواع المعسكرات',
+                'link' => '/camp_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أماكن المعسكرات',
+                'link' => '/camp_locations',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'المعسكرات',
+                'link' => '/camps',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+
+            [
+                'name' => 'أنواع الدورات الطلابية',
+                'link' => '/student_course_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أماكن الدورات الطلابية',
+                'link' => '/student_course_locations',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'الدورات الطلابية',
+                'link' => '/student_courses',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+
+            [
+                'name' => 'أنواع المكافآت',
+                'link' => '/rewards',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أنواع العقوبات',
+                'link' => '/penalties',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أنواع الأوسمة',
+                'link' => '/medals',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
         ],
     ],
+    
     [
         'name' => 'بيانات المدرسة',
         'icon' => 'fa fa-cogs',

@@ -1,10 +1,14 @@
 <?php
 use App\Http\Controllers\AbsenceController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRatioController;
 use App\Http\Controllers\BloodTypeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookStudentController;
+use App\Http\Controllers\CampController;
+use App\Http\Controllers\CampLocationController;
+use App\Http\Controllers\CampTypeController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\ClasssSchoolYearDetailController;
@@ -12,6 +16,8 @@ use App\Http\Controllers\CollaborationAndActivityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiseaseController;
+use App\Http\Controllers\DiseaseTypeController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamResultController;
@@ -19,6 +25,7 @@ use App\Http\Controllers\FatherController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\GovernateController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\HealthConditionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\InvoiceController;
@@ -27,23 +34,31 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MarkReviewController;
+use App\Http\Controllers\MedalController;
+use App\Http\Controllers\MedicalConditionController;
 use App\Http\Controllers\MGradeController;
 use App\Http\Controllers\NationalityController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\PreviousYearController;
 use App\Http\Controllers\ProcessingFeeController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RegistrationTypeController;
 use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\RewardController;
 use App\Http\Controllers\RewardPunishmentController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SectionTypeController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SocialTraitController;
 use App\Http\Controllers\StudentAdditionalDetailController;
+use App\Http\Controllers\StudentCourseController;
+use App\Http\Controllers\StudentCourseLocationController;
+use App\Http\Controllers\StudentCourseTypeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectDetailController;
 use App\Http\Controllers\SvgController;
@@ -58,6 +73,11 @@ use App\Http\Controllers\VerifiedStudentController;
 use App\Http\Controllers\VerifiedStudentTeacherNoteController;
 use App\Http\Controllers\WifeController;
 use App\Http\Controllers\YearClassSubjectController;
+use App\Http\Controllers\YouthActivityController;
+use App\Http\Controllers\YouthActivityLocationController;
+use App\Http\Controllers\YouthActivityTypeController;
+use App\Http\Controllers\YouthStandardController;
+use App\Http\Controllers\YouthStandardRatingController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -470,6 +490,38 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Attendance and Attendance Ratios
     Route::resource('attendance', AttendanceController::class);
     Route::resource('attendanceratios', AttendanceRatioController::class);
+
+
+    Route::resource('diseases', DiseaseController::class);
+    Route::resource('disease_types', DiseaseTypeController::class);
+
+
+    Route::resource('activities', ActivityController::class);
+
+    Route::resource('social_traits', SocialTraitController::class);
+    Route::resource('health_conditions', HealthConditionController::class);
+    Route::resource('medical_conditions', MedicalConditionController::class);
+
+    Route::resource('youth_activity_types', YouthActivityTypeController::class);
+    Route::resource('youth_activity_locations', YouthActivityLocationController::class);
+    Route::resource('youth_activities', YouthActivityController::class);
+
+    Route::resource('youth_standards', YouthStandardController::class);
+    Route::resource('youth_standard_ratings', YouthStandardRatingController::class);
+
+
+
+    Route::resource('camp_types', CampTypeController::class);
+    Route::resource('camp_locations', CampLocationController::class);
+    Route::resource('camps', CampController::class);
+
+    Route::resource('student_course_types', StudentCourseTypeController::class);
+    Route::resource('student_course_locations', StudentCourseLocationController::class);
+    Route::resource('student_courses', StudentCourseController::class);
+
+    Route::resource('rewards', RewardController::class);
+    Route::resource('penalties', PenaltyController::class);
+    Route::resource('medals', MedalController::class);
 
     // Exams and Grades
     Route::resource('exams', ExamController::class);
