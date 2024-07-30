@@ -9,6 +9,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\ClasssSchoolYearDetailController;
 use App\Http\Controllers\CollaborationAndActivityController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
@@ -16,8 +17,10 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\FatherController;
 use App\Http\Controllers\GeneralSettingsController;
+use App\Http\Controllers\GovernateController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobSequenceController;
 use App\Http\Controllers\LanguageController;
@@ -403,7 +406,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/students/{student}/verify', [StudentController::class, 'verify'])->name('students.verify');
 
 
-    
+
     Route::get('/svg-files', [SvgController::class, 'index'])->name('svg.index');
     Route::get('/svg-upload', [SvgController::class, 'showUploadForm'])->name('svg.upload.form');
     Route::post('/svg-upload', [SvgController::class, 'uploadSvg'])->name('svg.upload');
@@ -415,9 +418,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/', [BookController::class, 'index'])->name('books.index');
         Route::post('/store', [BookController::class, 'store'])->name('books.store');
         Route::post('/{bookId}/update', [BookController::class, 'update'])->name('books.update');
-        Route::DELETE ('/{bookId}/delete', [BookController::class, 'destroy'])->name('books.destroy');
+        Route::DELETE('/{bookId}/delete', [BookController::class, 'destroy'])->name('books.destroy');
     });
-    
+
 
     Route::prefix('verified-students/{verifiedStudentId}/books')->group(function () {
         Route::get('/', [BookStudentController::class, 'index'])->name('verified-students.books.index');
@@ -432,6 +435,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('collaboration_activity/{id}/update', [CollaborationAndActivityController::class, 'update'])->name('collaboration_activity.update');
         Route::post('collaboration_activity/{id}/delete', [CollaborationAndActivityController::class, 'destroy'])->name('collaboration_activity.destroy');
     });
+
+
+    Route::resource('institutions', InstitutionController::class);
+    Route::resource('countries', CountryController::class);
+    Route::prefix('countries/{country_id}')->group(function () {
+        Route::get('governates', [GovernateController::class, 'index'])->name('governates.index');
+        Route::post('governates/store', [GovernateController::class, 'store'])->name('governates.store');
+        Route::get('governates/{governate}/edit', [GovernateController::class, 'edit'])->name('governates.edit');
+        Route::put('governates/{governate}', [GovernateController::class, 'update'])->name('governates.update');
+        Route::delete('governates/{governate}', [GovernateController::class, 'destroy'])->name('governates.destroy');
+    });
+    Route::get('/countries/{country}/governatesGetjson', [CountryController::class, 'getGovernates']);
+
 
 
     // Parents

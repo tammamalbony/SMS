@@ -8,6 +8,27 @@ $menuItems = [
         'permission' => 'view-dashboard',
     ],
     [
+        'name' => 'بيانات عامة',
+        'icon' => 'fa fa-th-large',
+        'link' => '#',
+        'roles' => ['admin', 'teacher'],
+        'permission' => 'view-classes',
+        'subMenu' => [
+            [
+                'name' => 'قائمة الدول و المحافظات',
+                'link' => '/countries',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'قائمة المدارس',
+                'link' => '/institutions',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+        ],
+    ],
+    [
         'name' => 'بيانات المدرسة',
         'icon' => 'fa fa-cogs',
         'link' => '/settings/',
