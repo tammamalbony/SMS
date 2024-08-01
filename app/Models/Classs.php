@@ -30,4 +30,8 @@ class Classs extends Model
     {
         return $this->hasMany(Book::class);
     }
+
+    public function AgeGroups() {
+        return $this->belongsToMany(AgeGroup::class, 'classs_id');
+    }
 }

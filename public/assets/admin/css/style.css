@@ -1288,7 +1288,9 @@ select.form-control:not([size]):not([multiple]) {
     height: 60px;
     vertical-align: middle;
 }
-
+.table-striped tr td:last-of-type {
+    text-align: start !important;
+}
 .table:not(.table-sm) thead th {
     border-bottom: none;
     background-color: rgba(0, 0, 0, 0.04);

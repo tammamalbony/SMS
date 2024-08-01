@@ -149,7 +149,7 @@ $(document).ready(function() {
                         <label for="classs_id">الصف</label>
                         <select name="classs_id" id="classs_id" class="form-control">
                             @foreach($classes as $classs)
-                                <option value="{{ $classs->id }}" ${data && data.classs_id == {{ $classs->id }} ? 'selected' : ''}>{{ $classs->class_name_en }}</option>
+                                <option value="{{ $classs->id }}" ${data && data.classs_id == {{ $classs->id }} ? 'selected' : ''}>{{ $classs->class_name_ar  }} {{ $classs->grade->grade_name_ar }}</option>
                             @endforeach
                         </select>
                     </div>

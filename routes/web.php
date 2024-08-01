@@ -1,11 +1,13 @@
 <?php
 use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\AgeGroupController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceRatioController;
 use App\Http\Controllers\BloodTypeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookStudentController;
+use App\Http\Controllers\BuildingStatusController;
 use App\Http\Controllers\CampController;
 use App\Http\Controllers\CampLocationController;
 use App\Http\Controllers\CampTypeController;
@@ -13,31 +15,43 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\ClasssSchoolYearDetailController;
 use App\Http\Controllers\CollaborationAndActivityController;
+use App\Http\Controllers\CommonFieldController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\DiseaseTypeController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EducationLevelController;
+use App\Http\Controllers\EducationSpecializationController;
+use App\Http\Controllers\EducationTypeController;
+use App\Http\Controllers\EmployeeTypeController;
+use App\Http\Controllers\EquipmentStatusController;
+use App\Http\Controllers\EquipmentTypeController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamResultController;
+use App\Http\Controllers\FamilyMembersChangeController;
 use App\Http\Controllers\FatherController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\GovernateController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\GroundTypeController;
 use App\Http\Controllers\HealthConditionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobSequenceController;
+use App\Http\Controllers\KindOfEmploymentController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LeaveTypeController;
+use App\Http\Controllers\LocalSectionController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MarkReviewController;
 use App\Http\Controllers\MedalController;
 use App\Http\Controllers\MedicalConditionController;
 use App\Http\Controllers\MGradeController;
 use App\Http\Controllers\NationalityController;
+use App\Http\Controllers\OwnershipTypeController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PartController;
 use App\Http\Controllers\PaymentController;
@@ -45,16 +59,26 @@ use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\PreviousYearController;
 use App\Http\Controllers\ProcessingFeeController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\PublicUtilityController;
+use App\Http\Controllers\QuestionOptionController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RegistrationTypeController;
 use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\RewardController;
 use App\Http\Controllers\RewardPunishmentController;
+use App\Http\Controllers\SchoolBuildingTypeController;
+use App\Http\Controllers\SchoolGenderController;
+use App\Http\Controllers\SchoolQuestionController;
+use App\Http\Controllers\SchoolRoomTypeController;
+use App\Http\Controllers\SchoolTypeController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SectionTypeController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SocialSituationController;
 use App\Http\Controllers\SocialTraitController;
+use App\Http\Controllers\SpecialNeedsTypeController;
+use App\Http\Controllers\StageController;
 use App\Http\Controllers\StudentAdditionalDetailController;
 use App\Http\Controllers\StudentCourseController;
 use App\Http\Controllers\StudentCourseLocationController;
@@ -64,6 +88,9 @@ use App\Http\Controllers\SubjectDetailController;
 use App\Http\Controllers\SvgController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\TermsResultsController;
+use App\Http\Controllers\TypeOfAppointmentController;
+use App\Http\Controllers\TypeOfEmploymentController;
+use App\Http\Controllers\TypeOfPermanenceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
@@ -523,6 +550,68 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('penalties', PenaltyController::class);
     Route::resource('medals', MedalController::class);
 
+    Route::resource('employee_types', EmployeeTypeController::class);
+    Route::resource('social_situations', SocialSituationController::class);
+    Route::resource('family_members_changes', FamilyMembersChangeController::class);
+
+    Route::resource('education_types', EducationTypeController::class);
+    Route::resource('types_of_employment', TypeOfEmploymentController::class);
+    Route::resource('types_of_appointments', TypeOfAppointmentController::class);
+    Route::resource('special_needs_types', SpecialNeedsTypeController::class);
+    Route::resource('age_groups', AgeGroupController::class);
+
+
+    Route::resource('school_types', SchoolTypeController::class);
+    Route::resource('school_building_types', SchoolBuildingTypeController::class);
+    Route::resource('building_statuses', BuildingStatusController::class);
+    Route::resource('school_genders', SchoolGenderController::class);
+    Route::resource('ground_types', GroundTypeController::class);
+    Route::resource('local_sections', LocalSectionController::class);
+    Route::resource('types_of_permanence', TypeOfPermanenceController::class);
+    Route::resource('equipment_types', EquipmentTypeController::class);
+    Route::resource('equipment_statuses', EquipmentStatusController::class);
+    Route::resource('education_levels', EducationLevelController::class);
+    Route::prefix('education_levels/{education_level}')->group(function () {
+        Route::prefix('specializations')->group(function () {
+            Route::get('/', [EducationSpecializationController::class, 'index'])->name('education_levels.specializations.index');
+            Route::post('/', [EducationSpecializationController::class, 'store'])->name('education_levels.specializations.store');
+            Route::get('/{specialization}/edit', [EducationSpecializationController::class, 'edit'])->name('education_levels.specializations.edit');
+            Route::put('/{specialization}', [EducationSpecializationController::class, 'update'])->name('education_levels.specializations.update');
+            Route::delete('/{specialization}', [EducationSpecializationController::class, 'destroy'])->name('education_levels.specializations.destroy');
+        });
+       
+    });
+
+    Route::prefix('kinds_of_employment')->group(function () {
+        Route::get('/', [KindOfEmploymentController::class, 'index'])->name('kinds_of_employment.index');
+        Route::post('/', [KindOfEmploymentController::class, 'store'])->name('kinds_of_employment.store');
+        Route::get('{kind_of_employment}/edit', [KindOfEmploymentController::class, 'edit'])->name('kinds_of_employment.edit');
+        Route::put('{kind_of_employment}', [KindOfEmploymentController::class, 'update'])->name('kinds_of_employment.update');
+        Route::delete('{kind_of_employment}', [KindOfEmploymentController::class, 'destroy'])->name('kinds_of_employment.destroy');
+    });
+    Route::resource('stages', StageController::class)->except(['create', 'edit', 'show']);
+    Route::get('/get-stages-grades', [GradeController::class, 'getall'])->name('get-stages-grades');
+    Route::get('/grades/{id}/children', [GradeController::class, 'showChildren'])->name('grades.children');
+    Route::get('/grades-by-stage/{stageId}', [GradeController::class, 'getGradesByStage']);
+    Route::get('/grades/{gradeId}/classes', [GradeController::class, 'showClasses'])->name('grades.classes');
+    
+    Route::get('/get-all-school-questions', [SchoolQuestionController::class, 'getall']);
+
+    Route::resource('school-questions', SchoolQuestionController::class);
+    Route::post('/school-questions/update-order', [SchoolQuestionController::class, 'updateOrder'])->name('school-questions.updateOrder');
+    Route::get('/school-questions/{question}/options', [SchoolQuestionController::class, 'getOptions']);
+    Route::get('/school-questions/{question}/options/{targetid}', [SchoolQuestionController::class, 'getOptionstargetid']);
+    Route::post('/school-questions/update-relations', [SchoolQuestionController::class, 'updateRelations'])->name('school-questions.updateRelations');
+    Route::post('/school-questions/link', [SchoolQuestionController::class, 'link'])->name('school-questions.link');
+    
+    Route::resource('question-option-relations', QuestionOptionController::class);
+
+
+    Route::resource('ownership-types', OwnershipTypeController::class)->except(['create', 'show']);
+    Route::resource('school-room-types', SchoolRoomTypeController::class)->except(['create', 'show']);
+    Route::resource('public-utilities', PublicUtilityController::class)->except(['create', 'show']);
+    Route::resource('common-fields', CommonFieldController::class);
+    
     // Exams and Grades
     Route::resource('exams', ExamController::class);
     Route::resource('mgrades', MGradeController::class);

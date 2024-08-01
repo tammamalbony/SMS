@@ -160,7 +160,8 @@
 
 <script src="{{ asset('/assets/default/js/panel/ai-content-generator.min.js') }}"></script>
 
-<script src="{{ asset('/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('/assets/vendors/sweetalert2@11.js') }}"></script>
+{{-- <script src="{{ asset('/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js') }}"></script> --}}
 <script src="{{ asset('/assets/default/vendors/feather-icons/dist/feather.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/select2/select2.min.js') }}"></script>
 <script src="{{ asset('/assets/default/vendors/moment.min.js') }}"></script>

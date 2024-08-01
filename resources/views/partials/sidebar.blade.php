@@ -8,7 +8,7 @@ $menuItems = [
         'permission' => 'view-dashboard',
     ],
     [
-        'name' => 'بيانات عامة',
+        'name' => 'بيانات البطاقة',
         'icon' => 'fa fa-th-large',
         'link' => '#',
         'roles' => ['admin', 'teacher'],
@@ -31,12 +31,14 @@ $menuItems = [
                 'link' => '/diseases',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
-            ], [
+            ],
+            [
                 'name' => 'أنواع الأمراض',
                 'link' => '/disease_types',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
-            ],[
+            ],
+            [
                 'name' => 'الصفات الاجتماعية',
                 'link' => '/social_traits',
                 'roles' => ['admin', 'teacher'],
@@ -47,7 +49,8 @@ $menuItems = [
                 'link' => '/health_conditions',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
-            ],  [
+            ],
+            [
                 'name' => 'الحالات الطبية',
                 'link' => '/medical_conditions',
                 'roles' => ['admin', 'teacher'],
@@ -148,26 +151,203 @@ $menuItems = [
             ],
         ],
     ],
-    
     [
-        'name' => 'بيانات المدرسة',
-        'icon' => 'fa fa-cogs',
-        'link' => '/settings/',
-        'roles' => ['admin'],
-        'permission' => 'manage-school',
-    ],
-    [
-        'name' => 'السنوات الدراسية',
-        'icon' => 'fa fa-calendar',
+        'name' => 'بيانات العائلة',
+        'icon' => 'fa fa-th-large',
         'link' => '#',
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-classes',
         'subMenu' => [
             [
+                'name' => 'تغييرات أفراد العائلة',
+                'link' => '/family_members_changes',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'الحالات الأجتماعية',
+                'link' => '/social_situations',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+
+        ],
+    ],
+    [
+        'name' => 'بيانات الطالب',
+        'icon' => 'fa fa-th-large',
+        'link' => '#',
+        'roles' => ['admin', 'teacher'],
+        'permission' => 'view-classes',
+        'subMenu' => [
+            [
+                'name' => 'أنواع التسجيل',
+                'link' => '/registration-types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع الخروج',
+                'link' => '/leave_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'الاحتياجات الخاصة',
+                'link' => '/special_needs_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+        ],
+    ],
+    [
+        'name' => 'بيانات الموظفين',
+        'icon' => 'fa fa-th-large',
+        'link' => '#',
+        'roles' => ['admin', 'teacher'],
+        'permission' => 'view-classes',
+        'subMenu' => [
+            [
+                'name' => 'أنواع الموظفين',
+                'link' => '/employee_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            
+            [
+                'name' => 'أنواع الهيئات الوظيفية',
+                'link' => '/types_of_employment',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع التعينات',
+                'link' => '/types_of_appointments',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع التعليم',
+                'link' => '/education_levels',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع العمل الوظيفي',
+                'link' => '/kinds_of_employment',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+        ],
+    ],
+   
+    [
+        'name' => 'بيانات المدرسة',
+       'icon' => 'fa fa-cogs',
+        'link' => '#',
+        'roles' => ['admin', 'teacher'],
+        'permission' => 'view-classes',
+        'subMenu' => [
+            [
+                'name' => 'بيانات عامة',
+                'link' => '/settings/',
+                'roles' => ['admin'],
+                'permission' => 'manage-school',
+            ],
+            [
                 'name' => 'قائمة السنوات الدراسية',
                 'link' => '/school_years',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أنواع التعليم',
+                'link' => '/education_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع المدارس',
+                'link' => '/school_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ], [
+                'name' => 'أنواع الأبنية',
+                'link' => '/school_building_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'حالات الأبنية',
+                'link' => '/building_statuses',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أجناس المدارس',
+                'link' => '/school_genders',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع الأرضيات',
+                'link' => '/ground_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'الأقسام الإدارية',
+                'link' => '/local_sections',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع الدوام',
+                'link' => '/types_of_permanence',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع المعدات',
+                'link' => '/equipment_types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'حالات المعدات و المرافق',
+                'link' => '/equipment_statuses',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع الملكية',
+                'link' => '/ownership-types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع الغرف',
+                'link' => '/school-room-types',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أنواع المرافق الصحية',
+                'link' => '/public-utilities',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'الحقول الشائعة',
+                'link' => '/common-fields',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
+            ],
+            [
+                'name' => 'أسئلة عامة',
+                'link' => '/school-questions',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-student-list',
             ],
         ],
     ],
@@ -178,6 +358,12 @@ $menuItems = [
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-grades',
         'subMenu' => [
+            [
+                'name' => 'قائمة المراحل التعليمية',
+                'link' => '/stages',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-grade-list',
+            ],
             [
                 'name' => 'قائمة المراحل الدراسية',
                 'link' => '/grades',
@@ -205,9 +391,15 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],
+            [
+                'name' => 'قائمة الفئات العمرية',
+                'link' => '/age_groups',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
         ],
     ],
-   
+
     [
         'name' => 'الشعب',
         'icon' => 'fa fa-object-group',
@@ -287,18 +479,6 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-student-list',
             ],
-            [
-                'name' => 'أنواع التسجيل',
-                'link' => '/registration-types',
-                'roles' => ['admin', 'teacher'],
-                'permission' => 'view-student-list',
-            ],
-            [
-                'name' => 'أنواع الخروج',
-                'link' => '/leave_types',
-                'roles' => ['admin', 'teacher'],
-                'permission' => 'view-student-list',
-            ],
         ],
     ],
     [
@@ -356,7 +536,6 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-subject-list',
             ],
-            
         ],
     ],
     // [

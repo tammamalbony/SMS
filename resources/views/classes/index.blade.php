@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+@endphp
 @section('content')
 <div class="container">
     <h1 class="mb-4">الصفوف الدراسية</h1>
@@ -19,29 +21,58 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($classes as $class)
-            <tr>
-                <td>{{ $class->id }}</td>
-                <td>{{ $class->class_name_ar }}</td>
-                <td>{{ $class->class_name_en }}</td>
-                <td>{{ $class->grade->grade_name_ar }}</td>
-                <td>
-                    <button class="btn btn-info btn-sm" title="تعديل الصف" onclick="showClassModal({{ $class->id }}, {{ $class->grade_id }}, '{{ $class->class_name_ar }}', '{{ $class->class_name_en }}')">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm" title="حذف الصف" onclick="confirmDelete({{ $class->id }})">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                    <a href="{{ route('books.index', ['classId' => $class->id]) }}" class="btn btn-primary btn-sm" title="عرض الكتب">
-                        <i class="fa fa-book"></i> 
-                    </a>
-                </td>
-            </tr>
-            @endforeach
+            @if(isset($targetgrade))
+                @foreach($targetgrade->classes as $class)
+                <tr>
+                    <td>{{ $class->id }}</td>
+                    <td>{{ $class->class_name_ar }}</td>
+                    <td>{{ $class->class_name_en }}</td>
+                    <td>{{ $class->grade->grade_name_ar }}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" title="تعديل الصف" onclick="showClassModal({{ $class->id }}, {{ $class->grade_id }}, '{{ $class->class_name_ar }}', '{{ $class->class_name_en }}')">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="حذف الصف" onclick="confirmDelete({{ $class->id }})">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        <a href="{{ route('books.index', ['classId' => $class->id]) }}" class="btn btn-primary btn-sm" title="عرض الكتب">
+                            <i class="fa fa-book"></i> 
+                        </a>
+                        <a href="{{ route('age_groups.index', ['classs_id' => $class->id]) }}" class="btn btn-secondary btn-sm" title="عرض الفئات العمرية">
+                            <i class="fa fa-users"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            @else
+                @foreach($classes as $class)
+                <tr>
+                    <td>{{ $class->id }}</td>
+                    <td>{{ $class->class_name_ar }}</td>
+                    <td>{{ $class->class_name_en }}</td>
+                    <td>{{ $class->grade->grade_name_ar }}</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" title="تعديل الصف" onclick="showClassModal({{ $class->id }}, {{ $class->grade_id }}, '{{ $class->class_name_ar }}', '{{ $class->class_name_en }}')">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" title="حذف الصف" onclick="confirmDelete({{ $class->id }})">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        <a href="{{ route('books.index', ['classId' => $class->id]) }}" class="btn btn-primary btn-sm" title="عرض الكتب">
+                            <i class="fa fa-book"></i> 
+                        </a>
+                        <a href="{{ route('age_groups.index', ['classs_id' => $class->id]) }}" class="btn btn-secondary btn-sm" title="عرض الفئات العمرية">
+                            <i class="fa fa-users"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
-
+    @if(!isset($targetgrade))
     {{ $classes->links() }}
+    @endif
 </div>
 
 <script>
@@ -53,9 +84,13 @@
                 <div class="mb-3">
                     <label for="grade_id" class="form-label">اسم المرحلة:</label>
                     <select id="grade_id" class="form-select">
-                        @foreach($grades as $grade)
-                            <option value="{{ $grade->id }}" ${grade_id == {{ $grade->id }} ? 'selected' : ''}>{{ $grade->grade_name_ar }}</option>
-                        @endforeach
+                        @if(isset($targetgrade))
+                                <option value="{{ $targetgrade->id }}" selected}>{{ $targetgrade->grade_name_ar }}</option>
+                        @else
+                            @foreach($grades as $grade)
+                                <option value="{{ $grade->id }}" ${grade_id == {{ $grade->id }} ? 'selected' : ''}>{{ $grade->grade_name_ar }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="mb-3">
