@@ -41,6 +41,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobSequenceController;
+use App\Http\Controllers\JobTitleController;
 use App\Http\Controllers\KindOfEmploymentController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LeaveTypeController;
@@ -77,6 +78,7 @@ use App\Http\Controllers\SectionTypeController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialSituationController;
 use App\Http\Controllers\SocialTraitController;
+use App\Http\Controllers\SortOfEmploymentController;
 use App\Http\Controllers\SpecialNeedsTypeController;
 use App\Http\Controllers\StageController;
 use App\Http\Controllers\StudentAdditionalDetailController;
@@ -595,7 +597,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/grades-by-stage/{stageId}', [GradeController::class, 'getGradesByStage']);
     Route::get('/grades/{gradeId}/classes', [GradeController::class, 'showClasses'])->name('grades.classes');
     
-    Route::get('/get-all-school-questions', [SchoolQuestionController::class, 'getall']);
+    Route::get('/get-school-questions-options', [SchoolQuestionController::class, 'getOptionsAll']);
 
     Route::resource('school-questions', SchoolQuestionController::class);
     Route::post('/school-questions/update-order', [SchoolQuestionController::class, 'updateOrder'])->name('school-questions.updateOrder');
@@ -612,6 +614,30 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('public-utilities', PublicUtilityController::class)->except(['create', 'show']);
     Route::resource('common-fields', CommonFieldController::class);
     
+    Route::prefix('kinds-of-employment/{kindOfEmploymentId}')->group(function () {
+        Route::get('sorts-of-employment', [SortOfEmploymentController::class, 'index'])->name('kinds-of-employment.sorts.index');
+        Route::post('sorts-of-employment', [SortOfEmploymentController::class, 'store'])->name('kinds-of-employment.sorts.store');
+        Route::get('sorts-of-employment/{sortOfEmployment}/edit', [SortOfEmploymentController::class, 'edit'])->name('kinds-of-employment.sorts.edit');
+        Route::post('sorts-of-employment/{sortOfEmployment}/update', [SortOfEmploymentController::class, 'update'])->name('kinds-of-employment.sorts.update');
+        Route::post('sorts-of-employment/{sortOfEmployment}/delete', [SortOfEmploymentController::class, 'destroy'])->name('kinds-of-employment.sorts.destroy');
+    });
+
+    
+Route::prefix('kinds-of-employment/{kindOfEmploymentId}')->group(function () {
+    Route::get('job-titles', [JobTitleController::class, 'index'])->name('kinds-of-employment.job-titles.index');
+    Route::post('job-titles', [JobTitleController::class, 'store'])->name('kinds-of-employment.job-titles.store');
+    Route::put('job-titles/{jobTitle}', [JobTitleController::class, 'update'])->name('kinds-of-employment.job-titles.update');
+    Route::delete('job-titles/{jobTitle}', [JobTitleController::class, 'destroy'])->name('kinds-of-employment.job-titles.destroy');
+});
+
+
+
+
+
+
+
+
+
     // Exams and Grades
     Route::resource('exams', ExamController::class);
     Route::resource('mgrades', MGradeController::class);

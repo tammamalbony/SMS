@@ -21,4 +21,9 @@ class SchoolQuestion extends Model
     {
         return $this->hasMany(QuestionOption::class, 'dependent_option_id');
     }
+
+    public function hasOptions()
+    {
+        return $this->options()->exists();
+    }
 }

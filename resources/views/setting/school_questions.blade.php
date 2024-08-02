@@ -44,7 +44,7 @@
                                                     class="fa fa-edit"></i></button>
                                             <button class="btn btn-danger delete-button" data-id="{{ $question->id }}"><i
                                                     class="fa fa-trash"></i></button>
-                                            @if ($question->type == 'select_many' || $question->type == 'select_one')
+                                            @if (($question->type == 'select_many' || $question->type == 'select_one') &&   $question->hasOptions())
                                                 <button class="btn btn-info relation-button" title="ربط مع سؤال "
                                                     data-id="{{ $question->id }}"><i class="fa fa-link"></i></button>
                                             @endif
@@ -76,7 +76,7 @@
                 didOpen: () => {
                     Swal.showLoading();
                     // Fetch all questions
-                    fetch('/get-all-school-questions')
+                    fetch('/get-school-questions-options')
                         .then(response => response.json())
                         .then(data => {
                             Swal.hideLoading();

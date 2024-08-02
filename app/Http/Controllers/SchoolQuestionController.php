@@ -14,11 +14,12 @@ class SchoolQuestionController extends Controller
         $schoolQuestions = SchoolQuestion::with('options')->paginate(10);
         return view('setting.school_questions', compact('schoolQuestions'));
     }
-    public function getall()
+    public function getOptionsAll()
     {
-        $questions = SchoolQuestion::with('options')
-            ->whereIn('type', ['select_many', 'select_one'])
-            ->get(['id', 'title', 'type']);
+        $questions = SchoolQuestion::with('options') // Eager loading the options
+        ->whereHas('options') // Only include questions that have at least one option
+        ->whereIn('type', ['select_many', 'select_one']) // Filter by type
+        ->get(['id', 'title', 'type']); // Retrieve only specified fields
         return response()->json($questions);
     }
     public function updateOrder(Request $request)

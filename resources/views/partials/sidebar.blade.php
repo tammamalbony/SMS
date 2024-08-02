@@ -57,12 +57,6 @@ $menuItems = [
                 'permission' => 'view-class-list',
             ],
             [
-                'name' => 'الحالات الطبية',
-                'link' => '/medical_conditions',
-                'roles' => ['admin', 'teacher'],
-                'permission' => 'view-class-list',
-            ],
-            [
                 'name' => 'أنواع الأنشطة الشبيبية ',
                 'link' => '/youth_activity_types',
                 'roles' => ['admin', 'teacher'],

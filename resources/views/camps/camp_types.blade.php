@@ -5,13 +5,13 @@
         <div class="page-title">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h4 class="mb-0 d-inline-block">أنواع المخيمات</h4>
+                    <h4 class="mb-0 d-inline-block">أنواع المعسكرات</h4>
                     <button class="btn btn-primary d-inline-block" id="addCampType">إضافة</button>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">الرئيسية</a></li>
-                        <li class="breadcrumb-item active">أنواع المخيمات</li>
+                        <li class="breadcrumb-item active">أنواع المعسكرات</li>
                     </ol>
                 </div>
             </div>
@@ -57,8 +57,8 @@
                 Swal.fire({
                     title: 'إضافة نوع مخيم',
                     html: `
-                        <label for="type">نوع المخيم:</label>
-                        <input type="text" id="type" class="swal2-input" placeholder="نوع المخيم">
+                        <label for="type">نوع المعسكر:</label>
+                        <input type="text" id="type" class="swal2-input" placeholder="نوع المعسكر">
                     `,
                     confirmButtonText: 'حفظ البيانات',
                     showCancelButton: true,
@@ -66,7 +66,7 @@
                     preConfirm: () => {
                         const type = Swal.getPopup().querySelector('#type').value;
                         if (!type) {
-                            Swal.showValidationMessage(`الرجاء إدخال نوع المخيم`);
+                            Swal.showValidationMessage(`الرجاء إدخال نوع المعسكر`);
                         }
                         return { type: type };
                     }
@@ -81,11 +81,11 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الإضافة!', 'تم إضافة نوع المخيم بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الإضافة!', 'تم إضافة نوع المعسكر بنجاح.', 'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة نوع المخيم.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة نوع المعسكر.', 'error');
                                 }
                             }
                         });
@@ -102,7 +102,7 @@
                         Swal.fire({
                             title: 'تعديل نوع مخيم',
                             html: `
-                                <label for="type">نوع المخيم:</label>
+                                <label for="type">نوع المعسكر:</label>
                                 <input type="text" id="type" class="swal2-input" value="${data.type}">
                             `,
                             confirmButtonText: 'حفظ البيانات',
@@ -111,7 +111,7 @@
                             preConfirm: () => {
                                 const type = Swal.getPopup().querySelector('#type').value;
                                 if (!type) {
-                                    Swal.showValidationMessage(`الرجاء إدخال نوع المخيم`);
+                                    Swal.showValidationMessage(`الرجاء إدخال نوع المعسكر`);
                                 }
                                 return { type: type };
                             }
@@ -126,11 +126,11 @@
                                     },
                                     success: function(response) {
                                         if (response.success) {
-                                            Swal.fire('تم التعديل!', 'تم تعديل نوع المخيم بنجاح.', 'success').then(() => {
+                                            Swal.fire('تم التعديل!', 'تم تعديل نوع المعسكر بنجاح.', 'success').then(() => {
                                                 location.reload();
                                             });
                                         } else {
-                                            Swal.fire('خطأ!', 'حدث خطأ أثناء تعديل نوع المخيم.', 'error');
+                                            Swal.fire('خطأ!', 'حدث خطأ أثناء تعديل نوع المعسكر.', 'error');
                                         }
                                     }
                                 });
@@ -161,15 +161,15 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الحذف!', 'تم حذف نوع المخيم بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الحذف!', 'تم حذف نوع المعسكر بنجاح.', 'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع المخيم.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع المعسكر.', 'error');
                                 }
                             },
                             error: function(response) {
-                                Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع المخيم.', 'error');
+                                Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع المعسكر.', 'error');
                             }
                         });
                     }

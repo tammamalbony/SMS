@@ -34,10 +34,18 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $kindOfEmployment->name }}</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm edit-button" data-id="{{ $kindOfEmployment->id }}"><i
-                                                    class="fa fa-edit"></i></button>
-                                            <button class="btn btn-danger btn-sm delete-button" data-id="{{ $kindOfEmployment->id }}"><i
-                                                    class="fa fa-trash"></i></button>
+                                            <button class="btn btn-primary btn-sm edit-button"
+                                                data-id="{{ $kindOfEmployment->id }}"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-danger btn-sm delete-button"
+                                                data-id="{{ $kindOfEmployment->id }}"><i class="fa fa-trash"></i></button>
+                                            <a href="kinds-of-employment/{{ $kindOfEmployment->id }}/sorts-of-employment"
+                                                class="btn btn-success btn-sm" title="عرض الأنواع المرتبطة">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="kinds-of-employment/{{ $kindOfEmployment->id }}/job-titles"
+                                                class="btn btn-info btn-sm" title="عرض المسميات الوظيفية المرتبطة">
+                                                <i class="fa fa-briefcase"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -74,7 +82,9 @@
                         if (!name) {
                             Swal.showValidationMessage(`الرجاء إدخال اسم نوع العمل الوظيفي`);
                         }
-                        return { name: name };
+                        return {
+                            name: name
+                        };
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -87,11 +97,15 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الإضافة!', 'تم إضافة نوع العمل الوظيفي بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الإضافة!',
+                                        'تم إضافة نوع العمل الوظيفي بنجاح.',
+                                        'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة نوع العمل الوظيفي.', 'error');
+                                    Swal.fire('خطأ!',
+                                        'حدث خطأ أثناء إضافة نوع العمل الوظيفي.',
+                                        'error');
                                 }
                             }
                         });
@@ -102,7 +116,8 @@
             $('.edit-button').on('click', function() {
                 var kindOfEmploymentId = $(this).data('id');
                 $.ajax({
-                    url: '{{ route('kinds_of_employment.edit', 'kindOfEmploymentId') }}'.replace('kindOfEmploymentId', kindOfEmploymentId),
+                    url: '{{ route('kinds_of_employment.edit', 'kindOfEmploymentId') }}'.replace(
+                        'kindOfEmploymentId', kindOfEmploymentId),
                     method: 'GET',
                     success: function(data) {
                         Swal.fire({
@@ -121,16 +136,22 @@
                             showCancelButton: true,
                             cancelButtonText: 'إلغاء',
                             preConfirm: () => {
-                                const name = Swal.getPopup().querySelector('#name').value;
+                                const name = Swal.getPopup().querySelector('#name')
+                                    .value;
                                 if (!name) {
-                                    Swal.showValidationMessage(`الرجاء إدخال اسم نوع العمل الوظيفي`);
+                                    Swal.showValidationMessage(
+                                        `الرجاء إدخال اسم نوع العمل الوظيفي`);
                                 }
-                                return { name: name };
+                                return {
+                                    name: name
+                                };
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: '{{ route('kinds_of_employment.update', 'kindOfEmploymentId') }}'.replace('kindOfEmploymentId', kindOfEmploymentId),
+                                    url: '{{ route('kinds_of_employment.update', 'kindOfEmploymentId') }}'
+                                        .replace('kindOfEmploymentId',
+                                            kindOfEmploymentId),
                                     method: 'PUT',
                                     data: {
                                         _token: '{{ csrf_token() }}',
@@ -138,11 +159,15 @@
                                     },
                                     success: function(response) {
                                         if (response.success) {
-                                            Swal.fire('تم التعديل!', 'تم تعديل نوع العمل الوظيفي بنجاح.', 'success').then(() => {
+                                            Swal.fire('تم التعديل!',
+                                                'تم تعديل نوع العمل الوظيفي بنجاح.',
+                                                'success').then(() => {
                                                 location.reload();
                                             });
                                         } else {
-                                            Swal.fire('خطأ!', 'حدث خطأ أثناء تعديل نوع العمل الوظيفي.', 'error');
+                                            Swal.fire('خطأ!',
+                                                'حدث خطأ أثناء تعديل نوع العمل الوظيفي.',
+                                                'error');
                                         }
                                     }
                                 });
@@ -166,22 +191,28 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ route('kinds_of_employment.destroy', 'kindOfEmploymentId') }}'.replace('kindOfEmploymentId', kindOfEmploymentId),
+                            url: '{{ route('kinds_of_employment.destroy', 'kindOfEmploymentId') }}'
+                                .replace('kindOfEmploymentId', kindOfEmploymentId),
                             type: 'DELETE',
                             data: {
                                 _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الحذف!', 'تم حذف نوع العمل الوظيفي بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الحذف!',
+                                        'تم حذف نوع العمل الوظيفي بنجاح.', 'success'
+                                        ).then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع العمل الوظيفي.', 'error');
+                                    Swal.fire('خطأ!',
+                                        'حدث خطأ أثناء حذف نوع العمل الوظيفي.',
+                                        'error');
                                 }
                             },
                             error: function(response) {
-                                Swal.fire('خطأ!', 'حدث خطأ أثناء حذف نوع العمل الوظيفي.', 'error');
+                                Swal.fire('خطأ!',
+                                    'حدث خطأ أثناء حذف نوع العمل الوظيفي.', 'error');
                             }
                         });
                     }
