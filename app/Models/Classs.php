@@ -23,7 +23,7 @@ class Classs extends Model
 
     public function schoolYears()
     {
-        return $this->belongsToMany(SchoolYear::class, 'classses_school_year');
+        return $this->belongsToMany(SchoolYear::class, 'classs_school_years');
     }
 
     public function books()

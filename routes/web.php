@@ -15,6 +15,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ClasssSchoolYearController;
 use App\Http\Controllers\ClasssSchoolYearDetailController;
 use App\Http\Controllers\CollaborationAndActivityController;
+use App\Http\Controllers\ColumnController;
 use App\Http\Controllers\CommonFieldController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
@@ -88,6 +89,7 @@ use App\Http\Controllers\StudentCourseTypeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectDetailController;
 use App\Http\Controllers\SvgController;
+use App\Http\Controllers\TableheaderController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\TermsResultsController;
 use App\Http\Controllers\TypeOfAppointmentController;
@@ -581,7 +583,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::put('/{specialization}', [EducationSpecializationController::class, 'update'])->name('education_levels.specializations.update');
             Route::delete('/{specialization}', [EducationSpecializationController::class, 'destroy'])->name('education_levels.specializations.destroy');
         });
-       
+
     });
 
     Route::prefix('kinds_of_employment')->group(function () {
@@ -596,7 +598,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/grades/{id}/children', [GradeController::class, 'showChildren'])->name('grades.children');
     Route::get('/grades-by-stage/{stageId}', [GradeController::class, 'getGradesByStage']);
     Route::get('/grades/{gradeId}/classes', [GradeController::class, 'showClasses'])->name('grades.classes');
-    
+
     Route::get('/get-school-questions-options', [SchoolQuestionController::class, 'getOptionsAll']);
 
     Route::resource('school-questions', SchoolQuestionController::class);
@@ -605,7 +607,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/school-questions/{question}/options/{targetid}', [SchoolQuestionController::class, 'getOptionstargetid']);
     Route::post('/school-questions/update-relations', [SchoolQuestionController::class, 'updateRelations'])->name('school-questions.updateRelations');
     Route::post('/school-questions/link', [SchoolQuestionController::class, 'link'])->name('school-questions.link');
-    
+
     Route::resource('question-option-relations', QuestionOptionController::class);
 
 
@@ -613,7 +615,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('school-room-types', SchoolRoomTypeController::class)->except(['create', 'show']);
     Route::resource('public-utilities', PublicUtilityController::class)->except(['create', 'show']);
     Route::resource('common-fields', CommonFieldController::class);
-    
+
     Route::prefix('kinds-of-employment/{kindOfEmploymentId}')->group(function () {
         Route::get('sorts-of-employment', [SortOfEmploymentController::class, 'index'])->name('kinds-of-employment.sorts.index');
         Route::post('sorts-of-employment', [SortOfEmploymentController::class, 'store'])->name('kinds-of-employment.sorts.store');
@@ -622,16 +624,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('sorts-of-employment/{sortOfEmployment}/delete', [SortOfEmploymentController::class, 'destroy'])->name('kinds-of-employment.sorts.destroy');
     });
 
-    
-Route::prefix('kinds-of-employment/{kindOfEmploymentId}')->group(function () {
-    Route::get('job-titles', [JobTitleController::class, 'index'])->name('kinds-of-employment.job-titles.index');
-    Route::post('job-titles', [JobTitleController::class, 'store'])->name('kinds-of-employment.job-titles.store');
-    Route::put('job-titles/{jobTitle}', [JobTitleController::class, 'update'])->name('kinds-of-employment.job-titles.update');
-    Route::delete('job-titles/{jobTitle}', [JobTitleController::class, 'destroy'])->name('kinds-of-employment.job-titles.destroy');
-});
 
+    Route::prefix('kinds-of-employment/{kindOfEmploymentId}')->group(function () {
+        Route::get('job-titles', [JobTitleController::class, 'index'])->name('kinds-of-employment.job-titles.index');
+        Route::post('job-titles', [JobTitleController::class, 'store'])->name('kinds-of-employment.job-titles.store');
+        Route::put('job-titles/{jobTitle}', [JobTitleController::class, 'update'])->name('kinds-of-employment.job-titles.update');
+        Route::delete('job-titles/{jobTitle}', [JobTitleController::class, 'destroy'])->name('kinds-of-employment.job-titles.destroy');
+    });
 
-
+    Route::resource('tableheaders', TableheaderController::class);
+    Route::resource('columns', ColumnController::class);
 
 
 

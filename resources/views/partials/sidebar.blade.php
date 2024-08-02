@@ -584,6 +584,12 @@ $menuItems = [
                 'roles' => ['admin'],
                 'permission' => 'manage-attendance',
             ],
+            [
+                'name' => 'قائمة الجداول',
+                'link' => '/tableheaders',
+                'roles' => ['admin'],
+                'permission' => 'manage-attendance',
+            ],
         ],
     ],
     [

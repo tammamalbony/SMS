@@ -18,7 +18,12 @@ class SchoolYear extends Model
 
     public function classes()
     {
-        return $this->belongsToMany(Classs::class, 'classses_school_year');
+        return $this->belongsToMany(Classs::class, 'classs_school_years');
+    }
+
+    public function classsSchoolYears()
+    {
+        return $this->hasMany(ClasssSchoolYear::class);
     }
     
 }
