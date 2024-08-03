@@ -77,6 +77,7 @@ use App\Http\Controllers\SchoolRoomTypeController;
 use App\Http\Controllers\SchoolTypeController;
 use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\SectionTeacherController;
 use App\Http\Controllers\SectionTypeController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialSituationController;
@@ -460,14 +461,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/students/{student}/verify', [StudentController::class, 'verify'])->name('students.verify');
 
 
-
-    Route::get('/svg-files', [SvgController::class, 'index'])->name('svg.index');
-    Route::get('/svg-upload', [SvgController::class, 'showUploadForm'])->name('svg.upload.form');
-    Route::post('/svg-upload', [SvgController::class, 'uploadSvg'])->name('svg.upload');
-    Route::get('/svg-ids/{filename}', [SvgController::class, 'getSvgIds'])->name('svg.ids');
-    Route::post('/svg-ids/store', [SvgController::class, 'storeSvgId'])->name('svg.ids.store');
-    Route::delete('/svg/delete/{filename}', [SvgController::class, 'delete'])->name('svg.delete');
-
     Route::prefix('classes/{classId}/books')->group(function () {
         Route::get('/', [BookController::class, 'index'])->name('books.index');
         Route::post('/store', [BookController::class, 'store'])->name('books.store');
@@ -640,9 +633,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('student-living-places', StudentLivingPlaceController::class);
 
 
-    Route::resource('learning_types', LearningTypeController::class);
-
+    
+    Route::get('sections/{section}/teachers', [SectionTeacherController::class, 'index'])->name('section_teacher.index');
+    Route::post('sections/{section}/teachers', [SectionTeacherController::class, 'store'])->name('section_teacher.store');
+    Route::put('sections/{section}/teachers/{sectionTeacher}', [SectionTeacherController::class, 'update'])->name('section_teacher.update');
+    Route::delete('sections/{section}/teachers/{sectionTeacher}', [SectionTeacherController::class, 'destroy'])->name('section_teacher.destroy');
+    
     Route::resource('oldyears', OldYearController::class);
+
+
+    Route::get('/svg-files', [SvgController::class, 'index'])->name('svg.index');
+    Route::get('/svg-upload', [SvgController::class, 'showUploadForm'])->name('svg.upload.form');
+    Route::post('/svg-upload', [SvgController::class, 'uploadSvg'])->name('svg.upload');
+    Route::get('/svg-ids/{filename}', [SvgController::class, 'getSvgIds'])->name('svg.ids');
+    Route::post('/svg-ids/store', [SvgController::class, 'storeSvgId'])->name('svg.ids.store');
+    Route::delete('/svg/delete/{filename}', [SvgController::class, 'delete'])->name('svg.delete');
 
 
 

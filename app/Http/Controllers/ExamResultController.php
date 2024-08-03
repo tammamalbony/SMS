@@ -15,8 +15,6 @@ class ExamResultController extends Controller
 {
     public function index($verifiedStudentId)
     {
-
-       
         // الطالب
         $verifiedStudent = VerifiedStudent::with('student', 'examResults')->findOrFail($verifiedStudentId);
         // الصف الدراسي للطالب ضمن السنة --------> schoolyear
@@ -24,12 +22,15 @@ class ExamResultController extends Controller
         // معرف السنة   ---------> class
         $classs_school_year_id = $classsSchoolYear->id;
         // تفاصيل مواد الصف ضمن السنة 
-        $yearClassSubjects =  YearClassSubject::with(['subjectDetail' => function ($query) {
-            $query->where('is_active', true);
-        }])->where('c_s_y_id',$classs_school_year_id)->get();
+        $yearClassSubjects = YearClassSubject::with([
+            'subjectDetail' => function ($query) {
+                $query->where('is_active', true);
+            }
+        ])->where('c_s_y_id', $classs_school_year_id)->get();
 
+        $terms = Term::where('is_active', true)->get();
         // تفاصيل المادة $yearClassSubject->subjectDetail
-       
+
         // dd($yearClassSubjects);
         // foreach(  $yearClassSubjects as $yearClassSubject){
         //     dd($yearClassSubject->subjectDetail);
@@ -47,15 +48,13 @@ class ExamResultController extends Controller
         // ->whereNull('operation')
         // ->get();
         // // dd($parts);
-
-        $terms = Term::where('is_active', true)->get();
-
-        return view('exam_results.index', compact('verifiedStudent', 'yearClassSubjects','terms'));
+        return view('exam_results.index', compact('verifiedStudent', 'yearClassSubjects', 'terms'));
     }
 
     public function create($verifiedStudentId, $partId)
     {
-        return view('exam_results.create', compact('verifiedStudentId', 'partId'));
+        $terms = Term::where('is_active', true)->get();
+        return view('exam_results.create', compact('verifiedStudentId', 'partId', 'terms'));
     }
 
     public function store(Request $request)
@@ -67,18 +66,20 @@ class ExamResultController extends Controller
             'max_grade' => 'required|numeric',
             'failing_grade' => 'required|numeric',
             'subject_is_failing' => 'required|boolean',
+            'term_id' => 'required|exists:terms,id', // Add validation for term_id
         ]);
 
         $examResult = new ExamResult($request->all());
         $examResult->atemptes = 0;
         $examResult->save();
 
-        return redirect()->route('exam_results.index', $request->verified_student_id)->with('success', 'Exam result created successfully.');
+        return back()->with('success', 'Exam result created successfully.');
     }
 
     public function edit(ExamResult $examResult)
     {
-        return view('exam_results.edit', compact('examResult'));
+        $terms = Term::where('is_active', true)->get();
+        return view('exam_results.edit', compact('examResult', 'terms'));
     }
 
     public function update(Request $request, ExamResult $examResult)
@@ -87,11 +88,12 @@ class ExamResultController extends Controller
             'max_grade' => 'required|numeric',
             'failing_grade' => 'required|numeric',
             'subject_is_failing' => 'required|boolean',
+            'term_id' => 'required|exists:terms,id', // Add validation for term_id
         ]);
 
         $examResult->update($request->all());
         $examResult->increment('atemptes');
 
-        return redirect()->route('exam_results.index', $examResult->verified_student_id)->with('success', 'Exam result updated successfully.');
+        return back()->with('success', 'Exam result updated successfully.');
     }
 }

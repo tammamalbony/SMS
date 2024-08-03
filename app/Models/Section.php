@@ -12,7 +12,7 @@ class Section extends Model
     use HasFactory;
     protected $fillable = [
         'classs_school_year_id',
-        'name',
+        'section_type_id',
         'section_type_id',
         'teacher_id',
     ];
@@ -30,6 +30,12 @@ class Section extends Model
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+   
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class, 'section_teacher');
     }
     public function sectionType()
     {

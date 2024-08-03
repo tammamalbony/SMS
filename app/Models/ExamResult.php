@@ -22,7 +22,8 @@ class ExamResult extends Model
         'subject_is_failing',
         'verified_student_id',
         'subject_detail_id',
-        'short_name'
+        'short_name',
+         'term_id'
     ];
 
     public function part()
@@ -42,5 +43,9 @@ class ExamResult extends Model
     public function subjectDetail()
     {
         return $this->belongsTo(SubjectDetail::class, 'subject_detail_id');
+    }
+    public function term()
+    {
+        return $this->belongsTo(Term::class, 'term_id');
     }
 }

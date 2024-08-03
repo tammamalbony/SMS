@@ -31,4 +31,10 @@ class Teacher extends Model
     {
         return $this->morphMany(Document::class, 'documentable');
     }
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class, 'section_teacher');
+    }
+
+    
 }

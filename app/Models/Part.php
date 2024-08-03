@@ -50,12 +50,13 @@ class Part extends Model
         return $this->hasMany(ExamResult::class, 'part_id');
     }
 
-    public function getExamResult($subjectDetailId, $classsSchoolYearId, $partId, $verifiedStudentId)
+    public function getExamResult($subjectDetailId, $classsSchoolYearId, $partId, $verifiedStudentId,$termid)
     {
         return ExamResult::where('subject_detail_id', $subjectDetailId)
             ->where('class_id', $classsSchoolYearId)
             ->where('part_id', $partId)
             ->where('verified_student_id', $verifiedStudentId)
+            ->where('term_id',$termid)
             ->first();
     }
 

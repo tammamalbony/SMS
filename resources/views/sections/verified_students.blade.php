@@ -46,13 +46,13 @@
                                         <td>{{ $verifiedStudent->status->value }}</td>
                                         <td>{{ $verifiedStudent->order }}</td>
                                         <td>
-                                            <button class="btn btn-primary editButton" data-id="{{ $verifiedStudent->id }}"
+                                            {{-- <button class="btn btn-primary editButton" data-id="{{ $verifiedStudent->id }}"
                                                 data-student="{{ $verifiedStudent->student->id }}"
                                                 data-isconfirmed="{{ $verifiedStudent->is_confirmed }}"
                                                 data-status="{{ $verifiedStudent->status->value }}"
                                                 title="تعديل">
                                                 <i class="fas fa-edit"></i>
-                                            </button>
+                                            </button> --}}
                                             <button class="btn btn-danger deleteButton" data-id="{{ $verifiedStudent->id }}"
                                                 title="حذف">
                                                 <i class="fas fa-trash-alt"></i>
@@ -173,156 +173,156 @@
                 }
             });
 
-            document.getElementById('addVerifiedStudent').addEventListener('click', function() {
-                Swal.fire({
-                    title: 'إضافة طالب مؤكد جديد',
-                    html: `
-                        <form id="create-form">
-                            @csrf
-                            <input type="hidden" name="section_id" value="{{ $section->id }}">
-                            <div class="mb-3">
-                                <label for="student_id" class="form-label">اسم الطالب</label>
-                                <select name="student_id" id="student_id" class="form-select">
-                                    <option value="">اختر الطالب</option>
-                                    @foreach ($students as $student)
-                                        <option value="{{ $student->id }}">{{ $student->name_ar }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="is_confirmed" class="form-label">تأكيد التسجيل</label>
-                                <select name="is_confirmed" id="is_confirmed" class="form-select">
-                                    <option value="0">غير مؤكد</option>
-                                    <option value="1">مؤكد</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="status" class="form-label">الحالة</label>
-                                <select name="status" id="status" class="form-select">
-                                    @foreach (App\Enums\VerifiedStudentStatus::cases() as $status)
-                                        <option value="{{ $status->value }}">{{ $status->value }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-success">إضافة</button>
-                        </form>
-                    `,
-                    showConfirmButton: false
-                });
+            // document.getElementById('addVerifiedStudent').addEventListener('click', function() {
+            //     Swal.fire({
+            //         title: 'إضافة طالب مؤكد جديد',
+            //         html: `
+            //             <form id="create-form">
+            //                 @csrf
+            //                 <input type="hidden" name="section_id" value="{{ $section->id }}">
+            //                 <div class="mb-3">
+            //                     <label for="student_id" class="form-label">اسم الطالب</label>
+            //                     <select name="student_id" id="student_id" class="form-select">
+            //                         <option value="">اختر الطالب</option>
+            //                         @foreach ($students as $student)
+            //                             <option value="{{ $student->id }}">{{ $student->name_ar }}</option>
+            //                         @endforeach
+            //                     </select>
+            //                 </div>
+            //                 <div class="mb-3">
+            //                     <label for="is_confirmed" class="form-label">تأكيد التسجيل</label>
+            //                     <select name="is_confirmed" id="is_confirmed" class="form-select">
+            //                         <option value="0">غير مؤكد</option>
+            //                         <option value="1">مؤكد</option>
+            //                     </select>
+            //                 </div>
+            //                 <div class="mb-3">
+            //                     <label for="status" class="form-label">الحالة</label>
+            //                     <select name="status" id="status" class="form-select">
+            //                         @foreach (App\Enums\VerifiedStudentStatus::cases() as $status)
+            //                             <option value="{{ $status->value }}">{{ $status->value }}</option>
+            //                         @endforeach
+            //                     </select>
+            //                 </div>
+            //                 <button type="submit" class="btn btn-success">إضافة</button>
+            //             </form>
+            //         `,
+            //         showConfirmButton: false
+            //     });
 
-                document.getElementById('create-form').addEventListener('submit', function(event) {
-                    event.preventDefault();
+            //     document.getElementById('create-form').addEventListener('submit', function(event) {
+            //         event.preventDefault();
 
-                    let form = event.target;
-                    let formData = new FormData(form);
+            //         let form = event.target;
+            //         let formData = new FormData(form);
 
-                    fetch("{{ route('verified-students.store') }}", {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': formData.get('_token'),
-                                'Accept': 'application/json'
-                            },
-                            body: formData
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                Swal.fire({
-                                    title: 'تمت الإضافة!',
-                                    text: data.success,
-                                    icon: 'success',
-                                    confirmButtonText: 'حسنًا'
-                                }).then(() => {
-                                    location.reload();
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                });
-            });
+            //         fetch("{{ route('verified-students.store') }}", {
+            //                 method: 'POST',
+            //                 headers: {
+            //                     'X-CSRF-TOKEN': formData.get('_token'),
+            //                     'Accept': 'application/json'
+            //                 },
+            //                 body: formData
+            //             })
+            //             .then(response => response.json())
+            //             .then(data => {
+            //                 if (data.success) {
+            //                     Swal.fire({
+            //                         title: 'تمت الإضافة!',
+            //                         text: data.success,
+            //                         icon: 'success',
+            //                         confirmButtonText: 'حسنًا'
+            //                     }).then(() => {
+            //                         location.reload();
+            //                     });
+            //                 }
+            //             })
+            //             .catch(error => {
+            //                 console.error('Error:', error);
+            //             });
+            //     });
+            // });
 
-            document.querySelectorAll('.editButton').forEach(button => {
-                button.addEventListener('click', function() {
-                    let id = this.getAttribute('data-id');
-                    let studentId = this.getAttribute('data-student');
-                    let isConfirmed = this.getAttribute('data-isconfirmed');
-                    let status = this.getAttribute('data-status');
+            // document.querySelectorAll('.editButton').forEach(button => {
+            //     button.addEventListener('click', function() {
+            //         let id = this.getAttribute('data-id');
+            //         let studentId = this.getAttribute('data-student');
+            //         let isConfirmed = this.getAttribute('data-isconfirmed');
+            //         let status = this.getAttribute('data-status');
 
-                    Swal.fire({
-                        title: 'تعديل طالب مؤكد',
-                        html: `
-                            <form id="edit-form">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="section_id" value="{{ $section->id }}">
-                                <div class="mb-3">
-                                    <label for="student_id" class="form-label">اسم الطالب</label>
-                                    <select name="student_id" id="student_id" class="form-select">
-                                        <option value="">اختر الطالب</option>
-                                        @foreach ($students as $student)
-                                            <option value="{{ $student->id }}" ${studentId == {{ $student->id }} ? 'selected' : ''}>
-                                                {{ $student->name_ar }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="is_confirmed" class="form-label">تأكيد التسجيل</label>
-                                    <select name="is_confirmed" id="is_confirmed" class="form-select">
-                                        <option value="0" ${isConfirmed == 0 ? 'selected' : ''}>غير مؤكد</option>
-                                        <option value="1" ${isConfirmed == 1 ? 'selected' : ''}>مؤكد</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">الحالة</label>
-                                    <select name="status" id="status" class="form-select">
-                                       @foreach (App\Enums\VerifiedStudentStatus::cases() as $status)
-                                        <option value="{{ $status->value }}">{{ $status->value }}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-success">تحديث</button>
-                            </form>
-                        `,
-                        showConfirmButton: false
-                    });
+            //         Swal.fire({
+            //             title: 'تعديل طالب مؤكد',
+            //             html: `
+            //                 <form id="edit-form">
+            //                     @csrf
+            //                     @method('PUT')
+            //                     <input type="hidden" name="section_id" value="{{ $section->id }}">
+            //                     <div class="mb-3">
+            //                         <label for="student_id" class="form-label">اسم الطالب</label>
+            //                         <select name="student_id" id="student_id" class="form-select">
+            //                             <option value="">اختر الطالب</option>
+            //                             @foreach ($students as $student)
+            //                                 <option value="{{ $student->id }}" ${studentId == {{ $student->id }} ? 'selected' : ''}>
+            //                                     {{ $student->name_ar }}
+            //                                 </option>
+            //                             @endforeach
+            //                         </select>
+            //                     </div>
+            //                     <div class="mb-3">
+            //                         <label for="is_confirmed" class="form-label">تأكيد التسجيل</label>
+            //                         <select name="is_confirmed" id="is_confirmed" class="form-select">
+            //                             <option value="0" ${isConfirmed == 0 ? 'selected' : ''}>غير مؤكد</option>
+            //                             <option value="1" ${isConfirmed == 1 ? 'selected' : ''}>مؤكد</option>
+            //                         </select>
+            //                     </div>
+            //                     <div class="mb-3">
+            //                         <label for="status" class="form-label">الحالة</label>
+            //                         <select name="status" id="status" class="form-select">
+            //                            @foreach (App\Enums\VerifiedStudentStatus::cases() as $status)
+            //                             <option value="{{ $status->value }}">{{ $status->value }}</option>
+            //                         @endforeach
+            //                         </select>
+            //                     </div>
+            //                     <button type="submit" class="btn btn-success">تحديث</button>
+            //                 </form>
+            //             `,
+            //             showConfirmButton: false
+            //         });
 
-                    document.getElementById('edit-form').addEventListener('submit', function(
-                        event) {
-                        event.preventDefault();
+            //         document.getElementById('edit-form').addEventListener('submit', function(
+            //             event) {
+            //             event.preventDefault();
 
-                        let form = event.target;
-                        let formData = new FormData(form);
+            //             let form = event.target;
+            //             let formData = new FormData(form);
 
-                        fetch(`{{ url('verified-students') }}/${id}`, {
-                                method: 'POST',
-                                headers: {
-                                    'X-CSRF-TOKEN': formData.get('_token'),
-                                    'Accept': 'application/json'
-                                },
-                                body: formData
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    Swal.fire({
-                                        title: 'تم التحديث!',
-                                        text: data.success,
-                                        icon: 'success',
-                                        confirmButtonText: 'حسنًا'
-                                    }).then(() => {
-                                        location.reload();
-                                    });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    });
-                });
-            });
+            //             fetch(`{{ url('verified-students') }}/${id}`, {
+            //                     method: 'POST',
+            //                     headers: {
+            //                         'X-CSRF-TOKEN': formData.get('_token'),
+            //                         'Accept': 'application/json'
+            //                     },
+            //                     body: formData
+            //                 })
+            //                 .then(response => response.json())
+            //                 .then(data => {
+            //                     if (data.success) {
+            //                         Swal.fire({
+            //                             title: 'تم التحديث!',
+            //                             text: data.success,
+            //                             icon: 'success',
+            //                             confirmButtonText: 'حسنًا'
+            //                         }).then(() => {
+            //                             location.reload();
+            //                         });
+            //                     }
+            //                 })
+            //                 .catch(error => {
+            //                     console.error('Error:', error);
+            //                 });
+            //         });
+            //     });
+            // });
 
             document.querySelectorAll('.deleteButton').forEach(button => {
                 button.addEventListener('click', function() {

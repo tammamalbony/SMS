@@ -53,7 +53,6 @@ class SvgController extends Controller
     // Method to get SVG IDs from a selected file
     public function getSvgIds($filename)
     {
-
         // Path to the SVG file in the public directory
         $filePath = storage_path('app/public/store/grade/' . $filename);
 
@@ -75,8 +74,15 @@ class SvgController extends Controller
         $ids = [];
         $this->extractIds($svg, $ids, $namespaces);
 
-        // Return the view with SVG IDs
-        return view('svg.ids', ['filename' => $filename, 'svgIds' => $ids]);
+        // Encode SVG content for safe rendering in HTML
+        // $encodedSvgContent = htmlspecialchars($svgContent);
+
+        // Return the view with SVG content and IDs
+        return view('svg.ids', [
+            'filename' => $filename,
+            'svgIds' => $ids,
+            'svgContent' => $svgContent
+        ]);
     }
 
     // Recursive method to extract IDs from SVG elements
@@ -90,7 +96,7 @@ class SvgController extends Controller
         foreach ($element->children() as $child) {
             $this->extractIds($child, $ids, $namespaces);
         }
-    
+
         // Recursively check child elements
         foreach ($namespaces as $prefix => $namespace) {
             foreach ($element->children($namespace) as $child) {

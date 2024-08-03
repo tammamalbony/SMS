@@ -63,7 +63,9 @@
                                                 title="الطلاب المسجلين">
                                             <i class="fa fa-users"></i>
                                         </button>
-                                        
+                                        <a href="{{ route('section_teacher.index', ['section' => $section->id]) }}" class="btn btn-secondary" title="إدارة المعلمين">
+                                            <i class="fa fa-chalkboard-teacher"></i>
+                                        </a>
                                         </td>
                                     </tr>
                                 @endforeach
