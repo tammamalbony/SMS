@@ -16,6 +16,12 @@ class ClasssSchoolYear extends Model
         'classs_id',
         'school_year_id',
         'fall_subject_count',
+        'is_final_result_failing',
+        'min_required_result',
+        'is_attendance_required',
+        'min_required_attendance_percent',
+        'help_for_subjects',
+        'learning_type_id',
     ];
 
     public function classs()
@@ -58,5 +64,9 @@ class ClasssSchoolYear extends Model
     public function svgIds()
     {
         return $this->hasMany(SvgId::class);
+    }
+    public function learningType()
+    {
+        return $this->belongsTo(LearningType::class, 'learning_type_id');
     }
 }

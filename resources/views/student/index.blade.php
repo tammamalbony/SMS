@@ -53,12 +53,12 @@
                                 <i class="fas fa-check-circle"></i>
                             </button>
                         @endif
-                        
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $students->links() }}
 </div>
 
 <script>

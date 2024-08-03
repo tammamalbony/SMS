@@ -24,7 +24,7 @@ class StudentController extends Controller
     public function index()
     {
 
-        $students = Student::all();
+        $students = Student::orderBy('created_at', 'desc')->paginate(50);
         $schoolYears = SchoolYear::all();
         $languages = Language::all();
         return view('student.index', compact('students', 'schoolYears', 'languages'));

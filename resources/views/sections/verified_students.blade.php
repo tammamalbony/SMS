@@ -21,7 +21,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 mb-30">
-                <button id="addVerifiedStudent" class="btn btn-success mb-3">إضافة جديد</button>
+                {{-- <button id="addVerifiedStudent" class="btn btn-success mb-3">إضافة جديد</button> --}}
                 <button id="sortAlphabetically" class="btn btn-primary mb-3">ترتيب أبجدي</button>
                 <div class="card card-statistics h-100">
                     <div class="card-body">

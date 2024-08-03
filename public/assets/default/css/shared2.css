@@ -299,7 +299,10 @@ h6 {
         --main-btn-2-min-width: 190px;
     }
 }
-
+.border-danger-custom {
+     border:solid 1px red !important;
+     border-radius:8px  !important;
+ }
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
     :root {
         --hero-image-height: 475px;

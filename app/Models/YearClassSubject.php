@@ -16,7 +16,10 @@ class YearClassSubject extends Model
         'subject_detail_id',
         'order',
         'is_falling',
+        'is_optional_foreign_subject',
+        'foreign_language_id',
     ];
+
     public function c_s_y()
     {
         return $this->belongsTo(ClasssSchoolYear::class);
@@ -37,6 +40,18 @@ class YearClassSubject extends Model
         return $this->hasMany(Part::class);
     }
 
+    public function partsInputs()
+    {
+        return $this->hasMany(Part::class)
+            ->where('must_be_calculated', 0)
+            ->where('is_active', 1)
+            ->where('is_sealed', 0)
+            ->where('must_be_ceiled', 0)
+            ->where('is_final_result', 0)
+            ->whereNull('value')
+            ->whereNull('operation');
+    }
+
     public function calculateFinalResult()
     {
         $finalResult = 0;
@@ -53,5 +68,10 @@ class YearClassSubject extends Model
         }
 
         return $finalResult;
+    }
+
+    public function foreignLanguage()
+    {
+        return $this->belongsTo(Language::class, 'foreign_language_id');
     }
 }

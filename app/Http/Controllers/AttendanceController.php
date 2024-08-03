@@ -48,9 +48,10 @@ class AttendanceController extends Controller
             'class_school_year_id' => 'required|integer|exists:classs_school_years,id',
         ]);
 
+        
         // Fetch the sections that have verified students
         $sections = Section::where('classs_school_year_id', $request->class_school_year_id)
-            ->whereHas('verifiedStudents')
+            // ->whereHas('verifiedStudents')
             ->get();
 
         // Return the sections in JSON format

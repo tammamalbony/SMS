@@ -25,7 +25,6 @@ class SvgId extends Model
         'transform',
     ];
 
-
     public function exam()
     {
         return $this->belongsTo(Exam::class);

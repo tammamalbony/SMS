@@ -1,9 +1,10 @@
-a@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
         <h1>SVG IDs in {{ $filename }}</h1>
 
+        @dd($svgIds)
         <form action="{{ route('svg.ids.store') }}" method="POST">
             @csrf
             <input type="hidden" name="filename" value="{{ $filename }}">

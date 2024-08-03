@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ExamResult;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -44,6 +45,20 @@ class Part extends Model
         return $this->hasMany(PartOperation::class);
     }
 
+    public function examResults()
+    {
+        return $this->hasMany(ExamResult::class, 'part_id');
+    }
+
+    public function getExamResult($subjectDetailId, $classsSchoolYearId, $partId, $verifiedStudentId)
+    {
+        return ExamResult::where('subject_detail_id', $subjectDetailId)
+            ->where('class_id', $classsSchoolYearId)
+            ->where('part_id', $partId)
+            ->where('verified_student_id', $verifiedStudentId)
+            ->first();
+    }
+
     public function calculateValue()
     {
         $result = 0;
@@ -60,7 +75,7 @@ class Part extends Model
                         $result -= $operandValue;
                         break;
                     case 'multiply':
-                        if($operandValue != 0){
+                        if ($operandValue != 0) {
                             $result *= $operandValue;
                         }
                         break;
@@ -81,7 +96,7 @@ class Part extends Model
                         $result -= $this->value;
                         break;
                     case 'multiply':
-                        if($operandValue != 0){
+                        if ($operandValue != 0) {
                             $result *= $this->value;
                         }
                         break;

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Part;
+use App\Models\Student;
+use App\Models\Term;
 use App\Models\YearClassSubject;
 use Illuminate\Http\Request;
 use App\Models\ExamResult;
@@ -12,23 +15,53 @@ class ExamResultController extends Controller
 {
     public function index($verifiedStudentId)
     {
+
+       
+        // الطالب
         $verifiedStudent = VerifiedStudent::with('student', 'examResults')->findOrFail($verifiedStudentId);
-        $classs_school_year_id = $verifiedStudent->section->classs_school_year_id;
-        $exams = Exam::where('classs_school_year_id', $classs_school_year_id)->get();
-        $yearClassSubjects = YearClassSubject::where("c_s_y_id",$classs_school_year_id)->get();
-        return view('exam_results.index', compact('verifiedStudent', 'exams','yearClassSubjects'));
+        // الصف الدراسي للطالب ضمن السنة --------> schoolyear
+        $classsSchoolYear = $verifiedStudent->section->classsSchoolYear;
+        // معرف السنة   ---------> class
+        $classs_school_year_id = $classsSchoolYear->id;
+        // تفاصيل مواد الصف ضمن السنة 
+        $yearClassSubjects =  YearClassSubject::with(['subjectDetail' => function ($query) {
+            $query->where('is_active', true);
+        }])->where('c_s_y_id',$classs_school_year_id)->get();
+
+        // تفاصيل المادة $yearClassSubject->subjectDetail
+       
+        // dd($yearClassSubjects);
+        // foreach(  $yearClassSubjects as $yearClassSubject){
+        //     dd($yearClassSubject->subjectDetail);
+        // }
+
+        // $yearClassSubjectIds = $yearClassSubjects->pluck('id')->toArray();
+
+        // $parts =Part::whereIn('year_class_subject_id', $yearClassSubjectIds)
+        // ->where('must_be_calculated', 0)
+        // ->where('is_active', 1)
+        // ->where('is_sealed', 0)
+        // ->where('must_be_ceiled', 0)
+        // ->where('is_final_result', 0)
+        // ->whereNull('value')
+        // ->whereNull('operation')
+        // ->get();
+        // // dd($parts);
+
+        $terms = Term::where('is_active', true)->get();
+
+        return view('exam_results.index', compact('verifiedStudent', 'yearClassSubjects','terms'));
     }
 
-    public function create($verifiedStudentId, $examId)
+    public function create($verifiedStudentId, $partId)
     {
-        return view('exam_results.create', compact('verifiedStudentId', 'examId'));
+        return view('exam_results.create', compact('verifiedStudentId', 'partId'));
     }
 
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
-            'exam_id' => 'required|exists:exams,id',
+            'part_id' => 'required|exists:parts,id',
             'class_id' => 'required|exists:classs_school_years,id',
             'verified_student_id' => 'required|exists:verified_students,id',
             'max_grade' => 'required|numeric',

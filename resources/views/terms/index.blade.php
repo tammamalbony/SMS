@@ -34,8 +34,10 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $term->name }}</td>
                                         <td>
-                                            <button class="btn btn-primary edit-button" data-id="{{ $term->id }}"><i class="fa fa-edit"></i></button>
-                                            <button class="btn btn-danger delete-button" data-id="{{ $term->id }}"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-primary edit-button" data-id="{{ $term->id }}"><i
+                                                    class="fa fa-edit"></i></button>
+                                            <button class="btn btn-danger delete-button" data-id="{{ $term->id }}"><i
+                                                    class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -55,18 +57,31 @@
                 Swal.fire({
                     title: 'إضافة فصل دراسي',
                     html: `
-                        <label for="name">اسم الفصل:</label>
-                        <input type="text" id="name" class="swal2-input" placeholder="اسم الفصل">
-                    `,
+        <label for="name">اسم الفصل:</label>
+        <input type="text" id="name" class="swal2-input" placeholder="اسم الفصل">
+        <div class="form-group mb-0 mt-1 custom-switches-stacked">
+            <label class="custom-switch pl-0 d-flex align-items-center mb-0">
+                <input type="hidden" id="is_active_hidden" name="is_active" value="0">
+                <input type="checkbox" id="is_active" name="is_active" value="1" class="custom-switch-input">
+                <span class="custom-switch-indicator"></span>
+                <label class="custom-switch-description mb-0 cursor-pointer" for="is_active">{{ __('(نشط)') }}</label>
+            </label>
+        </div>
+    `,
                     confirmButtonText: 'حفظ البيانات',
                     showCancelButton: true,
                     cancelButtonText: 'إلغاء',
                     preConfirm: () => {
                         const name = Swal.getPopup().querySelector('#name').value;
+                        const isActive = Swal.getPopup().querySelector('#is_active').checked ?
+                            1 : 0;
                         if (!name) {
                             Swal.showValidationMessage(`الرجاء إدخال الاسم`);
                         }
-                        return { name: name };
+                        return {
+                            name: name,
+                            is_active: isActive
+                        };
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -76,14 +91,17 @@
                             data: {
                                 _token: '{{ csrf_token() }}',
                                 name: result.value.name,
+                                is_active: result.value.is_active,
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الإضافة!', 'تم إضافة الفصل بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الإضافة!', 'تم إضافة الفصل بنجاح.',
+                                        'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة الفصل.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء إضافة الفصل.',
+                                        'error');
                                 }
                             }
                         });
@@ -100,18 +118,33 @@
                         Swal.fire({
                             title: 'تعديل فصل دراسي',
                             html: `
-                                <label for="name">اسم الفصل:</label>
-                                <input type="text" id="name" class="swal2-input" value="${data.name}">
-                            `,
+                <label for="name">اسم الفصل:</label>
+                <input type="text" id="name" class="swal2-input" value="${data.name}">
+                <div class="form-group mb-0 mt-1 custom-switches-stacked">
+                    <label class="custom-switch pl-0 d-flex align-items-center mb-0">
+                        <input type="hidden" id="is_active_hidden" name="is_active" value="0">
+                        <input type="checkbox" id="is_active" name="is_active" value="1" class="custom-switch-input" ${data.is_active ? 'checked' : ''}>
+                        <span class="custom-switch-indicator"></span>
+                        <label class="custom-switch-description mb-0 cursor-pointer" for="is_active">{{ __('(نشط)') }}</label>
+                    </label>
+                </div>
+            `,
                             confirmButtonText: 'حفظ البيانات',
                             showCancelButton: true,
                             cancelButtonText: 'إلغاء',
                             preConfirm: () => {
-                                const name = Swal.getPopup().querySelector('#name').value;
+                                const name = Swal.getPopup().querySelector('#name')
+                                    .value;
+                                const isActive = Swal.getPopup().querySelector(
+                                    '#is_active').checked ? 1 : 0;
                                 if (!name) {
-                                    Swal.showValidationMessage(`الرجاء إدخال الاسم`);
+                                    Swal.showValidationMessage(
+                                    `الرجاء إدخال الاسم`);
                                 }
-                                return { name: name };
+                                return {
+                                    name: name,
+                                    is_active: isActive
+                                };
                             }
                         }).then((result) => {
                             if (result.isConfirmed) {
@@ -121,14 +154,19 @@
                                     data: {
                                         _token: '{{ csrf_token() }}',
                                         name: result.value.name,
+                                        is_active: result.value.is_active,
                                     },
                                     success: function(response) {
                                         if (response.success) {
-                                            Swal.fire('تم التعديل!', 'تم تعديل الفصل بنجاح.', 'success').then(() => {
+                                            Swal.fire('تم التعديل!',
+                                                'تم تعديل الفصل بنجاح.',
+                                                'success').then(() => {
                                                 location.reload();
                                             });
                                         } else {
-                                            Swal.fire('خطأ!', 'حدث خطأ أثناء تعديل الفصل.', 'error');
+                                            Swal.fire('خطأ!',
+                                                'حدث خطأ أثناء تعديل الفصل.',
+                                                'error');
                                         }
                                     }
                                 });
@@ -136,6 +174,7 @@
                         });
                     }
                 });
+
             });
 
             $('.delete-button').on('click', function() {
@@ -159,11 +198,13 @@
                             },
                             success: function(response) {
                                 if (response.success) {
-                                    Swal.fire('تم الحذف!', 'تم حذف الفصل بنجاح.', 'success').then(() => {
+                                    Swal.fire('تم الحذف!', 'تم حذف الفصل بنجاح.',
+                                        'success').then(() => {
                                         location.reload();
                                     });
                                 } else {
-                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف الفصل.', 'error');
+                                    Swal.fire('خطأ!', 'حدث خطأ أثناء حذف الفصل.',
+                                        'error');
                                 }
                             },
                             error: function(response) {

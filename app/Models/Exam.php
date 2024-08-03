@@ -54,15 +54,14 @@ class Exam extends Model
      * @param int $verifiedStudentId
      * @return ExamResult|null
      */
-    public function getExamResult($subjectDetailId, $ClasssSchoolYearid, $examId,$verifiedStudentId)
+    public function getExamResult($subjectDetailId, $classsSchoolYearId, $partId, $verifiedStudentId)
     {
         return ExamResult::where('subject_detail_id', $subjectDetailId)
-            ->where('class_id', $ClasssSchoolYearid)
-            ->where('exam_id', $examId)
+            ->where('class_id', $classsSchoolYearId)
+            ->where('part_id', $partId)
             ->where('verified_student_id', $verifiedStudentId)
             ->first();
     }
-
     public function svgIds()
     {
         return $this->hasMany(SvgId::class);

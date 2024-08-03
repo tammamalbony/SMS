@@ -45,6 +45,7 @@ use App\Http\Controllers\JobSequenceController;
 use App\Http\Controllers\JobTitleController;
 use App\Http\Controllers\KindOfEmploymentController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\LearningTypeController;
 use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\LocalSectionController;
 use App\Http\Controllers\MarkController;
@@ -53,6 +54,7 @@ use App\Http\Controllers\MedalController;
 use App\Http\Controllers\MedicalConditionController;
 use App\Http\Controllers\MGradeController;
 use App\Http\Controllers\NationalityController;
+use App\Http\Controllers\OldYearController;
 use App\Http\Controllers\OwnershipTypeController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PartController;
@@ -86,6 +88,7 @@ use App\Http\Controllers\StudentAdditionalDetailController;
 use App\Http\Controllers\StudentCourseController;
 use App\Http\Controllers\StudentCourseLocationController;
 use App\Http\Controllers\StudentCourseTypeController;
+use App\Http\Controllers\StudentLivingPlaceController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\SubjectDetailController;
 use App\Http\Controllers\SvgController;
@@ -463,7 +466,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/svg-upload', [SvgController::class, 'uploadSvg'])->name('svg.upload');
     Route::get('/svg-ids/{filename}', [SvgController::class, 'getSvgIds'])->name('svg.ids');
     Route::post('/svg-ids/store', [SvgController::class, 'storeSvgId'])->name('svg.ids.store');
-
+    Route::delete('/svg/delete/{filename}', [SvgController::class, 'delete'])->name('svg.delete');
 
     Route::prefix('classes/{classId}/books')->group(function () {
         Route::get('/', [BookController::class, 'index'])->name('books.index');
@@ -634,9 +637,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::resource('tableheaders', TableheaderController::class);
     Route::resource('columns', ColumnController::class);
+    Route::resource('student-living-places', StudentLivingPlaceController::class);
 
 
+    Route::resource('learning_types', LearningTypeController::class);
 
+    Route::resource('oldyears', OldYearController::class);
 
 
 

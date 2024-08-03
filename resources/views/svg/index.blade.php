@@ -4,18 +4,36 @@
     <div class="container">
         <h1>SVG Files</h1>
         <button id="upload-btn" class="btn btn-primary mb-3">Upload SVG File</button>
-        <ul>
-            @foreach ($files as $file)
-                <li>
-                    <a href="{{ route('svg.ids', ['filename' => $file]) }}">
-                        {{ $file }}
-                        <div class="svg-preview">
-                            <img src="{{ asset('storage/store/grade/' . $file) }}" alt="{{ $file }}" class="svg-thumbnail">
-                        </div>
-                    </a>
-                </li>
-            @endforeach
-        </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Preview</th>
+                    <th>File Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($files as $file)
+                    <tr>
+                        <td>
+                            <a href="{{ asset('storage/store/grade/' . $file) }}" data-lightbox="svg-files" data-title="{{ $file }}">
+                                <img src="{{ asset('storage/store/grade/' . $file) }}" alt="{{ $file }}" class="svg-thumbnail" style="width: 100px;">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('svg.ids', ['filename' => $file]) }}">{{ $file }}</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('svg.delete', ['filename' => $file]) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <script>

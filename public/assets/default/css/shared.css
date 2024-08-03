@@ -935,7 +935,7 @@ select option {
         var(--btn-bg-hover) border-box !important;
     white-space: nowrap;
     box-shadow: -3px 7px 0px 0px #0a446b, -2px 11px 9px 1px #0C0B1024 !important;
-    transform: translate(0, -2px) !important;
+    transform: translate(3px, -7px) !important;
     transition: 0.1s all ease;
     /* transition: background 0.6s ease, box-shadow 0.6s ease, border 0.6s ease; */
 }

@@ -71,6 +71,7 @@ table+nav >div ,table+nav >div  p{
     flex-direction: row;
     margin-bottom: 0px;
 }
+
 table+nav>div:last-child >div{
     display: flex;
     max-height:50px;
@@ -4575,8 +4576,8 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem
+    border: 1px solid rgba(0,0,0,.125) !important;
+    border-radius: 12px !important;
 }
 
 .card>hr {
@@ -6668,7 +6669,9 @@ a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover {
 }
 
 .border-danger {
-    border-color: #dc3545!important
+    border-color: #dc3545!important;
+    border: solid 1px;
+    border-radius: 8px;
 }
 
 .border-light {
@@ -8011,7 +8014,7 @@ a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover {
 }
 
 .shadow-sm {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important
+    box-shadow: 1px .125rem 0.5rem 2px rgba(0, 0, 0, .075) !important;
 }
 
 .shadow {

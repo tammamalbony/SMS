@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,12 +9,11 @@ use App\Models\SvgId;
 
 class SvgController extends Controller
 {
-    // Method to show the list of SVG files
+    // Method to show the list of SVG files   // Method to show the list of SVG files
     public function index()
     {
-        // Get all SVG files in the private directory
-        $files = Storage::files('private/svg');
-
+        // Get all SVG files in the public directory
+        $files = Storage::disk('public')->files('store/grade');
         // Filter to include only .svg files
         $svgFiles = array_filter($files, function ($file) {
             return pathinfo($file, PATHINFO_EXTENSION) === 'svg';
@@ -37,23 +37,25 @@ class SvgController extends Controller
     {
         $request->validate([
             'svgFile' => 'required|mimes:svg|max:2048',
+            'fileName' => 'nullable|string|max:255'
         ]);
-    
+
         if ($request->file('svgFile')->isValid()) {
             $file = $request->file('svgFile');
-            $filename = $file->getClientOriginalName();
-            $path = $file->storeAs('public/store/grade', $filename);
+            $filename = $request->input('fileName') ?: $file->getClientOriginalName();
+            $path = $file->storeAs('store/grade', $filename, 'public');
             return response()->json(['success' => true, 'path' => $path]);
         }
-    
+
         return response()->json(['success' => false], 500);
     }
 
     // Method to get SVG IDs from a selected file
     public function getSvgIds($filename)
     {
-        // Path to the SVG file in the private directory
-        $filePath = storage_path('app/private/svg/' . $filename);
+
+        // Path to the SVG file in the public directory
+        $filePath = storage_path('app/public/store/grade/' . $filename);
 
         // Check if the file exists
         if (!file_exists($filePath)) {
@@ -85,9 +87,15 @@ class SvgController extends Controller
             $ids[] = (string) $element['id'];
         }
 
-        // Recursively check child elements
-        foreach ($element->children($namespaces) as $child) {
+        foreach ($element->children() as $child) {
             $this->extractIds($child, $ids, $namespaces);
+        }
+    
+        // Recursively check child elements
+        foreach ($namespaces as $prefix => $namespace) {
+            foreach ($element->children($namespace) as $child) {
+                $this->extractIds($child, $ids, $namespaces);
+            }
         }
     }
 
@@ -127,5 +135,15 @@ class SvgController extends Controller
         ]);
 
         return redirect()->route('svg.index')->with('success', 'SVG ID stored successfully!');
+    }
+
+    public function delete($filename)
+    {
+        if (Storage::disk('public')->exists('store/grade/' . $filename)) {
+            Storage::disk('public')->delete('store/grade/' . $filename);
+            return redirect()->route('svg.index')->with('success', 'SVG file deleted successfully.');
+        } else {
+            return redirect()->route('svg.index')->with('error', 'SVG file not found.');
+        }
     }
 }

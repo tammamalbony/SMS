@@ -8,12 +8,18 @@ $menuItems = [
         'permission' => 'view-dashboard',
     ],
     [
-        'name' => 'بيانات البطاقة',
-        'icon' => 'fa fa-th-large',
+        'name' => 'الأرشيف',
+        'icon' => 'fa fa-history',
         'link' => '#',
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-classes',
         'subMenu' => [
+            [
+                'name' => 'قائمة السنوات',
+                'link' => '/oldyears',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
             [
                 'name' => 'قائمة الدول و المحافظات',
                 'link' => '/countries',
@@ -26,6 +32,15 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],
+        ],
+    ],
+    [
+        'name' => 'بيانات البطاقة',
+        'icon' => 'fa fa-id-card',
+        'link' => '#',
+        'roles' => ['admin', 'teacher'],
+        'permission' => 'view-classes',
+        'subMenu' => [
             [
                 'name' => 'الأمراض',
                 'link' => '/diseases',
@@ -57,13 +72,19 @@ $menuItems = [
                 'permission' => 'view-class-list',
             ],
             [
+                'name' => 'أنواع الأنشطة للأطفال ',
+                'link' => '/activities',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
                 'name' => 'أنواع الأنشطة الشبيبية ',
                 'link' => '/youth_activity_types',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],
             [
-                'name' => 'أنواع الأنشطة الشبيبية ',
+                'name' => 'أماكن الأنشطة الشبيبية ',
                 'link' => '/youth_activity_locations',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
@@ -143,11 +164,17 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],
+            [
+                'name' => 'أماكن السكن',
+                'link' => '/student-living-places',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
         ],
     ],
     [
         'name' => 'بيانات العائلة',
-        'icon' => 'fa fa-th-large',
+        'icon' => 'fa fa-child',
         'link' => '#',
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-classes',
@@ -164,12 +191,11 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],
-
         ],
     ],
     [
         'name' => 'بيانات الطالب',
-        'icon' => 'fa fa-th-large',
+        'icon' => 'fa fa-user',
         'link' => '#',
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-classes',
@@ -196,7 +222,7 @@ $menuItems = [
     ],
     [
         'name' => 'بيانات الموظفين',
-        'icon' => 'fa fa-th-large',
+        'icon' => 'fa fa-briefcase  ',
         'link' => '#',
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-classes',
@@ -207,7 +233,7 @@ $menuItems = [
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-student-list',
             ],
-            
+
             [
                 'name' => 'أنواع الهيئات الوظيفية',
                 'link' => '/types_of_employment',
@@ -234,10 +260,10 @@ $menuItems = [
             ],
         ],
     ],
-   
+
     [
         'name' => 'بيانات المدرسة',
-       'icon' => 'fa fa-cogs',
+        'icon' => 'fa fa-cogs',
         'link' => '#',
         'roles' => ['admin', 'teacher'],
         'permission' => 'view-classes',
@@ -265,7 +291,8 @@ $menuItems = [
                 'link' => '/school_types',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-student-list',
-            ], [
+            ],
+            [
                 'name' => 'أنواع الأبنية',
                 'link' => '/school_building_types',
                 'roles' => ['admin', 'teacher'],
@@ -388,6 +415,12 @@ $menuItems = [
             [
                 'name' => 'قائمة الفئات العمرية',
                 'link' => '/age_groups',
+                'roles' => ['admin', 'teacher'],
+                'permission' => 'view-class-list',
+            ],
+            [
+                'name' => 'أنواع التعليم',
+                'link' => '/learning_types',
                 'roles' => ['admin', 'teacher'],
                 'permission' => 'view-class-list',
             ],

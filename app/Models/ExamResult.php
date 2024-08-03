@@ -11,7 +11,7 @@ class ExamResult extends Model
     use HasFactory;
 
     protected $fillable = [
-        'exam_id',
+        'part_id',
         'class_id',
         'max_grade',
         'isverfied',
@@ -25,11 +25,10 @@ class ExamResult extends Model
         'short_name'
     ];
 
-    public function exam()
+    public function part()
     {
-        return $this->belongsTo(Exam::class);
+        return $this->belongsTo(Part::class, 'part_id');
     }
-
     public function classsSchoolYear()
     {
         return $this->belongsTo(ClasssSchoolYear::class, 'class_id');

@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{   asset('/assets/default/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{   asset('/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css') }}">
     <link rel="stylesheet" href="{{   asset('/assets/vendors/summernote/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="{{   asset('/assets/vendors/lightbox/lightbox.min.css') }}">
 
     <link rel="stylesheet" href="{{   asset('/assets/vendors/datetimepicker/tempusdominus-bootstrap-4.css') }}">
     <script src="{{ asset('/assets/admin/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
@@ -177,6 +178,7 @@
 <script src="{{ asset('/assets/admin/js/webinar.min.js') }}"></script>
 <script src="{{ asset('/assets/admin/js/numbers.js') }}"></script>
 <script src="{{ asset('assets/vendors/Sortable.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/lightbox/lightbox.min.js') }}"></script>
 
 <script>
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
